@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:head>
+	<title>jQuery UI Droppable - Default Demo</title>	
+	<style type="text/css">
+	#draggable, #draggable1 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; border: 1px solid red;}
+	#droppable, #droppable1 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; border: 1px solid blue;}
+	</style>	
+</wicket:head>
+<body>
+<div wicket:id="context" class="demo">
+	
+<div id="draggable" class="ui-widget-content">
+	<p>Drag me to my target</p>
+</div>
+
+<div id="droppable" class="ui-widget-header">
+	<p>Drop here</p>
+</div>
+
+<script wicket:id="script" type="text/javascript">
+	$(function() {
+		$("#draggable").draggable();
+		$("#droppable").droppable({
+			drop: function(event, ui) {
+				var str = "<div id='draggable1' class='ui-widget-content'>";
+				str = str + "<p>Drag me to my target</p>";
+				str = str + "</div>";
+				str = str + "<div id='droppable1' class='ui-widget-header'>";
+				str = str + "<p>Drop here</p>";
+				str = str + "</div>";
+				str = str + "<script>";				
+				str = str + "$(function() {";
+				str = str + "$('#draggable1').draggable();";	
+				str = str + "$('#droppable1').droppable({drop: function(event, ui) { alert('Hi!');},accept:'.ui-widget-content'});";	
+				str = str + "});";	
+				str = str + "<\/script>";		
+				$("#context").html(str);
+			},
+			accept:'.ui-widget-content'
+		});
+
+	});
+	</script>
+
+</div><!-- End demo -->
+
+<div class="demo-description">
+
+<p>Enable any DOM element to be droppable, a target for draggable elements.</p>
+
+</div><!-- End demo-description -->
+</body>
+</html>
