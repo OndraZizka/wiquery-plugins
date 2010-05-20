@@ -1,0 +1,232 @@
+.tbody {
+  	margin: 0 0 0 0;
+  	width: 100%;
+  	overflow: auto;
+  	border-top: none; 
+  	border-bottom: none;
+}
+
+.theaderTable {
+	margin: 0 0 0 0;
+  	width: 100%;
+  	overflow: auto;
+  	border: none;
+}
+
+tr.theader {	
+	margin: 0px;
+	padding: 0px;
+	height: 20px;
+}
+
+div.theader {
+	border-bottom: none;
+}
+
+td.theader {	
+	margin: 0px;
+	padding: 0px;
+	height: 20px;	
+}
+
+tr.tbodyrow0 {	
+	font-weight: normal;	
+}
+
+tr.tbodyrow1 {	
+	font-weight: normal;
+}
+
+div.pNumber {
+	padding-top: 3px; 
+	padding-left: 2px;		
+}
+
+.firstHeaderMenu {
+	margin-left: 3px;
+}
+
+span.pageNCurr, span.pageNOff, span.pageNSep  {
+	background-color:transparent;
+	vertical-align: middle;
+  	margin: 0px;
+  	margin-top: 0px;
+	padding-bottom: 2px;
+	padding-left: 2px;	
+	height: 18px;
+}
+
+
+
+tr.selectedrow {
+	background-color: #e6eaea;
+	color: black;
+}
+
+tr.highlightedRow {
+	color: black;
+}
+
+.theaderrow {	
+		
+}
+
+.theaderrowOver  {
+	
+}
+
+.theaderrow > td, .theaderrowOver > td {	
+	color: black;
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 2px;
+	padding-top: 1px; 
+	border-right: 1px solid inherit;
+	border-bottom: none;
+	border-top: none; 
+	border-left: none;
+}
+
+td.defaultHeader {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border-right: 1px solid inherit !important;
+	border-bottom: none !important;
+	border-top: none !important; 
+	border-left: none !important;
+}
+
+td.defaultHeaderOver {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border-right: 1px solid inherit !important;
+	border-bottom: none !important;
+	border-top: none !important; 
+	border-left: none !important;
+}
+
+td.addCol {
+	white-space: nowrap; 
+	padding: 0;		
+	border: none;
+	background: !important;
+}
+
+td.hAddCol {
+	white-space: nowrap; 
+	padding: 0;		
+	border: none;
+	border-bottom: 1px solid inherit !important;
+	background: !important;
+}
+
+
+.theaderrowOver .defaultHeaderOver .headerTitle {
+	color: inherit !important;
+}
+
+
+
+td.tbodycol {
+	background: transparent;
+	padding: 0px; 
+	margin: 0px;
+	vertical-align: middle;
+	border-right: 1px solid inherited;
+	border-left: none;
+	border-top: none;
+	border-bottom: 1px solid inherited;
+}
+
+.tableFooter {
+	border: 1px solid inherit !important; 
+}
+
+.tbody .ui-state-draggable-dragging {
+	z-index: 5 !important;
+}
+
+div.headerTitle, div.headerTitleAsc, div.headerTitleDesc {
+	width: 98%; 
+	height: 100%; 
+	vertical-align: bottom; 
+	margin-top:  2px; 
+	margin-bottom: 2px;
+}
+
+div.headerTitleAsc {
+	
+}
+
+div.headerTitleDesc {
+
+}
+
+span.defaultBodyCell {
+	width: 100%; 
+	overflow: hidden; 
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.columns ul {
+    list-style:  none;    
+}
+
+.columns li {
+    display: block;
+    float: none;
+}
+
+
+img.dropColumn {
+	height: 16px; 
+	width: 16px; 
+	margin-top: 2px;
+}
+
+div.dropColumn {
+	height: 16px; 
+	width: 16px; 
+	vertical-align: middle;
+}
+
+.theaderrow .resCol, .theaderrowOver .resCol {
+	width: 4px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: col-resize;	
+}
+
+.theaderrow .noResCol, .theaderrowOver .noResCol {
+	width: 4px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: default;
+}
+
+.theaderrow .fresCol, .theaderrowOver .fresCol{
+	width: 5px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: col-resize;
+}
+
+.theaderrow .fnoResCol, .theaderrowOver .fnoResCol{
+	width: 10px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: default;
+}
+
+.theaderrowOver .ui-draggable-dragging {
+	border: 1px dashed white !important;
+}
+
+.theaderrow .ui-draggable-dragging {
+	border: 1px dashed white !important;
+}

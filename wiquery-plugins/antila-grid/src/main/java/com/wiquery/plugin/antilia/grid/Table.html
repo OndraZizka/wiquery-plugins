@@ -1,0 +1,40 @@
+<html xmlns:wicket="org.apache.wicket">
+<head>
+</head>
+<wicket:panel>
+<div wicket:id="tRoot" style="width: 100%">
+<div wicket:id="tHead" class="theaderTable ui-widget ui-widget-content ui-corner-top" style="width: auto;">
+	<div wicket:id="header" class="theader ui-state-default ui-corner-tr ui-corner-tl"></div>
+</div>
+<div wicket:id="tBody" class="tbody ui-widget ui-widget-content" style="">
+	<div class="ui-state-default dTHeader" style="border-top: none; border-left: none; height: 18px; position: relative; border-bottom: 1px solid inherit;">
+		<div wicket:id="tTHeader" style="position: relative; left: 0px;">
+			<table  cellpadding="0" cellspacing="0" style="table-layout: fixed !important; width: 150px; position: inherit !important; white-space: nowrap !important;">					
+				<tbody>
+					<tr class="theaderrow" onmouseover="this.className='theaderrowOver';" onmouseout="this.className='theaderrow';">
+						<td id="" wicket:id="hcols" width="100px" class="ui-state-default defaultHeader" onmouseover="this.className='ui-state-default ui-state-hover defaultHeaderOver';" onmouseout="this.className='ui-state-default defaultHeader';" nowrap="nowrap"><div wicket:id="hcell"></div></td>						
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div wicket:id="tTBody" style="position: relative; overflow: auto; padding-top: 0px; right: 0px; border-bottom: 0px;" onscroll="">
+		<div style="position: relative;">
+			<table cellpadding="0" cellspacing="0" style="table-layout: fixed !important; width: 150px; position: inherit !important; white-space: nowrap !important;">		
+				<tbody>	
+					<tr id="" wicket:id="rows" class="tbodyrow1" onmouseover="" onmouseout="" onclick="">
+						<td id="" wicket:id="cols" class="ui-widget-content tbodycol" style="overflow: hidden;" nowrap="nowrap">
+							<span wicket:id="cell"></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>		
+	</div>
+</div>
+<div wicket:id="tFoot" class="ui-widget-content ui-state-default tableFooter" style="width: auto;">
+	<div style="width: auto; margin-right: 0px; margin-left: 0px; height: 5px;"></div>
+</div>
+</div>
+</wicket:panel>
+</html>
