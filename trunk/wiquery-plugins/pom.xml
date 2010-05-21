@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<!-- TODO project name  -->
-	<name>wijqgrid</name>
+	<name>wiquery-plugins</name>
 	<description></description>
 	<!--
 		TODO <organization> <name>company name</name> <url>company url</url>
@@ -23,22 +23,22 @@
 		<dependencies>
 			<!-- WiJqGrid Dependicies -->
 			<dependency>
-				<groupId>com.wijqgrid</groupId>
+				<groupId>com.wiquery.plugins</groupId>
 				<artifactId>antila-grid</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.wijqgrid</groupId>
+				<groupId>com.wiquery.plugins</groupId>
 				<artifactId>jqgrid</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.wijqgrid</groupId>
-				<artifactId>wiquery-plugins</artifactId>
+				<groupId>com.wiquery.plugins</groupId>
+				<artifactId>other-plugins</artifactId>
 				<version>${project.version}</version>
 			</dependency>		
 			<dependency>
-				<groupId>com.wijqgrid</groupId>
+				<groupId>com.wiquery.plugins</groupId>
 				<artifactId>example-war</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -140,7 +140,7 @@
 	<modules>
 		<module>jqgrid</module>
 		<module>antila-grid</module>
-		<module>wiquery-plugins</module>
+		<module>other-plugins</module>
 		<module>example-war</module>
 	</modules>
 </project>
