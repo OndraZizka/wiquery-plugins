@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.wijqgrid</groupId>
+	<groupId>com.wiquery-plugins</groupId>
 	<artifactId>wiquery-plugins</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<!-- TODO project name  -->
-	<name>wiquery-plugins</name>
+	<name>wijqgrid</name>
 	<description></description>
 	<!--
 		TODO <organization> <name>company name</name> <url>company url</url>
@@ -140,7 +140,7 @@
 	<modules>
 		<module>jqgrid</module>
 		<module>antila-grid</module>
-		<module>other-plugins</module>
+		<module>wiquery-plugins</module>
 		<module>example-war</module>
 	</modules>
 </project>
