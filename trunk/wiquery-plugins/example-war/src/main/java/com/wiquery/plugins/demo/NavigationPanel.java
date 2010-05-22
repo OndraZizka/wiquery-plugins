@@ -40,6 +40,9 @@ public class NavigationPanel extends Panel {
     	BookmarkablePageLink<Void> uieffects = new BookmarkablePageLink<Void>("uieffects", UIEffectsPage.class);
     	add(uieffects);
     	
+    	BookmarkablePageLink<Void> watermark = new BookmarkablePageLink<Void>("watermark", WatermarkPage.class);
+    	add(watermark);
+    	
     }
     
 }
