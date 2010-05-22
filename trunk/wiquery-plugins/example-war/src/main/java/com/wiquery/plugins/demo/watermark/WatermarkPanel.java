@@ -1,6 +1,10 @@
 package com.wiquery.plugins.demo.watermark;
 
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
+
+import com.wiquery.pluglin.watermark.TextFieldWatermarkBehaviour;
 
 /**
  * 
@@ -19,6 +23,11 @@ public class WatermarkPanel extends Panel {
 	 */
     public WatermarkPanel(String id) {
     	super(id);
+    	
+    	Form<WatermarkPanel> demo1 = new Form<WatermarkPanel>("demo1");
+    	add(demo1);
+    	
+    	demo1.add(new TextField<String>("country").add(new TextFieldWatermarkBehaviour("Leave blank for USA")));
      	
     }
      
