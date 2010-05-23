@@ -27,7 +27,9 @@ public class WatermarkPanel extends Panel {
     	Form<WatermarkPanel> demo1 = new Form<WatermarkPanel>("demo1");
     	add(demo1);
     	
-    	demo1.add(new TextField<String>("country").add(new TextFieldWatermarkBehaviour("Leave blank for USA")));
+    	demo1.add(new TextField<String>("country").add(
+    			new TextFieldWatermarkBehaviour("Leave blank for USA")
+    			.setUseNative(false)));
      	
     }
      

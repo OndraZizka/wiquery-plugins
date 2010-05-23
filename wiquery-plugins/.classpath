@@ -24,7 +24,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/mortbay/jetty/jetty-management/6.1.4/jetty-management-6.1.4.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mortbay/jetty/jetty-util/6.1.4/jetty-util-6.1.4.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mortbay/jetty/servlet-api-2.5/6.1.4/servlet-api-2.5-6.1.4.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/odlabs/wiquery/wiquery/1.0.1/wiquery-1.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/odlabs/wiquery/wiquery/1.0.1/wiquery-1.0.1.jar" sourcepath="/M2_REPO/org/odlabs/wiquery/wiquery/1.0.1/wiquery-1.0.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.4/commons-lang-2.4.jar" sourcepath="/M2REPO/commons-lang/commons-lang/2.4/commons-lang-2.4-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-extensions/1.4.7/wicket-extensions-1.4.7.jar"/>
 	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar"/>
