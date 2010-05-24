@@ -2,7 +2,7 @@ package com.wiquery.plugins.demo;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.wiquery.pluglin.slider.test.SliderPanel;
+import com.wiquery.plugin.slider.test.SliderPanel;
 
 /**
  * Homepage
