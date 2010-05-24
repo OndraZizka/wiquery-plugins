@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.wiquery.pluglin.watermark.TextFieldWatermarkBehaviour;
+import com.wiquery.plugin.watermark.TextFieldWatermarkBehaviour;
 
 /**
  * 
