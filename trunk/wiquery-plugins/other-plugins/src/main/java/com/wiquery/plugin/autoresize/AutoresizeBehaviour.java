@@ -21,11 +21,8 @@ import org.odlabs.wiquery.core.options.Options;
  */
 public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
 
-   private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
-   private boolean animate = false;
-    private int extraSpace = 0;
-
     private Component component;
     
     private Options options = new Options();
@@ -39,7 +36,7 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
     /**
      * Constructor.
      * 
-     * @param limit
+     * @param limit Limit the height of the text area.
      */
     public AutoresizeBehaviour(int limit) {
         setLimit(limit);
@@ -48,14 +45,14 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
     /**
      * Constructor.
      * 
-     * @param animate
-     * @param limit
-     * @param extraSpace
+     * @param animate Should resizing be animated.
+     * @param limit Limit the height of the text area.
+     * @param extraSpace The extra space added to teh text area.
      */
     public AutoresizeBehaviour(boolean animate, int limit, int extraSpace) {
-        this.animate = animate;
+    	setAnimate(animate);
         setLimit(limit);
-        this.extraSpace = extraSpace;
+        setExtraSpace(extraSpace);
     }
 
     @Override
@@ -66,15 +63,7 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
     
     @Override
     public JsStatement statement() {
-        StringBuilder sb = new StringBuilder(".autoResize({");
-            sb.append("limit: ").append(getLimit()).append(",");
-            sb.append("animate: ").append(isAnimate()).append(",");
-            sb.append("extraSpace: ").append(getExtraSpace());
-            sb.append("})");
-
-        JsQuery query = new JsQuery(getComponent());
-        query.$().append(sb.toString());
-        return query.getStatement();
+    	return new JsQuery(getComponent()).$().chain("autoResize", options.getJavaScriptOptions());
     }
 
     /**
@@ -123,22 +112,66 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
         Integer limit = options.getInt("limit");
     	return limit!= null? limit.intValue(): 1000;
     }
-
+    
+    /**
+     * A pixel value to be added to the total necessary height when 
+     * applied to the textarea. By default it's set to 20. The idea 
+     * behind this is to reassure users that they have more space to 
+     * continue writing.
+     * 
+     * @param extraSpace The extra space (in pixels).
+     * @return This behavior.
+     */
     public AutoresizeBehaviour setExtraSpace(int extraSpace) {
-        this.extraSpace = extraSpace;
+        this.options.put("extraSpace", extraSpace);
         return this;
     }
 
+    /**
+     * @return The extra space to be added to the text area (in pixels).
+     */
     public int getExtraSpace() {
-        return extraSpace;
+    	Integer extraSpace = options.getInt("extraSpace");
+     	return extraSpace!= null? extraSpace.intValue(): 20;
     }
 
+    /**
+     * If set to false no animation will take place, the height will immediately 
+     * change when necessary. By default it's set to true.
+     * 
+     * @param animate The animate parameter
+     * @return
+     */
     public AutoresizeBehaviour setAnimate(boolean animate) {
-        this.animate = animate;
+        options.put("animate",animate);
         return this;
     }
 
+    /**
+     * @return The animate property.
+     */
     public boolean isAnimate() {
-        return animate;
+        Boolean animate = options.getBoolean("animate");
+    	return animate!= null?animate.booleanValue():true;
     }
+    
+    /**
+     * Millisecond duration of animation, by default it's set to 150.
+     * 
+     * @param animateDuration The duration (in miliseconds)
+     * @return
+     */
+    public AutoresizeBehaviour setAnimateDuration(int animateDuration) {
+        options.put("animateDuration", animateDuration);
+        return this;
+    }
+
+    /**
+     * @return The (height) limit.
+     */
+    public int getAnimateDuration() {
+        Integer animateDuration = options.getInt("animateDuration");
+    	return animateDuration!= null? animateDuration.intValue(): 150;
+    }
+    
 }
