@@ -2,18 +2,18 @@ package com.wiquery.plugin.autoresize;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.resources.JavascriptResourceReference;
 import org.odlabs.wiquery.core.behavior.WiQueryAbstractBehavior;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsQuery;
 import org.odlabs.wiquery.core.javascript.JsStatement;
+import org.odlabs.wiquery.core.options.Options;
 
 /**
  * <p>
  * This class implements the plugin: 
  * </p>
  * <p>
- * 	http://code.google.com/p/jquery-watermark/
+ * 	http://james.padolsey.com/javascript/jquery-plugin-autoresize/
  * </p>
  * 
  * @author Steve Mactaggart
@@ -24,34 +24,50 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
    private static final long serialVersionUID = 1L;
 	
    private boolean animate = false;
-    private int heightLimit = 100;
     private int extraSpace = 0;
 
     private Component component;
     
+    private Options options = new Options();
+    
+    /**
+     * Constructor.
+     */
     public AutoresizeBehaviour() {
     }
 
-    public AutoresizeBehaviour(int heightLimit) {
-        this.heightLimit = heightLimit;
+    /**
+     * Constructor.
+     * 
+     * @param limit
+     */
+    public AutoresizeBehaviour(int limit) {
+        setLimit(limit);
     }
 
-    public AutoresizeBehaviour(boolean animate, int heightLimit, int extraSpace) {
+    /**
+     * Constructor.
+     * 
+     * @param animate
+     * @param limit
+     * @param extraSpace
+     */
+    public AutoresizeBehaviour(boolean animate, int limit, int extraSpace) {
         this.animate = animate;
-        this.heightLimit = heightLimit;
+        setLimit(limit);
         this.extraSpace = extraSpace;
     }
 
     @Override
     public void contribute(WiQueryResourceManager wiQueryResourceManager) {
         super.contribute(wiQueryResourceManager);
-        wiQueryResourceManager.addJavaScriptResource(new JavascriptResourceReference(AutoresizeBehaviour.class, "autoresize.jquery.min.js"));
+        wiQueryResourceManager.addJavaScriptResource(AutoresizeJavaScriptResourceReference.get());
     }
     
     @Override
     public JsStatement statement() {
         StringBuilder sb = new StringBuilder(".autoResize({");
-            sb.append("limit: ").append(getHeightLimit()).append(",");
+            sb.append("limit: ").append(getLimit()).append(",");
             sb.append("animate: ").append(isAnimate()).append(",");
             sb.append("extraSpace: ").append(getExtraSpace());
             sb.append("})");
@@ -89,13 +105,23 @@ public class AutoresizeBehaviour extends WiQueryAbstractBehavior {
         component.setOutputMarkupId(true);
     }
 
-    public AutoresizeBehaviour setHeightLimit(int limit) {
-        this.heightLimit = limit;
+    /**
+     *  Once the textarea reaches this height it will stop 
+     *  expanding. By default it's set to 1000.
+     * @param limit The height limit.
+     * @return this behavior.
+     */    
+    public AutoresizeBehaviour setLimit(int limit) {
+        options.put("limit", limit);
         return this;
     }
 
-    public int getHeightLimit() {
-        return heightLimit;
+    /**
+     * @return The (height) limit.
+     */
+    public int getLimit() {
+        Integer limit = options.getInt("limit");
+    	return limit!= null? limit.intValue(): 1000;
     }
 
     public AutoresizeBehaviour setExtraSpace(int extraSpace) {
