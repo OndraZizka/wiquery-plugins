@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.wiquery.plugin.watermark;
+package com.wiquery.plugin.autoresize;
 
 import org.apache.wicket.markup.html.resources.JavascriptResourceReference;
 
@@ -25,27 +25,27 @@ import org.apache.wicket.markup.html.resources.JavascriptResourceReference;
  * 
  * @author Ernesto Reinaldo Barreiro 
  */
-public class WatermarkJavaScriptResourceReference extends
+public class AutoresizeJavaScriptResourceReference extends
 		JavascriptResourceReference {
 
-	private static final long serialVersionUID = 1;
+	private static final long serialVersionUID = 1L;
 
 	/** Singleton instance */
-	private static WatermarkJavaScriptResourceReference instance;
+	private static AutoresizeJavaScriptResourceReference instance;
 
 	/**
-	 * Builds a new instance of {@link WatermarkJavaScriptResourceReference}.
+	 * Builds a new instance of {@link AutoresizeJavaScriptResourceReference}.
 	 */
-	private WatermarkJavaScriptResourceReference() {
-		super(WatermarkJavaScriptResourceReference.class, "jquery.watermark.min.js");
+	private AutoresizeJavaScriptResourceReference() {
+		super(AutoresizeJavaScriptResourceReference.class, "autoresize.jquery.min.js");
 	}
 	
 	/**
 	 * @return the instance
 	 */
-	public static WatermarkJavaScriptResourceReference get() {
+	public static AutoresizeJavaScriptResourceReference get() {
 		if (instance == null) {
-			instance = new WatermarkJavaScriptResourceReference();
+			instance = new AutoresizeJavaScriptResourceReference();
 		}
 		return instance;
 	}
