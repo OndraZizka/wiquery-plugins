@@ -17,10 +17,12 @@
  * under the License.
  */
 
-package com.wiquery.plugins.jqgrid.component;
+package com.wiquery.plugins.jqgrid.experiment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 
@@ -28,9 +30,13 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
@@ -80,6 +86,8 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	
 	private GridModel<B> model;
 	
+	private GridDataPanel<B> data;
+	
 	private static String[] TEXT_PROPERTIES = {"recordtext", "emptyrecords", "loadtext", "pgtext"};
 	
 	private Map<IGridEvent.GridEvent, IGridEvent<B>> gridEvents  = new Hashtable<IGridEvent.GridEvent, IGridEvent<B>>();
@@ -125,6 +133,32 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		};
 		
 		add(gridContext);
+		
+		List<ICellPopulator<B>> populators = new ArrayList<ICellPopulator<B>>();
+		for(final IColumn<B> column: gridModel.getColumnModels()){
+			ICellPopulator<B> cellPopulator = column.getCellPopulator();
+			if(cellPopulator != null) {
+				populators.add(cellPopulator);
+			} else {
+				populators.add(new ICellPopulator<B>() {
+					
+					private static final long serialVersionUID = 1L;
+
+					@Override
+					public void populateItem(Item<ICellPopulator<B>> cellItem, String componentId, IModel<B> rowModel) {
+						cellItem.add(new Label(componentId, column.renderCell(1, 2, rowModel)));
+					}
+					
+					@Override
+					public void detach() {
+						
+					}
+				});
+			}
+		}
+		data = new GridDataPanel<B>("data", populators, dataProvider);
+		data.setVisible(false);
+		add(data);
 	}
 	
 	@Override
@@ -134,7 +168,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 			grid.setOutputMarkupId(true);
 			addOrReplace(grid);			
 			// navigator will also be used to stream back grids data
-			gridData = new GridXMLData<B>(dataProvider, getGridModel(), null);
+			gridData = new GridXMLData<B>(dataProvider, getGridModel(), null, data);
 			navigator = new DocumentResourceListener("navigator", gridData);
 			navigator.setOutputMarkupId(true);
 			addOrReplace(navigator);

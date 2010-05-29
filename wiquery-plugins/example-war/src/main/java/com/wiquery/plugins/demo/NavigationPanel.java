@@ -43,6 +43,9 @@ public class NavigationPanel extends Panel {
     	BookmarkablePageLink<Void> watermark = new BookmarkablePageLink<Void>("watermark", WatermarkPage.class);
     	add(watermark);
     	
+    	BookmarkablePageLink<Void> newgrid = new BookmarkablePageLink<Void>("newgrid", NewGridPage.class);
+    	add(newgrid);
+    	
     }
     
 }
