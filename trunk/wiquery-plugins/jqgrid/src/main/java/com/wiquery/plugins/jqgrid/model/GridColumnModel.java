@@ -5,6 +5,8 @@ package com.wiquery.plugins.jqgrid.model;
 
 import java.io.Serializable;
 
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.PropertyPopulator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.lang.PropertyResolver;
 
@@ -181,8 +183,12 @@ public class GridColumnModel<B extends Serializable> implements  IColumn<B> {
 		if(object != null) {
 			return object.toString();
 		}
-		//TODO: what to return if object is null?
 		return "";
+	}
+	
+	@Override
+	public ICellPopulator<B> getCellPopulator() {
+		return new PropertyPopulator<B>(propertyPath);
 	}
 
 }

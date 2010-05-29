@@ -2,6 +2,7 @@ package com.wiquery.plugins.jqgrid.model;
 
 import java.io.Serializable;
 
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -70,6 +71,10 @@ public interface IColumn<B extends Serializable> extends Serializable {
 	 */
 	public String renderCell(int row, int column, IModel<B> rowModel); 
 	
+	/**
+	 * @return Returns an ICellPopulator to render the cell.
+	 */
+	public ICellPopulator<B> getCellPopulator();	
 	
 	/**
 	 * @return the resizable
