@@ -81,6 +81,24 @@ public interface IColumn<E extends Serializable> extends IModel<E>, ICellPopulat
 	 * Set title model.
 	 * @param model
 	 */
-	void setTitleModel(IModel<String> model);
-					
+	IColumn<E> setTitleModel(IModel<String> model);
+	
+	/**
+	 * @return Returns the model used to create the title.
+	 */
+	IModel<String> getTitleModel();
+		
+	
+	/**
+	 * @return Returns an additional CSS class (or classes) to be appended to 
+	 * the body cells.
+	 */
+	String getBodyAddionalCssClasses();
+
+	/**
+	 * Allows to set additional CSS classes for the body cells.
+	 * @param classes
+	 * @return
+	 */
+	IColumn<E> addBodyAddionalCssClass(String clazz);
 }

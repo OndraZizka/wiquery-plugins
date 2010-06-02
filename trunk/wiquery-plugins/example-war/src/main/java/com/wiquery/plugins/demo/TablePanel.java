@@ -30,7 +30,8 @@ public class TablePanel extends Panel {
 		TableModel<Person> tableModel = new TableModel<Person>(Person.class);     
 		tableModel.addColumnModel(new PropertyColumn<Person>("id", "id", new Model<String>("ID")));
 		
-		tableModel.addColumnModel(new PropertyColumn<Person>("name", "name", new Model<String>("NAME")));
+		tableModel.addColumnModel(new PropertyColumn<Person>("name", "name", new Model<String>("NAME"))
+				.addBodyAddionalCssClass(PropertyColumn.ALIGN_RIGHT_CLASS));
 		tableModel.addColumnModel(new PropertyColumn<Person>("lastName", "lastName", new Model<String>("LastName")));
 		Table<Person> grid = new Table<Person>( "table", tableModel, new PersonsDataProvider(WicketApplication.getWicketApplication().getPersons()));
 		//grid.setHeight(500);

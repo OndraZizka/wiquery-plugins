@@ -395,6 +395,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			Item<E> item = super.newItem(id, index, model);
 			String tableId = table.getMarkupId();
 			if(model instanceof IColumn<?>) {		
+				final IColumn<E> column = (IColumn<E>) model;
 				item.add(new AttributeModifier("id", new Model<String>(tableId+"_tdh_"+index)));
 				item.add(new AttributeModifier("width", true, new Model<String>() {
 					
@@ -402,11 +403,37 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 					@Override
 					public String getObject() {
-						String width = ((IColumn<E>)model).getWidth()+"px";
+						String width = column.getWidth()+"px";
 						return width;
 					}
 					
 				}));
+				item.add(new AttributeModifier("onmouseover", true, new Model<String>() {
+					
+					private static final long serialVersionUID = 1L;
+	
+					@Override
+					public String getObject() {
+						if(column.isSortable())
+							return "this.className='ui-state-default ui-state-hover defaultHeaderOver sortableCol';";
+						return "this.className='ui-state-default ui-state-hover defaultHeaderOver';";
+					}
+					
+				}));
+				item.add(new AttributeModifier("onmouseout", true, new Model<String>() {
+					
+					private static final long serialVersionUID = 1L;
+	
+					@Override
+					public String getObject() {
+						if(column.isSortable())
+							return "this.className='ui-state-default defaultHeader sortableCol';";
+						return "this.className='ui-state-default defaultHeader';";
+					}
+					
+				}));
+				//onmouseover="this.className='ui-state-default ui-state-hover defaultHeaderOver';" 
+				//onmouseout="this.className='ui-state-default defaultHeader';"
 			} else {
 				item.add(new AttributeModifier("id", new Model<String>(tableId+"_tdh_0")));
 				item.add(new AttributeModifier("width", new Model<String>() {
@@ -533,7 +560,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 					}
 					
 				}));
-			}
+				
+			}	
+			String cssClass = "ui-widget-content tbodycol";
+			cellItem.add(new AttributeModifier("class", new Model<String>(cssClass)));
 			// Populate the row
 			int column = 1;
 			while (it.hasNext()) {
@@ -555,8 +585,12 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 						
 					}));
 				}
+				cssClass = "ui-widget-content tbodycol " + columnModel.getBodyAddionalCssClasses();
+				cellItem.add(new AttributeModifier("class", new Model<String>(cssClass)));
+				//class="ui-widget-content tbodycol"
 				column++;
-			}		
+			}
+			
 		}
 		
 		private Table<E> getTable() {
