@@ -2,7 +2,6 @@ package com.wiquery.plugins.jqgrid.model;
 
 import java.io.Serializable;
 
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -59,17 +58,6 @@ public interface IColumn<B extends Serializable> extends Serializable {
 	 * @return returns the model used to print the title.
 	 */
 	public IModel<String> getTitleModel();
-	
-	
-	/**
-	 * Returns the contents of a cell.
-	 * 
-	 * @param row
-	 * @param column
-	 * @param rowModel
-	 * @return
-	 */
-	public String renderCell(int row, int column, IModel<B> rowModel); 
 	
 	/**
 	 * @return Returns an ICellPopulator to render the cell.
