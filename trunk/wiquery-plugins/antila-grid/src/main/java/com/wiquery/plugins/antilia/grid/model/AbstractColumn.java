@@ -19,6 +19,8 @@ package com.wiquery.plugins.antilia.grid.model;
 import java.io.Serializable;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -140,8 +142,19 @@ public abstract class AbstractColumn<E extends Serializable> extends Model<E> im
 		this.titleModel = titleModel;
 	}
 	
-	public void populateRowCell(Item<E> cellItem, String id, E bean, int row, int column) {		
-		cellItem.add(new Label(id, newBodyCellModel(bean)));
+	public void populateRowCell(Item<E> cellItem, String id, E bean, int row, int column) {				
+		cellItem.add(new Label(id, newBodyCellModel(bean)) {
+			
+			private static final long serialVersionUID = 1L;
+
+			protected void onComponentTagBody(final MarkupStream markupStream, final ComponentTag openTag)
+			{
+				String str = getDefaultModelObjectAsString();
+				if(StringUtils.isEmpty(str))
+					str = "&nbsp;";
+				replaceComponentTagBody(markupStream, openTag, str);
+			}
+		});
 	}
 
 	protected abstract IModel<E> newBodyCellModel(E object);
