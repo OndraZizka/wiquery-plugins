@@ -16,26 +16,17 @@
  */
 package com.wiquery.plugins.jqgrid.experiment;
 
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.RequestCycle;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
-import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.protocol.http.BufferedWebResponse;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebRequestCycle;
-import org.apache.wicket.protocol.http.WebResponse;
 
 import com.wiquery.plugins.jqgrid.model.GridModel;
-import com.wiquery.plugins.jqgrid.model.IColumn;
 import com.wiquery.plugins.jqgrid.model.SortInfo;
 import com.wiquery.plugins.jqgrid.model.SortOrder;
 
@@ -68,68 +59,28 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 	}
 
 	@Override
-	protected String getXml() {
-		configureSort();
-		int rows = getNumberOfRows();
-		int page = getCurrentPage();
-		long records = totalRecords(getSearchBean(),this.sortInfo, getSearchFields());
-		int start = rows*(page-1);
-		long totalPages = (records/rows)+1;
-		// READ the encoding form request (this might cause grid not rendering data on IE).
+	protected String getXml() {		
 		String encoding = ((WebRequest)(WebRequestCycle.get().getRequest())).getHttpServletRequest().getCharacterEncoding();
 		//TODO: write directly to the output stream?
 		StringBuffer writer = new StringBuffer();
 		writer.append("<?xml version='1.0' encoding='");
 		writer.append(encoding);
 		writer.append("'?>");
-		writer.append("<rows>");
-		writer.append("<page>");
-		writer.append(page);
-		writer.append("</page>");
-		writer.append("<total>");
-		writer.append(totalPages);
-		writer.append("</total>");
-		writer.append("<records>");
-		writer.append(records);;		
-		writer.append("</records>");		
-		int row = 1;
-		Iterator<? extends B> it = getRows(start, rows, getSearchBean(), sortInfo, getSearchFields());
-		models.clear();
-		while(it.hasNext()) {
-			B bean = it.next();
-			//TODO: cache them and call detach after rendering.
-			IModel<B> model = dataProvider.model(bean);
-			models.add(model);
-			writer.append("<row id=\"");
-			writer.append("row"+row);
-			writer.append("\">");
-		    int column = 1;
-		    for(IColumn<B> columnModel: this.gridModel.getColumnModels()) {
-		    	// warp contents in a CDATA.
-		    	writer.append("<cell><![CDATA[");	
-		    	writer.append(columnModel.renderCell(row,column,  model));
-		    		
-		    	writer.append("]]></cell>");			     
-		    }
-		    writer.append("</row>");
-		    row++;
-		}				
-		writer.append("</rows>");
-		dataProvider.detach();
-		for(IModel<B> model: models) {
-			model.detach();
-		}
-		AjaxRequestTarget target = new AjaxRequestTarget(dataPanel.getPage());
+		XMLDataRequestTarget target = new XMLDataRequestTarget(dataPanel.getPage());
 		dataPanel.setOutputMarkupId(true);
 		dataPanel.setVisible(true);
 		target.addComponent(dataPanel);
-		target.respond(RequestCycle.get());
+		StringBuffer temp = new StringBuffer();
+		target.respond(RequestCycle.get(), temp);				
+		/*
 		final BufferedWebResponse response = (BufferedWebResponse)RequestCycle.get().getResponse();		
+		*/		
 		dataPanel.setVisible(false);
-		String content = response.toString();
+		String content = temp.toString();
 		content = content.substring(content.indexOf("<rows"), content.indexOf("</rows>")+7);
-		System.out.println(content);
-		
+		content = content.replaceAll("<cell><span>", "<cell><![CDATA[");
+		content = content.replaceAll("</span></cell>", "]]></cell>");
+		writer.append(content);
 		return writer.toString();
 	}
 
@@ -146,71 +97,7 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		} else {
 			this.sortInfo = null;
 		}
-		/*
-		getQuery().clearOrders();
-		IOrder<B> order = Order.des(propertyPath);
-		if(sortOrder.equals(SortOrder.asc)) {
-			order = Order.asc(propertyPath);			
-		}
-		getQuery().addOrder(order);
-		int rows = getNumberOfRows(ServletActionContext.getRequest());
-		int page = getCurrentPage(ServletActionContext.getRequest());
-		getQuery().setFirstResult(rows*(page-1));
-		getQuery().setMaxResults(rows);
-		*/
-	}
-	
-	
-	private Iterator<? extends B> getRows(int start, int rows, B searchBean, SortInfo sortInfo, String[] searchFields) {
-		if(this.dataProvider instanceof ISortStateLocator) {
-			ISortStateLocator locator = (ISortStateLocator)dataProvider;
-			ISortState sortState = locator.getSortState();
-			if(sortState != null) {
-				if(sortInfo.getSortOrder().equals(SortOrder.asc))
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
-				else if(sortInfo.getSortOrder().equals(SortOrder.desc))
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.DESCENDING);
-				else 
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
-				locator.setSortState(sortState);
-			}			
-		}
-		return this.dataProvider.iterator(start, rows);
-	}
-	
-	private int totalRecords(B searchBean, SortInfo sortInfo, String[] searchFields) {
-		if(this.dataProvider instanceof ISortStateLocator) {
-			ISortStateLocator locator = (ISortStateLocator)dataProvider;
-			ISortState sortState = locator.getSortState();
-			if(sortState != null) {
-				if(sortInfo.getSortOrder().equals(SortOrder.asc))
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
-				else if(sortInfo.getSortOrder().equals(SortOrder.desc))
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.DESCENDING);
-				else 
-					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
-				locator.setSortState(sortState);
-			}
-		}
-		return this.dataProvider.size();
-	}
-	
-	private int getCurrentPage() {
-		try {
-			return Integer.parseInt(WebRequestCycle.get().getRequest().getParameter("page"));
-		} catch (Exception e) {
-			return 10;
-		}
-	}
-	
-	private int getNumberOfRows() {
-		try {
-			return Integer.parseInt(WebRequestCycle.get().getRequest().getParameter("rows"));
-		} catch (Exception e) {
-			return 10;
-		}
-	}
-	
+	}	
 	
 	private SortOrder getSortOrder() {
 		try {

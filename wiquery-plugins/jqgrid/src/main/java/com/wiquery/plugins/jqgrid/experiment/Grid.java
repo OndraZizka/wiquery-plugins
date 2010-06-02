@@ -27,16 +27,13 @@ import java.util.Map;
 import java.util.MissingResourceException;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
-import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
@@ -53,6 +50,7 @@ import com.wiquery.plugins.jqgrid.component.event.IAjaxGridEvent;
 import com.wiquery.plugins.jqgrid.component.event.IGridEvent;
 import com.wiquery.plugins.jqgrid.component.event.IGridEvent.GridEvent;
 import com.wiquery.plugins.jqgrid.model.GridModel;
+import com.wiquery.plugins.jqgrid.model.ICellPopulator;
 import com.wiquery.plugins.jqgrid.model.IColumn;
 
 /**
@@ -140,20 +138,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 			if(cellPopulator != null) {
 				populators.add(cellPopulator);
 			} else {
-				populators.add(new ICellPopulator<B>() {
-					
-					private static final long serialVersionUID = 1L;
-
-					@Override
-					public void populateItem(Item<ICellPopulator<B>> cellItem, String componentId, IModel<B> rowModel) {
-						cellItem.add(new Label(componentId, column.renderCell(1, 2, rowModel)));
-					}
-					
-					@Override
-					public void detach() {
-						
-					}
-				});
+				throw new WicketRuntimeException("You should provide an ICellPopulator for column " + column.getPropertyPath());
 			}
 		}
 		data = new GridDataPanel<B>("data", populators, dataProvider);
@@ -403,14 +388,14 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		  //sets the sorting order. Default is asc. This parameter is added to the url
 		  sb.append("sortorder: \"");
 		  sb.append(getGridModel().getSortOrder().name());
-		  sb.append("\",");
+		  sb.append("\"");
 		  
 		  if (getGridModel().getCaption() != null && StringUtils.isNotEmpty(getGridModel().getCaption().getObject())) {
-			  sb.append("caption: \"");
+			  sb.append(", caption: '");
 			  //Got it form the resources
 			  String caption = getGridModel().getCaption().getObject();
 			  sb.append(caption);
-			  sb.append("\"");
+			  sb.append("'");
 		  }
 		  
 		  //sb.append("});");

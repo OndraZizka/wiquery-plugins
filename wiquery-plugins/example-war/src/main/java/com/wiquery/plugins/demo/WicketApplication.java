@@ -56,7 +56,7 @@ public class WicketApplication extends WiQueryWebApplication implements IThemabl
     			Person person = new Person();
     			person.setId(new Long(i));
     			person.setName("Name-" + i);
-    			person.setLastName("LastName-" + i);
+    			//person.setLastName("LastName-" + i);
     			persons.add(person);
     		}
     	}
