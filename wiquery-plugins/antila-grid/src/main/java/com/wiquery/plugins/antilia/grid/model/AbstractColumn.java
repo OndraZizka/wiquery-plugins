@@ -17,6 +17,8 @@
 package com.wiquery.plugins.antilia.grid.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.wicket.markup.ComponentTag;
@@ -62,7 +64,17 @@ public abstract class AbstractColumn<E extends Serializable> extends Model<E> im
 	
 	private IModel<String> titleModel;
 	
-			
+	private List<String> bodyAddionalCssClasses = new ArrayList<String>();
+	
+	private String bodyAddionalCssClassesCache;
+	
+	
+	public static final String ALIGN_RIGHT_CLASS = "alignRight";
+	
+	public static final String ALIGN_LEFT_CLASS = "alignLeft";
+	
+	public static final String ALIGN_CENTER_CLASS = "alignCenter";
+	
 	/**
 	 * 
 	 */
@@ -138,8 +150,9 @@ public abstract class AbstractColumn<E extends Serializable> extends Model<E> im
 	}
 
 
-	public void setTitleModel(IModel<String> titleModel) {
+	public IColumn<E> setTitleModel(IModel<String> titleModel) {
 		this.titleModel = titleModel;
+		return this;
 	}
 	
 	public void populateRowCell(Item<E> cellItem, String id, E bean, int row, int column) {				
@@ -168,9 +181,25 @@ public abstract class AbstractColumn<E extends Serializable> extends Model<E> im
 		return this.sortProperty;
 	}
 
-
-
 	public void setSortProperty(String sortProperty) {
 		this.sortProperty = sortProperty;
+	}
+	
+	public String getBodyAddionalCssClasses() {
+		if(bodyAddionalCssClassesCache == null) {
+			StringBuffer sb = new StringBuffer();
+			for(String clazz: bodyAddionalCssClasses) {
+				sb.append(" ");
+				sb.append(clazz.trim());				
+			}
+			bodyAddionalCssClassesCache = sb.toString();
+		}
+		return bodyAddionalCssClassesCache;
+	}
+	
+	public IColumn<E> addBodyAddionalCssClass(String clazz) {
+		this.bodyAddionalCssClasses.add(clazz);
+		this.bodyAddionalCssClassesCache = null;
+		return this;
 	}
 }
