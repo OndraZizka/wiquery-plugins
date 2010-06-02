@@ -20,13 +20,15 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
 	//var div = $(tBody+" > div ");
     var height = body.height() - 2;
     
-    if(Wicket.Browser.isIE7()) {    
-    	if(!Antilia.isIE8())
-    		height = body.height()+ 1;
-    } 
-    
     //var table = $(tBody+" > div.dTHeader > table");
     
+    if(Wicket.Browser.isIE7()) {    
+    	if(!Antilia.isIE8()) {
+    		height = body.height()+ 1;
+    	}
+    } 
+   
+       
     /*
     if(Wicket.Browser.isIE7()) {    
     	if(Antilia.isIE8())
@@ -40,7 +42,13 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
     } 
     */  
     
-    tB.style.height = (height - 17) + "px";
+    if(Wicket.Browser.isIE7()) {    
+    	if(!Antilia.isIE8()) {    
+    		tB.firstChild.style.height = (height - 21) + "px";
+    	}
+    } else {
+    	tB.style.height = (height - 17) + "px";
+    }
     var resizer = "<div id='"+this.resId+"' class='collResizer ui-widget ui-widget-content' style='position: absolute; width: 0px; height:"+ height + "px; top: 0px; left: 0px; display: none;'></div>";    
     body.append(resizer);
     

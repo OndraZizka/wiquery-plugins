@@ -4,6 +4,29 @@
   	overflow: auto;
   	border-top: none; 
   	border-bottom: none;
+  	empty-cells: show;
+}
+
+.tTBodyC {
+	position: relative; 
+	overflow: auto; 
+	padding-top: 0px; 
+	right: 0px; 
+	border-bottom: 0px;
+}
+
+.tHeadersTable {
+	table-layout: fixed !important;
+	width: 150px; 
+	position: inherit !important; 
+	white-space: nowrap !important;
+}
+
+.tContentsTable {
+	table-layout: fixed !important; 
+	width: 150px; 
+	position: inherit !important; 
+	white-space: nowrap !important;
 }
 
 .theaderTable {
@@ -29,13 +52,19 @@ td.theader {
 	height: 20px;	
 }
 
-tr.tbodyrow0 {	
-	font-weight: normal;	
+tr.tbodyrow0 td {	
+	font-weight: normal !important;	
 }
 
-tr.tbodyrow1 {	
-	font-weight: normal;
+tr.tbodyrow1  td {	
+	font-weight: normal !important;
 }
+
+tr.highlightedRow td {
+	font-weight: normal !important;
+	background-color: inherit !important;
+}
+
 
 div.pNumber {
 	padding-top: 3px; 
@@ -60,10 +89,6 @@ span.pageNCurr, span.pageNOff, span.pageNSep  {
 
 tr.selectedrow {
 	background-color: #e6eaea;
-	color: black;
-}
-
-tr.highlightedRow {
 	color: black;
 }
 
