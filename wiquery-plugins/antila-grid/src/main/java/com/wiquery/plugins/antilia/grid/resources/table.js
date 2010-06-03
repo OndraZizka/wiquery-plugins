@@ -4,7 +4,7 @@ Antilia.isIE8 = function() {
 	return Wicket.Browser.isIE() && version >= 8;
 }
 
-function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
+function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns, loadingMsg) {
 	this.id = id;
 	// rows is an array of Rows	
 	this.rows = rows;
@@ -12,10 +12,12 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
 	this.ncols = ncols;	
 	this.rendringCount = rendringCount;
 	this.ie6 = ie6;
+	this.loadingMsg = loadingMsg;
 	this.dragColumns = dragColumns;
 	var tBody = "#" + id + "_tBody";
 	var body = $(tBody);	
 	this.resId = id + "_res";
+	this.loadingId = id + "_loading";
 	var tB = document.getElementById(id+'_tTB');	
 	//var div = $(tBody+" > div ");
     var height = body.height() - 2;
@@ -27,8 +29,7 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
     		height = body.height()+ 1;
     	}
     } 
-   
-       
+          
     /*
     if(Wicket.Browser.isIE7()) {    
     	if(Antilia.isIE8())
@@ -41,16 +42,23 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns) {
     	}
     } 
     */  
-    
-    if(Wicket.Browser.isIE7()) {    
-    	if(!Antilia.isIE8()) {    
-    		tB.firstChild.style.height = (height - 21) + "px";
-    	}
-    } else {
-    	tB.style.height = (height - 17) + "px";
+    if(tB) {
+	    if(Wicket.Browser.isIE7()) {    
+	    	if(!Antilia.isIE8()) {    
+	    		tB.firstChild.style.height = (height - 21) + "px";
+	    	}
+	    } else {
+	    	tB.style.height = (height - 17) + "px";
+	    }
     }
     var resizer = "<div id='"+this.resId+"' class='collResizer ui-widget ui-widget-content' style='position: absolute; width: 0px; height:"+ height + "px; top: 0px; left: 0px; display: none;'></div>";    
     body.append(resizer);
+    var lTop = (body.height()/2)-20;
+    var lLeft = body.width()/2-60;
+    var loading = "<div id='"+this.loadingId +"'style='display: none; top: "
+    +lTop+"px; left: " +lLeft+"px;' class='loadingTable ui-widget ui-widget-content ui-state-default ui-corner-all'>"
+    +this.loadingMsg+"</div>";
+    body.append(loading);
     
 	this.columns = new Array();    
     for(var i = 0; i < this.ncols; i++) {               
@@ -132,7 +140,8 @@ Column.prototype.onEndDrag = function (obj) {
     var btd = document.getElementById(id);
     var value = parseInt(td.getElementsByTagName("input")[0].value);
     td.style.width =  value+"px";
-    btd.style.width = value + "px";
+    if(btd != null)
+    	btd.style.width = value + "px";
     var  tH = document.getElementById(obj.tableId+'_tTH');
     var  tB = document.getElementById(obj.tableId+'_tTB');
     tH.style.left=(-tB.scrollLeft)+'px';

@@ -19,6 +19,7 @@ package com.wiquery.plugins.antilia.grid.navigation;
 import java.io.Serializable;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.ResourceModel;
 
 import com.wiquery.plugin.antilia.grid.IPageableComponent;
 import com.wiquery.plugin.antilia.grid.IPageableNavigationListener;
@@ -33,7 +34,7 @@ public class JqLastPageButton<E extends Serializable> extends JqPageableButton<E
 	private static final long serialVersionUID = 1L;
 
 	public JqLastPageButton(String id) {
-		super(id, JQIcon.ui_icon_seek_end, "Last");
+		super(id, JQIcon.ui_icon_seek_end, new ResourceModel("LastPageButton.title"));
 	}
 	
 	@Override

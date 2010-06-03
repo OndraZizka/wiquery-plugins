@@ -26,6 +26,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 import org.apache.wicket.feedback.IFeedback;
@@ -53,7 +54,7 @@ import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
 @WiQueryUIPlugin
-public class Table<E extends Serializable> extends Panel implements IPageableComponent<E>, IPageableNavigationListener, IWiQueryPlugin {
+public class Table<E extends Serializable> extends Panel implements IPageableComponent<E>, IPageableNavigationListener, IWiQueryPlugin, IAjaxIndicatorAware {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -225,6 +226,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			public String getMarkupId() {
 				return Table.this.getMarkupId()+"_tBody";
 			}
+			
+			@Override
+			public boolean isVisible() {
+				return size > 0;
+			}
 		};
 		tBody.setOutputMarkupId(true);
 		tBody.add(new AttributeModifier("style",new AbstractReadOnlyModel<String>(){
@@ -262,13 +268,26 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		tTHeader.setOutputMarkupId(true);
 		tBody.add(tTHeader);
 		
+		WebMarkupContainer tNoRecords = new WebMarkupContainer("tNoRecords") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isVisible() {
+				return size <= 0;
+			}
+			
+		};
+		
+		tRoot.add(tNoRecords);
+		
 		WebMarkupContainer tTBody = new WebMarkupContainer("tTBody") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public String getMarkupId() {
 				return Table.this.getMarkupId()+"_tTB";
-			}
+			}						
 		};
 		tTBody.add(new AttributeModifier("onscroll", new AbstractReadOnlyModel<String>() {
 			
@@ -338,6 +357,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		sb.append("," + (Table.this.getRendringCount()));
 		sb.append("," + "false");
 		sb.append("," + Table.this.isDragableColumns());
+		sb.append(",'");
+		sb.append(getString("antilia.grid.loading"));
+		sb.append("'");
 		sb.append(");");
 		JsStatement jsStatement = new JsStatement().append(sb.toString());
 		return jsStatement;
@@ -856,6 +878,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 
 	public void reset() {
+		this.size =-1;
 		firstPage();
 	}
 
@@ -899,5 +922,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+	
+	public String getAjaxIndicatorMarkupId() {
+		return getMarkupId()+"_loading";
 	}
 }

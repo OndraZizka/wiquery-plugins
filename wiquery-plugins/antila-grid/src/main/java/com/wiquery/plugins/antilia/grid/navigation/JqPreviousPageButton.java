@@ -19,6 +19,7 @@ package com.wiquery.plugins.antilia.grid.navigation;
 import java.io.Serializable;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.model.ResourceModel;
 
 import com.wiquery.plugin.antilia.grid.IPageableComponent;
 import com.wiquery.plugin.antilia.grid.IPageableNavigationListener;
@@ -33,7 +34,7 @@ public class JqPreviousPageButton<E extends Serializable> extends JqPageableButt
 	private static final long serialVersionUID = 1L;
 
 	public JqPreviousPageButton(String id) {
-		super(id, JQIcon.ui_icon_seek_prev, "Previous");
+		super(id, JQIcon.ui_icon_seek_prev, new ResourceModel("PreviousPageButton.title"));
 	}
 	
 	@Override
