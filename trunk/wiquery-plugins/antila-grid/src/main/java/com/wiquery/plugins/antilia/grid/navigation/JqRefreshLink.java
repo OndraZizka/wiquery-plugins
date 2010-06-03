@@ -21,6 +21,7 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.ResourceModel;
 
 import com.wiquery.plugin.antilia.grid.IPageableComponent;
 import com.wiquery.plugins.antilia.link.JQIcon;
@@ -35,7 +36,7 @@ public class JqRefreshLink<E extends Serializable> extends JqAjaxSubmitLink {
 	private static final long serialVersionUID = 1L;
 
 	public JqRefreshLink(String id) {
-		super(id, JQIcon.ui_icon_refresh, "Refresh");
+		super(id, JQIcon.ui_icon_refresh, new ResourceModel("RefreshLink.title"));
 	}
 	
 	@Override
