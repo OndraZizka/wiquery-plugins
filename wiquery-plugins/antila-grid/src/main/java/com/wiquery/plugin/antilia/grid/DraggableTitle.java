@@ -24,6 +24,8 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.protocol.http.WebSession;
+import org.apache.wicket.protocol.http.request.WebClientInfo;
 import org.odlabs.wiquery.ui.draggable.DraggableBehavior;
 import org.odlabs.wiquery.ui.draggable.DraggableContainment;
 import org.odlabs.wiquery.ui.draggable.DraggableRevert;
@@ -51,31 +53,33 @@ public abstract class DraggableTitle<E extends Serializable> extends WebMarkupCo
 		super(id);
 		this.column =column;
 		
-		DraggableBehavior draggableBehavior = new DraggableBehavior();
-		draggableBehavior.setRevert(new DraggableRevert(RevertEnum.INVALID));
-		draggableBehavior.setContainment(new DraggableContainment("'#"+getTable().getMarkupId() +"_tTH'"));		
-		draggableBehavior.setZIndex(100);
-		draggableBehavior.setSnap(new DraggableSnap(true));	
-		add(draggableBehavior);
-		DroppableAjaxBehavior droppableAjaxBehavior = new DroppableAjaxBehavior() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void onDrop(Component droppedComponent, AjaxRequestTarget ajaxRequestTarget) {
-				if(droppedComponent instanceof DraggableTitle<?>) {
-					DraggableTitle<?> droppedTitle = (DraggableTitle<?>)droppedComponent;
-					int dropped = droppedTitle.getColumn()-1;
-					int before = DraggableTitle.this.getColumn()-1;
-					DraggableTitle.this.getTable().getTableModel().moveColumnBefore(dropped, before);
-					ajaxRequestTarget.addComponent(DraggableTitle.this.getTable().getUpdatableComponent());
+		WebClientInfo clinetInfo = (WebClientInfo)WebSession.get().getClientInfo();
+		if(!clinetInfo.getProperties().isBrowserInternetExplorer()) {
+			DraggableBehavior draggableBehavior = new DraggableBehavior();
+			draggableBehavior.setRevert(new DraggableRevert(RevertEnum.INVALID));
+			draggableBehavior.setContainment(new DraggableContainment("'#"+getTable().getMarkupId() +"_tTH'"));		
+			draggableBehavior.setZIndex(100);
+			draggableBehavior.setSnap(new DraggableSnap(true));	
+			add(draggableBehavior);
+			DroppableAjaxBehavior droppableAjaxBehavior = new DroppableAjaxBehavior() {
+				
+				private static final long serialVersionUID = 1L;
+	
+				@Override
+				public void onDrop(Component droppedComponent, AjaxRequestTarget ajaxRequestTarget) {
+					if(droppedComponent instanceof DraggableTitle<?>) {
+						DraggableTitle<?> droppedTitle = (DraggableTitle<?>)droppedComponent;
+						int dropped = droppedTitle.getColumn()-1;
+						int before = DraggableTitle.this.getColumn()-1;
+						DraggableTitle.this.getTable().getTableModel().moveColumnBefore(dropped, before);
+						ajaxRequestTarget.addComponent(DraggableTitle.this.getTable().getUpdatableComponent());
+					}
 				}
-			}
-		};
-		
-		droppableAjaxBehavior.getDroppableBehavior().setAccept(new DroppableAccept("."+getTable().getMarkupId()));
-		add(droppableAjaxBehavior);
-		
+			};
+			
+			droppableAjaxBehavior.getDroppableBehavior().setAccept(new DroppableAccept("."+getTable().getMarkupId()));
+			add(droppableAjaxBehavior);
+		}
 		add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
 			
 			private static final long serialVersionUID = 1L;
