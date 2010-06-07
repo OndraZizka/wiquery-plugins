@@ -278,6 +278,22 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			}
 			
 		};
+		tNoRecords.add(new AttributeModifier("style",new AbstractReadOnlyModel<String>(){
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				String width = "auto;";
+				if(Table.this.width >0)
+					width = Table.this.width+"px;";
+				
+				return new StringBuilder()
+						.append("width: ").append(width)
+						.append(";")
+						.toString();				
+			}
+		}));
 		
 		tRoot.add(tNoRecords);
 		
