@@ -50,7 +50,7 @@ public class WicketApplication extends WiQueryWebApplication implements IThemabl
 	}
 	
 	 public List<Person> getPersons() {
-    	if(persons == null) {
+    	if(persons == null) {    		
     		persons = new ArrayList<Person>();
     		for(int i=0; i<205;i++) {
     			Person person = new Person();

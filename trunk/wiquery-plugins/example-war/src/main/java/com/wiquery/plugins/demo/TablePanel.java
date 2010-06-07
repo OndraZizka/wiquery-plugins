@@ -37,6 +37,11 @@ public class TablePanel extends Panel {
 		//grid.setHeight(500);
 		grid.setWidth(700);
 		form.add(grid);
+		
+		Table<Person> grid1 = new Table<Person>( "table1", tableModel, new PersonsDataProvider(WicketApplication.getWicketApplication().getPersons()));
+		//grid.setHeight(500);
+		//grid.setWidth(700);
+		form.add(grid1);
 	}
 
 }
