@@ -349,7 +349,7 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	 * @return
 	 */
 	public TooltipBehavior setTip(Component tip) {
-		this.options.putLiteral("tip", tip.getMarkupId());
+		this.options.putLiteral("tip", "#"+tip.getMarkupId());
 		return this;
 	}
 	
