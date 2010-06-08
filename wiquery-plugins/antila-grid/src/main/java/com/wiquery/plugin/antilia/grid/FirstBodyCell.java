@@ -21,7 +21,9 @@ import java.io.Serializable;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 
+import com.wiquery.plugins.antilia.menu.IMenu;
 import com.wiquery.plugins.antilia.menu.Menu;
 
 /**
@@ -95,7 +97,20 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);
 		imagePanel.add(menu);
+		
+		populateMenu(menu, row, item.getModel());
 	}
+	
+	/**
+	 * Allows to populate the Menu with items.
+	 * 
+	 * @param menu
+	 */
+	protected void populateMenu(IMenu menu, final int row, final IModel<E> rowModel) {
+		
+	}
+	
+	
 	
 	/*
 	protected ResourceReference getImage() {
