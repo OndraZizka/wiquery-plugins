@@ -190,7 +190,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 					width = Table.this.width+"px;";
 				
 				return new StringBuilder()
-						.append("width: ").append(width)
+						.append("position: relative; width: ").append(width)
 						.append(";height:")
 						.append(height)
 						.toString();				
