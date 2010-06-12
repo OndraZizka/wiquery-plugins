@@ -57,8 +57,7 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns, loadingMsg
     body.append(resizer);
     var tHei = table.height();
     var tWid = table.width();
-    var lLeft = body.width()/2-60;
-    var lTop = (body.height()/2)-20;
+    var lTop = (table.height()/2)-20;
     var lLeft = (body.width()/2)-60;
     var loading = "<div id='"+this.loadingId +"' class='ui-widget ui-corner-all' "
     +"style='position: absolute; display: none; top: 0px; left: 0px; height: "
