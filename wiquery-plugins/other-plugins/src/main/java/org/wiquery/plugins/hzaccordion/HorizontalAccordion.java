@@ -15,7 +15,7 @@ import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
 @WiQueryUIPlugin
-public class HorizontalAccordion extends Panel implements IWiQueryPlugin{
+public class HorizontalAccordion extends Panel implements IWiQueryPlugin {
 
 	private static final long serialVersionUID = 1L;
 
