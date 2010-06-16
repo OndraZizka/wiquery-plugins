@@ -46,6 +46,9 @@ public class NavigationPanel extends Panel {
     	BookmarkablePageLink<Void> newgrid = new BookmarkablePageLink<Void>("newgrid", NewGridPage.class);
     	add(newgrid);
     	
+    	BookmarkablePageLink<Void> slidedeck = new BookmarkablePageLink<Void>("slidedeck", SlideDeckPage.class);
+    	add(slidedeck);    	
+    	
     }
     
 }
