@@ -1,8 +1,12 @@
 package org.wiquery.plugins.hzaccordion;
 
+import java.util.List;
+
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsQuery;
@@ -28,12 +32,21 @@ public class HorizontalAccordion extends Panel implements IWiQueryPlugin {
 	
 	WebMarkupContainer hscroll;
 	
-	public HorizontalAccordion(String id) {
+	public HorizontalAccordion(String id, List<IAccordionPane> accordionPanes) {
 		super(id);
 		options = new Options();
 		hscroll = new WebMarkupContainer("hscroll");
 		hscroll.setOutputMarkupId(true);
 		add(hscroll);
+		
+		RepeatingView panes = new RepeatingView("panes");
+		for(IAccordionPane accordionPane: accordionPanes) {
+			WebMarkupContainer pane = new WebMarkupContainer(panes.newChildId());
+			pane.add(new Label("title", accordionPane.getPaneTitle()));
+			pane.add(accordionPane.getPaneContents("contents"));
+			panes.add(pane);
+		}
+		hscroll.add(panes);
 	}
 	
 	protected ResourceReference newCss() {
