@@ -49,6 +49,9 @@ public class NavigationPanel extends Panel {
     	BookmarkablePageLink<Void> slidedeck = new BookmarkablePageLink<Void>("slidedeck", SlideDeckPage.class);
     	add(slidedeck);    	
     	
+    	BookmarkablePageLink<Void> hzAccordion = new BookmarkablePageLink<Void>("hzAccordion", HorizontalAccordionPage.class);
+    	add(hzAccordion);  	
+    	
     }
     
 }
