@@ -3,6 +3,8 @@
  */
 package org.wiquery.plugins.slidedeck;
 
+import java.io.Serializable;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
@@ -11,7 +13,7 @@ import org.apache.wicket.model.IModel;
  * @author Ernesto Reinaldo Barreiro
  * @author Melinda Dweer
  */
-public interface IDeck {
+public interface IDeck extends Serializable {
 
 	IModel<String> getDeckTitle();
 	

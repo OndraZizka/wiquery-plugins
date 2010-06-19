@@ -22,11 +22,11 @@ import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
  * @author Melinda Dweer
  */
 @WiQueryUIPlugin
-public class SlideDeck extends Panel implements IWiQueryPlugin  {
+public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final ResourceReference CSS = new ResourceReference(SlideDeck.class, "slidedeck.skin.css");
+	private static final ResourceReference CSS = new ResourceReference(JQUISlideDeck.class, "jqui.slidedeck.skin.css");
 	
 	private WebMarkupContainer slidedeck;
 	
@@ -35,10 +35,12 @@ public class SlideDeck extends Panel implements IWiQueryPlugin  {
 	/**
 	 * @param id
 	 */
-	public SlideDeck(String id, List<IDeck> decks) {
+	public JQUISlideDeck(String id, List<IDeck> decks) {
 		super(id);
 		setRenderBodyOnly(true);
 		options = new Options();
+		//options.put("activeCorner", false);
+		//options.put("index", false);
 		slidedeck = new WebMarkupContainer("slidedeck");
 		slidedeck.setOutputMarkupId(true);
 		add(slidedeck);
@@ -56,7 +58,7 @@ public class SlideDeck extends Panel implements IWiQueryPlugin  {
 	
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
 		wiQueryResourceManager.addCssResource(CSS);
-		wiQueryResourceManager.addJavaScriptResource(SlideDeckJavaScriptReference.get());
+		wiQueryResourceManager.addJavaScriptResource(JQUISlideDeckJavaScriptReference.get());
 	}
 	
 	public JsStatement statement() {

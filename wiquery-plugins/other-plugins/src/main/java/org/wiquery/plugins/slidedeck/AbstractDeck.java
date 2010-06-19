@@ -16,6 +16,8 @@ public abstract class AbstractDeck implements IDeck {
 	private IModel<String> title;
 	
 	/**
+	 * Constructor.
+	 * 
 	 * @param id
 	 */
 	public AbstractDeck(IModel<String> title) {
@@ -26,7 +28,6 @@ public abstract class AbstractDeck implements IDeck {
 	/* (non-Javadoc)
 	 * @see org.wiquery.plugins.slidedeck.IDeck#getDeckTitle()
 	 */
-	@Override
 	public IModel<String> getDeckTitle() {
 		return this.title;
 	}

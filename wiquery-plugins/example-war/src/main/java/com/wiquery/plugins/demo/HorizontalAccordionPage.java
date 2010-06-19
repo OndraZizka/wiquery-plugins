@@ -34,24 +34,20 @@ public class HorizontalAccordionPage extends BasePage {
     	List<IAccordionPane> accordionPanes = new ArrayList<IAccordionPane>();
     	accordionPanes.add(new IAccordionPane() {
 			
-			@Override
 			public IModel<String> getPaneTitle() {				
 				return new Model<String>("1");
 			}
 			
-			@Override
 			public Component getPaneContents(String id) {
 				return new SliderPanel(id);
 			}
 		});
     	accordionPanes.add(new IAccordionPane() {
 			
-			@Override
 			public IModel<String> getPaneTitle() {				
 				return new Model<String>("2");
 			}
 			
-			@Override
 			public Component getPaneContents(String id) {
 				return new GridPanel(id);
 			}
