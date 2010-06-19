@@ -64,4 +64,24 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 	public JsStatement statement() {
 		return new JsQuery(slidedeck).$().chain("slidedeck",options.getJavaScriptOptions());
 	}
+	
+	/** 
+	 * If set to true will show a div that can be used to mark active 
+	 * deck.
+	 * 
+	 * @param activeCorner The tip.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setShowActiveCorner(boolean activeCorner) {
+		this.options.put("activeCorner", activeCorner);
+		return this;
+	}
+	
+	/**
+	 * @return If the active corner dive will be show or not.
+	 */
+	public boolean  isShowActiveCorner() {
+		Boolean activeCorner = this.options.getBoolean("activeCorner");
+		return activeCorner!= null?activeCorner: true;
+	}
 }
