@@ -161,4 +161,124 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 		return start!= null?start: 500;
 	}
 	
+	/** 
+	 * Scroll using the mouse wheel.
+	 * 
+	 * @param scroll boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setScroll(boolean scroll) {
+		this.options.put("scroll", scroll);
+		return this;
+	}
+	
+	/**
+	 * @return Whether deck's can be scrolled using the 
+	 * 	mouse wheel or not.
+	 */
+	public boolean  isScroll() {
+		Boolean scroll = this.options.getBoolean("scroll");
+		return scroll!= null?scroll: true;
+	}
+	
+	/** 
+	 * Setup Keyboard Interaction.
+	 * 
+	 * @param scroll boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setUseKeys(boolean useKeys) {
+		this.options.put("keys", useKeys);
+		return this;
+	}
+	
+	/**
+	 * @return Whether deck's can be scrolled using keyboard (using next/previous arrows).
+	 */
+	public boolean  isUseKeys() {
+		Boolean keys = this.options.getBoolean("keys");
+		return keys!= null?keys: true;
+	}
+	
+	/** 
+	 * Flag used to set whether the slide deck will 
+	 * auto play the slides or not.
+	 * 
+	 * @param autoPlay boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setAutoPlay(boolean autoPlay) {
+		this.options.put("autoPlay", autoPlay);
+		return this;
+	}
+	
+	/**
+	 * @return whether the slide deck will auto play the 
+	 * 		   slides or not.
+	 */
+	public boolean  isAutoPlay() {
+		Boolean autoPlay = this.options.getBoolean("autoPlay");
+		return autoPlay!= null?autoPlay: false;
+	}
+
+	/** 
+	 * Sets the auto-play interval
+	 * 
+	 * @param autoPlayInterval the delay (in mili-seconds).
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setAutoPlayInterval(int autoPlayInterval) {
+		this.options.put("autoPlayInterval", autoPlayInterval);
+		return this;
+	}
+	
+	/**
+	 * @return Gets the auto-play interval (default 5 seconds  = 5000).
+	 */
+	public int getAutoPlayInterval() {
+		Integer autoPlayInterval = this.options.getInt("autoPlayInterval");
+		return autoPlayInterval!= null?autoPlayInterval: 5000;
+	}
+	
+	/** 
+	 * Flag used to set whether the will be shown or not.
+	 * 
+	 * @param autoPlay boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setHideSpines(boolean hideSpines) {
+		this.options.put("hideSpines", hideSpines);
+		return this;
+	}
+	
+	/**
+	 * @return whether the will be shown or not.
+	 */
+	public boolean  isHideSpines() {
+		Boolean hideSpines = this.options.getBoolean("hideSpines");
+		return hideSpines!= null?hideSpines: false;
+	}
+	
+	/** 
+	 * Flag to be used with auto-play to indicate it
+	 * should start again at first deck after last 
+	 * one was shown.
+	 * 
+	 * @param cycle boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setCycle(boolean cycle) {
+		this.options.put("cycle", cycle);
+		return this;
+	}
+	
+	/**
+	 * @return whether cycle or not in auto play option.
+	 */
+	public boolean  isCycle() {
+		Boolean cycle = this.options.getBoolean("cycle");
+		return cycle!= null?cycle: false;
+	}
+	
+	
 }
