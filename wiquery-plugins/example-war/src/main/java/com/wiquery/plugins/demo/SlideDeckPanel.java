@@ -66,6 +66,9 @@ public class SlideDeckPanel extends Panel {
 			}
 		});
 		JQUISlideDeck slidedeck = new JQUISlideDeck("slidedeck", decks);
+		//slidedeck.setHideSpines(true);
+		slidedeck.setAutoPlay(true);
+		slidedeck.setCycle(true);
 		add(slidedeck);
 		
 	}
