@@ -13,7 +13,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wiquery.plugins.slidedeck.IDeck;
 import org.wiquery.plugins.slidedeck.JQUISlideDeck;
-import org.wiquery.plugins.slidedeck.SlideDeck;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -51,7 +50,7 @@ public class SlideDeckPanel extends Panel {
 			}
 			
 			public Component getDeckContents(String id) {
-				return new Label(id, "Slide 3");
+				return new Label(id, "Slide 2");
 			}
 		});
 		decks.add(new IDeck() {
