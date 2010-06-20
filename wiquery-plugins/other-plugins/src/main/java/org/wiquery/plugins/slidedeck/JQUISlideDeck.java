@@ -69,7 +69,7 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 	 * If set to true will show a div that can be used to mark active 
 	 * deck.
 	 * 
-	 * @param activeCorner The tip.
+	 * @param activeCorner boolean value.
 	 * @return instance of the current behavior
 	 */
 	public JQUISlideDeck setShowActiveCorner(boolean activeCorner) {
@@ -78,10 +78,29 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 	}
 	
 	/**
-	 * @return If the active corner dive will be show or not.
+	 * @return Whether the active corner DIV will be show or not.
 	 */
 	public boolean  isShowActiveCorner() {
 		Boolean activeCorner = this.options.getBoolean("activeCorner");
 		return activeCorner!= null?activeCorner: true;
+	}
+	
+	/** 
+	 * If set to true will show the indexes of the decks.
+	 * 
+	 * @param showIndex boolean value.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setShowIndex(boolean showIndex) {
+		this.options.put("index", showIndex);
+		return this;
+	}
+	
+	/**
+	 * @return Whether deck's indexes will be show or not.
+	 */
+	public boolean  isShowIndex() {
+		Boolean index = this.options.getBoolean("index");
+		return index!= null?index: true;
 	}
 }
