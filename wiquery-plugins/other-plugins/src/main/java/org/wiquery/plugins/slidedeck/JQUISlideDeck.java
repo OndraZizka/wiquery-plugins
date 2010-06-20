@@ -103,4 +103,62 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 		Boolean index = this.options.getBoolean("index");
 		return index!= null?index: true;
 	}
+	
+	/** 
+	 * Allows to set the speed of the animation.
+	 * 
+	 * @param speed the speed.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setSpeed(int speed) {
+		this.options.put("speed", speed);
+		return this;
+	}
+	
+	/**
+	 * @return Returns the speed of the animation.
+	 */
+	public int getSpeed() {
+		Integer speed = this.options.getInt("speed");
+		return speed!= null?speed: 500;
+	}
+	
+	/** 
+	 * Allows to set the easing transition.
+	 * 
+	 * @param transition The easing transition (default 'swing').
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setTransition(String transition) {
+		this.options.putLiteral("transition", transition);
+		return this;
+	}
+	
+	/**
+	 * @return Returns the easing transition.
+	 */
+	public String getTransition() {
+		String transition = this.options.getLiteral("transition");
+		return transition!= null?transition: "'swing'";
+	}
+	
+	/** 
+	 * The start of the animation?
+	 * 
+	 * @param start the start of the animation.
+	 * @return instance of the current behavior
+	 */
+	public JQUISlideDeck setStart(int start) {
+		this.options.put("start", start);
+		return this;
+	}
+	
+	/**
+	 * @return Returns the start of the animation.
+	 */
+	public int getStart() {
+		Integer start = this.options.getInt("start");
+		return start!= null?start: 500;
+	}
+	
 }
