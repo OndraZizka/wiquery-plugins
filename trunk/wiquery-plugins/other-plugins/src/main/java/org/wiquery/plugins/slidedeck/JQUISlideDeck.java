@@ -39,8 +39,6 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 		super(id);
 		setRenderBodyOnly(true);
 		options = new Options();
-		//options.put("activeCorner", false);
-		//options.put("index", false);
 		slidedeck = new WebMarkupContainer("slidedeck");
 		slidedeck.setOutputMarkupId(true);
 		add(slidedeck);
@@ -51,14 +49,16 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 			WebMarkupContainer deckPanel = new WebMarkupContainer(repeater.newChildId());
 			repeater.add(deckPanel);
 			deckPanel.add(new Label("title", deck.getDeckTitle()).setRenderBodyOnly(true));
-			deckPanel.add(deck.getDeckContents("content"));
-			
+			deckPanel.add(deck.getDeckContents("content"));			
 		}
 	}
 	
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
 		wiQueryResourceManager.addCssResource(CSS);
 		wiQueryResourceManager.addJavaScriptResource(JQUISlideDeckJavaScriptReference.get());
+		if(isScroll()) {
+			wiQueryResourceManager.addJavaScriptResource(MouseWheelJavaScriptReference.get());
+		}
 	}
 	
 	public JsStatement statement() {
@@ -177,8 +177,13 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 	 * 	mouse wheel or not.
 	 */
 	public boolean  isScroll() {
-		Boolean scroll = this.options.getBoolean("scroll");
-		return scroll!= null?scroll: true;
+		try {
+			Boolean scroll = this.options.getBoolean("scroll");
+			return scroll!= null?scroll: true;
+		} catch (Exception e) {
+			return true;
+		}
+		
 	}
 	
 	/** 
@@ -196,8 +201,12 @@ public class JQUISlideDeck extends Panel implements IWiQueryPlugin  {
 	 * @return Whether deck's can be scrolled using keyboard (using next/previous arrows).
 	 */
 	public boolean  isUseKeys() {
-		Boolean keys = this.options.getBoolean("keys");
-		return keys!= null?keys: true;
+		try {
+			Boolean keys = this.options.getBoolean("keys");
+			return keys!= null?keys: true;
+		} catch (Exception e) {
+			return true;
+		}
 	}
 	
 	/** 
