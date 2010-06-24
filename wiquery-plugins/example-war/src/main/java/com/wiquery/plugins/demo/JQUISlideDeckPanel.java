@@ -12,20 +12,20 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.wiquery.plugins.slidedeck.IDeck;
-import org.wiquery.plugins.slidedeck.SlideDeck;
+import org.wiquery.plugins.slidedeck.JQUISlideDeck;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class SlideDeckPanel extends Panel {
+public class JQUISlideDeckPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	public SlideDeckPanel(String id) {
+	public JQUISlideDeckPanel(String id) {
 		super(id);
 		
 		List<IDeck> decks = new ArrayList<IDeck>();
@@ -65,7 +65,7 @@ public class SlideDeckPanel extends Panel {
 				return new Label(id, "Slide 3");
 			}
 		});
-		SlideDeck slidedeck = new SlideDeck("slidedeck", decks);
+		JQUISlideDeck slidedeck = new JQUISlideDeck("slidedeck", decks);
 		//slidedeck.setHideSpines(true);
 		slidedeck.setAutoPlay(true);
 		slidedeck.setCycle(true);
