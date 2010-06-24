@@ -15,7 +15,7 @@ import com.wiquery.plugins.demo.test.Person;
  * @author Ernesto Reinaldo Barreiro
  *
  */
-public class ExampleCellLink extends Panel {
+public abstract class ExampleCellLink extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class ExampleCellLink extends Panel {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
-				System.out.println(model.getObject().getName());
+				ExampleCellLink.this.onClick(target, model);
 			}
 		};
 		
@@ -39,5 +39,7 @@ public class ExampleCellLink extends Panel {
 		link.add(new Label("text", model.getObject().getName()).setRenderBodyOnly(true));
 		
 	}
+	
+	public abstract void onClick(AjaxRequestTarget target, IModel<Person> model);
 
 }

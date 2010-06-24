@@ -3,8 +3,11 @@
  */
 package com.wiquery.plugins.demo;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -24,6 +27,9 @@ public class NewGridPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
+	private String text = "No cell clicked yet!";
+	
+	private Label message;
 	
 	/**
 	 * @param id
@@ -47,7 +53,17 @@ public class NewGridPanel extends Panel {
         					Item<ICellPopulator<Person>> cellItem,
         					String componentId, int row, int col,
         					IModel<Person> rowModel) {
-        				cellItem.add(new ExampleCellLink(componentId, rowModel)); 
+        				cellItem.add(new ExampleCellLink(componentId, rowModel) {
+        					
+        					private static final long serialVersionUID = 1L;
+
+							@Override
+        					public void onClick(AjaxRequestTarget target,
+        							IModel<Person> model) {
+        						setText("Cell "+ model.getObject().getName() + " was clicked!");
+        						target.addComponent(NewGridPanel.this.message);
+        					}
+        				}); 
         			}
         		};
         	}
@@ -63,6 +79,27 @@ public class NewGridPanel extends Panel {
               
         Grid<Person> grid = new Grid<Person>("grid", model, new PersonsDataProvider(WicketApplication.getWicketApplication().getPersons()));
         add(grid);
+        
+        message = new Label("message", new AbstractReadOnlyModel<String>() {
+        	
+        	private static final long serialVersionUID = 1L;
+
+			@Override
+        	public String getObject() {
+        		return getText();
+        	}
+		});
+        message.setOutputMarkupId(true);
+        add(message);
+        
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	
