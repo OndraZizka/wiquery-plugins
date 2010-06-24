@@ -16,6 +16,7 @@ Tags: flexible, white, black, multi-color
 	z-index: 5;
 }
 .slidedeck_frame dl {
+	background: transparent !important;
 	width: 900px;
 	height: 300px;
 	margin: 0;

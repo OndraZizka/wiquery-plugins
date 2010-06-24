@@ -6,60 +6,39 @@ package org.wiquery.plugins.slidedeck;
 import java.util.List;
 
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.RepeatingView;
 import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
-import org.odlabs.wiquery.core.javascript.JsQuery;
 import org.odlabs.wiquery.core.javascript.JsStatement;
-import org.odlabs.wiquery.core.options.Options;
 import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 
 /**
+ * 
  * @author Ernesto Reinaldo Barreiro
  * @author Melinda Dweer
  */
 @WiQueryUIPlugin
-public class SlideDeck extends Panel implements IWiQueryPlugin  {
+public class SlideDeck extends JQUISlideDeck implements IWiQueryPlugin  {
 
 	private static final long serialVersionUID = 1L;
 
 	private static final ResourceReference CSS = new ResourceReference(SlideDeck.class, "slidedeck.skin.css");
 	
-	private WebMarkupContainer slidedeck;
-	
-	private Options options;
-	
 	/**
 	 * @param id
 	 */
 	public SlideDeck(String id, List<IDeck> decks) {
-		super(id);
-		setRenderBodyOnly(true);
-		options = new Options();
-		slidedeck = new WebMarkupContainer("slidedeck");
-		slidedeck.setOutputMarkupId(true);
-		add(slidedeck);
-		
-		RepeatingView repeater = new RepeatingView("repeater");
-		slidedeck.add(repeater);
-		for(IDeck deck: decks) {
-			WebMarkupContainer deckPanel = new WebMarkupContainer(repeater.newChildId());
-			repeater.add(deckPanel);
-			deckPanel.add(new Label("title", deck.getDeckTitle()).setRenderBodyOnly(true));
-			deckPanel.add(deck.getDeckContents("content"));
-			
-		}
+		super(id, decks);
 	}
 	
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
 		wiQueryResourceManager.addCssResource(CSS);
 		wiQueryResourceManager.addJavaScriptResource(SlideDeckJavaScriptReference.get());
+		if(isScroll()) {
+			wiQueryResourceManager.addJavaScriptResource(MouseWheelJavaScriptReference.get());
+		}
 	}
 	
 	public JsStatement statement() {
-		return new JsQuery(slidedeck).$().chain("slidedeck",options.getJavaScriptOptions());
+		return super.statement();
 	}
 }
