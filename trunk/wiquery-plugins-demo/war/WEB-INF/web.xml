@@ -10,7 +10,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
         <init-param>
             <param-name>applicationClassName</param-name>
-            <param-value>com.inqle.web.SampleApplication</param-value>
+            <param-value>com.wiquery.plugins.demo.WicketApplication</param-value>
         </init-param>
         <init-param>
             <param-name>ignorePaths</param-name>
