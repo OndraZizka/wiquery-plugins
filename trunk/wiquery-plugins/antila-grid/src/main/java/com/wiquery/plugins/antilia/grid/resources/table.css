@@ -283,3 +283,7 @@ div.dropColumn {
 .theaderrow .ui-draggable-dragging {
 	border: 1px dashed white !important;
 }
+
+.dropActive {
+	border: 1px dashed !important;
+}
