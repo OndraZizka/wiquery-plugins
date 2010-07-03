@@ -41,13 +41,16 @@ buildmenu:function(menuid, arrowsvar){
 					var $targetul=$(this).children("ul:eq(0)")
 					$targetul.slideUp(jqueryslidemenu.animateduration.out)
 				}
-			) //end hover
+			); 
+			//end hover
 			$curobj.click(function(){
 				$(this).children("ul:eq(0)").hide()
-			})
-		}) //end $headers.each()
-		$mainmenu.find("ul").css({display:'none', visibility:'visible'})
-	}) //end document.ready
+			});
+		}); 
+		//end $headers.each()
+		$mainmenu.find("ul").css({display:'none', visibility:'visible'});
+	}); 
+	//end document.ready
 }
 }
 
