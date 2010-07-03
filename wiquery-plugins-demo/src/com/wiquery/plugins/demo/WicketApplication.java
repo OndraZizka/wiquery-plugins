@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.Session;
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.HttpSessionStore;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -55,7 +56,9 @@ public class WicketApplication extends WiQueryWebApplication implements IThemabl
         // already stored in session, with their dependencies injected once per session.
         //addComponentInstantiationListener(new GuiceComponentInjector(this, new GuiceModule()));
         //       addComponentInstantiationListener(new GuiceComponentInjector(this, new ServletModule(), new GuiceModule()));
+        addComponentInstantiationListener(new GuiceComponentInjector(this, new GuiceModule()));
 	}
+	
 	
 
 	public ResourceReference getTheme(Session session) {
