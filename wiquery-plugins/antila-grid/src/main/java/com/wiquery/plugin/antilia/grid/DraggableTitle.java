@@ -54,6 +54,7 @@ public abstract class DraggableTitle<E extends Serializable> extends WebMarkupCo
 		this.column =column;
 		
 		WebClientInfo clinetInfo = (WebClientInfo)WebSession.get().getClientInfo();
+		//  if browser is not IE allow dragging columns headers.
 		if(!clinetInfo.getProperties().isBrowserInternetExplorer()) {
 			DraggableBehavior draggableBehavior = new DraggableBehavior();
 			draggableBehavior.setRevert(new DraggableRevert(RevertEnum.INVALID));
@@ -78,6 +79,7 @@ public abstract class DraggableTitle<E extends Serializable> extends WebMarkupCo
 			};
 			
 			droppableAjaxBehavior.getDroppableBehavior().setAccept(new DroppableAccept("."+getTable().getMarkupId()));
+			droppableAjaxBehavior.getDroppableBehavior().setHoverClass("dropActive");
 			add(droppableAjaxBehavior);
 		}
 		add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
