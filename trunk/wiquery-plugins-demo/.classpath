@@ -11,5 +11,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/jqgrid-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/other-plugins-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wiquery-1.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/guice-2.0.jar" sourcepath="guice-2.0-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-guice-1.4.9.jar" sourcepath="wicket-guice-1.4.9-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-ioc-1.4.9.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
