@@ -5,7 +5,6 @@
 package com.wiquery.plugin.antilia.roundpane;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
@@ -29,7 +28,7 @@ public class TestImage {
 	}
 
 	public static void drawImage() {
-		final BufferedImage image = new BufferedImage(15, 15, BufferedImage.TYPE_INT_ARGB);
+		final BufferedImage image = new BufferedImage(210, 210, BufferedImage.TYPE_INT_ARGB);
 		createTansparency((Graphics2D)image.createGraphics());		
 		render((Graphics2D)image.createGraphics());
 		// Write image using any matching ImageWriter
@@ -48,7 +47,7 @@ public class TestImage {
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
 				 RenderingHints.VALUE_ANTIALIAS_ON);
 		graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR, 0.0f));
-		Rectangle2D.Double rect = new Rectangle2D.Double(0,0,15,15); 
+		Rectangle2D.Double rect = new Rectangle2D.Double(0,0,200,200); 
 		graphics.fill(rect);
 		return true;
 	}
@@ -59,17 +58,10 @@ public class TestImage {
 	protected static boolean render(Graphics2D graphics) {
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
 				 RenderingHints.VALUE_ANTIALIAS_ON);
+		graphics.setColor(ColorMapper.mapColor("#aaaaaa"));
+		graphics.fillRoundRect(1, 1, 201, 201, 15, 15);		
 		graphics.setColor(ColorMapper.mapColor("#ff9900"));
-		//graphics.fillArc(-15, 0, 30, 30, 0, 90);
-		//graphics.fillArc(0, -15, 30, 30, 180, 90);
-		//graphics.fillRect(0, 7, 15, 8);
-		//graphics.drawRect(0, 0, 15, 15);
-		graphics.fillArc(-15, -15, 30, 30, 270, 90);
-		graphics.setColor(Color.BLACK);
-		graphics.drawLine(0, 12, 12, 0);		
-		graphics.drawLine(0, 9, 9, 0);
-		graphics.drawLine(0, 6, 6, 0);
-		graphics.drawLine(0, 3, 3, 0);
+		graphics.fillRoundRect(0, 0, 200, 200, 15, 15);
 		return true;
 	}
 }
