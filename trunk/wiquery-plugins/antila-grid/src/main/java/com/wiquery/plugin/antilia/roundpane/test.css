@@ -1,0 +1,11 @@
+.top_left {background: url('corners.png') 0 0 no-repeat; width: 15px; height: 18px;}
+.top_center {background: url('topbottom.png') left top repeat-x; width: auto; height: 18px;}
+.top_right {background: url('corners.png') top right no-repeat; width: 15px; height: 18px;}
+
+.center_left {background: url('leftright.png') left top  repeat-y; width: 5px; height: auto;}
+.center_right {background: url('leftright.png') top right repeat-y; width: 5px; height: auto;}
+.center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; }
+
+.botton_left {background: url('corners.png') left bottom no-repeat; width: 15px; height: 15px;}
+.botton_center {background: url('topbottom.png') left bottom   repeat-x; width: auto; height: 15px;}
+.botton_right {background: url('corners.png') bottom right no-repeat; width: 15px; height: 15px;}
