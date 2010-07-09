@@ -62,6 +62,8 @@ public class NavigationPanel extends Panel {
 		new PageLink(SlideDeckPage.class, "Slide Deck (classic)"),
 		new PageLink(JQUISlideDeckPage.class, "Slide Deck (jQuery UI styled)"),
 		new PageLink(HorizontalAccordionPage.class, "Horizontal Accordion"),
+		new PageLink(RoundPanelPage.class, "Round Panel"),
+		
 	};
 	
 	
