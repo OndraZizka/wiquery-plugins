@@ -24,15 +24,20 @@ public class TestImage {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		drawImage();
+		String shadowColor = "#b9c9cb";		
+		String frontColor = "#5c9ccc";
+		String frontColorActive = "#516a6d";
+		drawImage(Mode.active, shadowColor, frontColorActive);		
+		drawImage(Mode.inactive, shadowColor, frontColor);
 	}
 	
+	private enum Mode {
+		active,
+		inactive;
+	}
 
-	public static void drawImage() {
-		
-		String shadowColor = "#fbec88";
-		String frontColor = "#5c9ccc";
-		
+	public static void drawImage(Mode mode, String shadowColor, String frontColor) {
+						
 		int shadowWidth = 2;
 		
 		BufferedImage image = new BufferedImage(200+shadowWidth, 200+shadowWidth, BufferedImage.TYPE_INT_ARGB);
@@ -40,7 +45,7 @@ public class TestImage {
 		renderCorners((Graphics2D)image.createGraphics(),shadowColor, frontColor, shadowWidth);
 		// Write image using any matching ImageWriter
 		try {
-			final OutputStream out = new FileOutputStream("c:/temp/round/corners.png");
+			final OutputStream out = new FileOutputStream("c:/temp/round/corners_"+mode+".png");
 			if(!ImageIO.write(image, "png", out)) {
 				System.out.println("Could not find writter");
 			}
@@ -56,7 +61,7 @@ public class TestImage {
 		renderRectagleLeftRight((Graphics2D)image.createGraphics(), shadowColor, frontColor, shadowWidth);
 		// Write image using any matching ImageWriter
 		try {
-			final OutputStream out = new FileOutputStream("c:/temp/round/leftright.png");
+			final OutputStream out = new FileOutputStream("c:/temp/round/leftright_"+mode+".png");
 			if(!ImageIO.write(image, "png", out)) {
 				System.out.println("Could not find writter");
 			}
@@ -70,7 +75,7 @@ public class TestImage {
 		renderRectagleTopBottom((Graphics2D)image.createGraphics(), shadowColor, frontColor, shadowWidth);
 		// Write image using any matching ImageWriter
 		try {
-			final OutputStream out = new FileOutputStream("c:/temp/round/topbottom.png");
+			final OutputStream out = new FileOutputStream("c:/temp/round/topbottom_"+mode+".png");
 			if(!ImageIO.write(image, "png", out)) {
 				System.out.println("Could not find writter");
 			}

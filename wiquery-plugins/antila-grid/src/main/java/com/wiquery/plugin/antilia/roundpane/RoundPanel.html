@@ -1,0 +1,29 @@
+<html>
+	<body>
+		<wicket:panel>
+		<div class="roundinactive" onmouseover="this.className = 'roundactive'" onmouseout="this.className = 'roundinactive'">
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td class="top_left"></td>
+						<td class="top_center"><span class="title">Title</span></td>
+						<td class="top_right"></td>
+					</tr>
+					<tr>
+						<td class="center_left"></td>
+						<td class="center_center">
+							<div wicket:id="content"></div>
+						</td>
+						<td class="center_right"></td>
+					</tr>
+					<tr>
+						<td class="botton_left"></td>
+						<td class="botton_center"></td>
+						<td class="botton_right"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</wicket:panel>
+	</body>
+</html>
