@@ -1,11 +1,31 @@
-.top_left {background: url('corners.png') 0 0 no-repeat; width: 15px; height: 18px;}
-.top_center {background: url('topbottom.png') left top repeat-x; width: auto; height: 18px;}
-.top_right {background: url('corners.png') top right no-repeat; width: 15px; height: 18px;}
+.roundactive .top_left {background: url('corners_active.png') 0 0 no-repeat; width: 15px; height: 18px;}
+.roundactive .top_center {background: url('topbottom_active.png') left top repeat-x; width: auto; height: 18px;}
+.roundactive .top_right {background: url('corners_active.png') top right no-repeat; width: 15px; height: 18px;}
 
-.center_left {background: url('leftright.png') left top  repeat-y; width: 5px; height: auto;}
-.center_right {background: url('leftright.png') top right repeat-y; width: 5px; height: auto;}
-.center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; }
+.roundactive .center_left {background: url('leftright_active.png') left top  repeat-y; width: 5px; height: auto;}
+.roundactive .center_right {background: url('leftright_active.png') top right repeat-y; width: 5px; height: auto;}
+.roundactive .center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; }
 
-.botton_left {background: url('corners.png') left bottom no-repeat; width: 15px; height: 15px;}
-.botton_center {background: url('topbottom.png') left bottom   repeat-x; width: auto; height: 15px;}
-.botton_right {background: url('corners.png') bottom right no-repeat; width: 15px; height: 15px;}
+.roundactive .botton_left {background: url('corners_active.png') left bottom no-repeat; width: 15px; height: 15px;}
+.roundactive .botton_center {background: url('topbottom_active.png') left bottom   repeat-x; width: auto; height: 15px;}
+.roundactive .botton_right {background: url('corners_active.png') bottom right no-repeat; width: 15px; height: 15px;}
+
+.roundinactive .top_left {background: url('corners_inactive.png') 0 0 no-repeat; width: 15px; height: 18px;}
+.roundinactive .top_center {background: url('topbottom_inactive.png') left top repeat-x; width: auto; height: 18px;}
+.roundinactive .top_right {background: url('corners_inactive.png') top right no-repeat; width: 15px; height: 18px;}
+
+.roundinactive .center_left {background: url('leftright_inactive.png') left top  repeat-y; width: 5px; height: auto;}
+.roundinactive .center_right {background: url('leftright_inactive.png') top right repeat-y; width: 5px; height: auto;}
+.roundinactive .center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; overflow: auto; position: relative;}
+
+.roundinactive .botton_left {background: url('corners_inactive.png') left bottom no-repeat; width: 15px; height: 15px;}
+.roundinactive .botton_center {background: url('topbottom_inactive.png') left bottom   repeat-x; width: auto; height: 15px;}
+.roundinactive .botton_right {background: url('corners_inactive.png') bottom right no-repeat; width: 15px; height: 15px;}
+
+.roundactive .title {
+	color: white; font-weight: bold;
+}
+
+.roundinactive .title {
+	color: white; font-weight: bold;
+}
