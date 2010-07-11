@@ -33,6 +33,7 @@ public class RoundPanelPanel extends Panel {
 				return new SliderPanel(id);
 			}
 		};
+		panel.setWidth(400);
 		add(panel);
 	}
 

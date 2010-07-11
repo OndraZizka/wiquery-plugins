@@ -25,9 +25,9 @@
 .roundinactive .botton_right {background: url('corners_inactive.png') bottom right no-repeat; width: 15px; height: 15px;}
 
 .roundactive .title {
-	color: white; font-weight: bold; margin-left: 5px;
+	color: white; font-weight: bold; margin-left: 5px; padding-top: 3px;
 }
 
 .roundinactive .title {
-	color: white; font-weight: bold; margin-left: 5px;
+	color: white; font-weight: bold; margin-left: 5px; padding-top: 3px;
 }
