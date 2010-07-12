@@ -2,9 +2,9 @@
 .roundactive .top_center {background: url('topbottom_active.png') left top repeat-x; width: auto; height: 20px;}
 .roundactive .top_right {background: url('corners_active.png') top right no-repeat; width: 15px; height: 18px; min-width: 15px;}
 
-.roundactive .center_left {background: url('leftright_active.png') left top  repeat-y; width: 5px; height: auto;}
-.roundactive .center_right {background: url('leftright_active.png') top right repeat-y; width: 5px; height: auto;}
-.roundactive .center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; }
+.roundactive .center_left {background: url('leftright_active.png') left top  repeat-y; width: 5px; height: auto; padding: 0px;}
+.roundactive .center_right {background: url('leftright_active.png') top right repeat-y; width: 5px; height: auto; padding: 0px;}
+.roundactive .center_center {background: #79b7e7; padding: 0px; overflow: auto; position: relative;}
 .roundactive .center_content {padding: 5px;}
 
 .roundactive .botton_left {background: url('corners_active.png') left bottom no-repeat; width: 15px; height: 15px;}
@@ -17,8 +17,8 @@
 
 .roundinactive .center_left {background: url('leftright_inactive.png') left top  repeat-y; width: 5px; height: auto;}
 .roundinactive .center_right {background: url('leftright_inactive.png') top right repeat-y; width: 5px; height: auto;}
-.roundinactive .center_center {background: #79b7e7; border: 1px solid #a6c9e2; padding: 2px; overflow: auto; position: relative;}
-.roundinactive .center_content {padding: 5px;}
+.roundinactive .center_center {background: #79b7e7; padding: 0px; overflow: auto; position: relative;}
+.roundinactive .center_content {padding: 5px; overflow: auto; position: relative;}
 
 .roundinactive .botton_left {background: url('corners_inactive.png') left bottom no-repeat; width: 15px; height: 15px;}
 .roundinactive .botton_center {background: url('topbottom_inactive.png') left bottom   repeat-x; width: auto; height: 15px;}
