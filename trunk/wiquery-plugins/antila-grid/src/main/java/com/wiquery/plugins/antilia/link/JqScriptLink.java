@@ -30,9 +30,11 @@ import com.wiquery.plugins.antilia.menu.IMenuItem;
  *	
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class JqScriptLink extends Panel implements IMenuItem {
+public class JqScriptLink extends Panel implements IMenuItem {
 
 	private static final long serialVersionUID = 1L;
+	
+	private WebMarkupContainer link;
 
 	public JqScriptLink(String id, final JQIcon icon, String title) {
 		this(id,icon,new Model<String>(title));
@@ -60,8 +62,9 @@ public abstract class JqScriptLink extends Panel implements IMenuItem {
 		
 		add(parent);
 		
-		WebMarkupContainer link = new WebMarkupContainer("link");    	
-    	add(link);
+		link = new WebMarkupContainer("link");    	
+		link.setOutputMarkupId(true);
+		add(link);
     	
     	link.add(new AttributeModifier("onclick", new AbstractReadOnlyModel<String>() {
     		
@@ -69,10 +72,7 @@ public abstract class JqScriptLink extends Panel implements IMenuItem {
 
 			@Override
     		public String getObject() {
-				JsStatement statement  = JqScriptLink.this.getClickAction();
-				if(statement == null)
-					return "javascript:void(0);";
-    			return statement.render(true).toString();
+				return JqScriptLink.this.getClickAction();				
     		}
     	}));
 		
@@ -121,6 +121,23 @@ public abstract class JqScriptLink extends Panel implements IMenuItem {
 	 * 
 	 * @return The JsStatement to execute.
 	 */
-    protected abstract JsStatement getClickAction();
+    protected  String getClickAction() {
+    	JsStatement statement  = JqScriptLink.this.getClickStatement();
+		if(statement == null)
+			return "javascript:void(0);";
+		return statement.render(true).toString();
+    }
+    
+	/**
+	 * 
+	 * @return The JsStatement to execute.
+	 */
+    protected  JsStatement getClickStatement() {
+    	return null;
+    }
+
+	public WebMarkupContainer getLink() {
+		return link;
+	}
 	
 }

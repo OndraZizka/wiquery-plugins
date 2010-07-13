@@ -7,12 +7,15 @@
 	}
 	
 	RoundPanel.prototype.toggleFold = function() {
-		alert(this.folded);
-		if(!this.folded) {			
-			this.folded = true;			
+		if(this.folded) {			
+			this.folded = false;			
 			this.body.fadeIn('slow');
 		} else {
-			this.folded = false;
+			this.folded = true;
 			this.body.fadeOut('slow');
 		}
-	}	
+	}
+	
+	RoundPanel.prototype.isFolded = function() {
+		return this.folded;
+	}

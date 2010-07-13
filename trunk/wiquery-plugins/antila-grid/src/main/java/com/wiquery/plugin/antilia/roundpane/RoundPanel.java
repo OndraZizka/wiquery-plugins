@@ -5,8 +5,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.CSSPackageResource;
-import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -14,13 +12,10 @@ import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
-import org.odlabs.wiquery.core.effects.EffectSpeed;
-import org.odlabs.wiquery.core.effects.fading.FadeIn;
-import org.odlabs.wiquery.core.effects.fading.FadeOut;
-import org.odlabs.wiquery.core.javascript.JsStatement;
 
 import com.wiquery.plugins.antilia.link.JQIcon;
 import com.wiquery.plugins.antilia.link.JqAjaxLink;
+import com.wiquery.plugins.antilia.link.JqScriptLink;
 import com.wiquery.plugins.antilia.menu.IMenu;
 import com.wiquery.plugins.antilia.menu.Menu;
 
@@ -28,7 +23,7 @@ import com.wiquery.plugins.antilia.menu.Menu;
  * @author Ernesto Reinaldo Barreiro
  *
  */
-public class RoundPanel extends Panel implements IHeaderContributor {
+public class RoundPanel extends Panel  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,9 +40,11 @@ public class RoundPanel extends Panel implements IHeaderContributor {
 	
 	private Integer heigh = -1;
 	
-	private boolean foldable = false;
+	private boolean foldable = true;
 	
-	private boolean folded;
+	private boolean ajaxFoldable = false;
+	
+	private boolean folded = false;
 	
 	private Menu menu;
 			
@@ -117,48 +114,93 @@ public class RoundPanel extends Panel implements IHeaderContributor {
 		root.add(menu);		
 	}
 	
-	protected void configureMenu(IMenu menu) {
-		menu.addMenuItem(new JqAjaxLink(menu.newItemId(), JQIcon.ui_icon_circle_minus, "Fold") {
-    		
-    		private static final long serialVersionUID = 1L;
+	@Override
+	protected void onBeforeRender() {
+		addOrReplace(new Label("script", new AbstractReadOnlyModel<String>(){
+			
+			private static final long serialVersionUID = 1L;
 
-			
 			@Override
-			public void onClick(AjaxRequestTarget target) {
-				setFolded(true);
-				target.addComponent(RoundPanel.this.menu);
-				target.appendJavascript(new JsStatement().$(body)
-				.chain(new FadeOut(EffectSpeed.FAST)).render(true).toString());				
-				//target.appendJavascript(root.getMarkupId()+".toggleFold();");
+			public String getObject() {
+				return renderScript();
 			}
-			
-			@Override
-			public boolean isVisible() {
-				return !folded;
-			}
-    	});
-		
-		menu.addMenuItem(new JqAjaxLink(menu.newItemId(), JQIcon.ui_icon_circle_plus, "Unfold") {
-    		
-    		private static final long serialVersionUID = 1L;
-
-			
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				setFolded(false);
-				target.addComponent(RoundPanel.this.menu);
-				target.appendJavascript(new JsStatement().$(body)
-				.chain(new FadeIn(EffectSpeed.FAST)).render(true).toString());
-			}
-			
-			@Override
-			public boolean isVisible() {
-				return folded;
-			}
-    	});
+		}).setEscapeModelStrings(false));
+		super.onBeforeRender();
 	}
 	
-	public void renderHead(IHeaderResponse response) {
+	protected void configureMenu(IMenu menu) {
+		configureFoldable(menu);
+	}
+	
+	protected void configureFoldable(IMenu menu) {
+		if(!isFoldable()) {
+			return;
+		}
+		if(isAjaxFoldable()) {
+			menu.addMenuItem(new JqAjaxLink(menu.newItemId(), JQIcon.ui_icon_circle_minus, "Fold") {
+	    		
+	    		private static final long serialVersionUID = 1L;
+	
+				
+				@Override
+				public void onClick(AjaxRequestTarget target) {
+					setFolded(true);
+					target.addComponent(RoundPanel.this.menu);
+					//target.appendJavascript(new JsStatement().$(body).chain(new FadeOut(EffectSpeed.FAST)).render(true).toString());				
+					target.appendJavascript(root.getMarkupId()+".toggleFold();");
+				}
+				
+				@Override
+				public boolean isVisible() {
+					return !folded;
+				}
+	    	});
+			
+			menu.addMenuItem(new JqAjaxLink(menu.newItemId(), JQIcon.ui_icon_circle_plus, "Unfold") {
+	    		
+	    		private static final long serialVersionUID = 1L;
+	
+				
+				@Override
+				public void onClick(AjaxRequestTarget target) {
+					setFolded(false);
+					target.addComponent(RoundPanel.this.menu);
+					//target.appendJavascript(new JsStatement().$(body).chain(new FadeIn(EffectSpeed.FAST)).render(true).toString());
+					target.appendJavascript(root.getMarkupId()+".toggleFold();");
+				}
+				
+				@Override
+				public boolean isVisible() {
+					return folded;
+				}
+	    	});
+		} else {		
+			menu.addMenuItem(new JqScriptLink(menu.newItemId(), isFolded()?JQIcon.ui_icon_circle_minus:JQIcon.ui_icon_circle_plus, "Toggle fold") {    		
+	    		private static final long serialVersionUID = 1L;
+	
+	    		@Override
+	    		protected String getClickAction() {
+	    			String linkId = getLink().getMarkupId();
+	    			String rootId = root.getMarkupId();
+	    			return new StringBuffer()
+	    				.append(rootId)
+	    				.append(".toggleFold();")
+	    				.append("var link = document.getElementById('")
+	    				.append(linkId)
+	    				.append("'); if(")
+	    				.append(rootId)
+	    				.append(".isFolded()){")
+	    				.append("link.className='ui-icon ui-icon-circle-plus';")
+	    				.append("} else {")
+	    				.append("link.className='ui-icon ui-icon-circle-minus';")    				
+	    				.append("};")
+	    				.toString();
+	    		}    	
+			});
+		}
+	}
+	
+	private String renderScript() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("var ")
 		.append(root.getMarkupId())
@@ -167,7 +209,7 @@ public class RoundPanel extends Panel implements IHeaderContributor {
 		.append("',")
 		.append(isFolded())
 		.append(");");		
-		response.renderOnDomReadyJavascript(sb.toString());
+		return sb.toString();
 	}
 			
 	protected Component newContent(String id) {
@@ -204,5 +246,13 @@ public class RoundPanel extends Panel implements IHeaderContributor {
 
 	public void setFolded(boolean folded) {
 		this.folded = folded;
+	}
+
+	public boolean isAjaxFoldable() {
+		return ajaxFoldable;
+	}
+
+	public void setAjaxFoldable(boolean ajaxFoldable) {
+		this.ajaxFoldable = ajaxFoldable;
 	}
 }
