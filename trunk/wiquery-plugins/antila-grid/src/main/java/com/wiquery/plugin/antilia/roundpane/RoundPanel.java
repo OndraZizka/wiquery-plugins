@@ -27,7 +27,7 @@ public class RoundPanel extends Panel  {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final ResourceReference CSS = new ResourceReference(RoundPanel.class,"test.css");
+	private static final ResourceReference CSS = new ResourceReference(RoundPanel.class,"roundpanel.css");
 	
 	private static final ResourceReference JS = new ResourceReference(RoundPanel.class,"roundpanel.js");
 	
