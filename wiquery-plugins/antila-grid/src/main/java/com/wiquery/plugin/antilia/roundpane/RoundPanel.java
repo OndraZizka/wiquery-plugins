@@ -12,6 +12,10 @@ import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
+import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
+import org.odlabs.wiquery.core.javascript.JsStatement;
+import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 
 import com.wiquery.plugins.antilia.link.JQIcon;
 import com.wiquery.plugins.antilia.link.JqAjaxLink;
@@ -23,7 +27,8 @@ import com.wiquery.plugins.antilia.menu.Menu;
  * @author Ernesto Reinaldo Barreiro
  *
  */
-public class RoundPanel extends Panel  {
+@WiQueryUIPlugin
+public class RoundPanel extends Panel implements IWiQueryPlugin  {
 
 	private static final long serialVersionUID = 1L;
 
@@ -254,5 +259,15 @@ public class RoundPanel extends Panel  {
 
 	public void setAjaxFoldable(boolean ajaxFoldable) {
 		this.ajaxFoldable = ajaxFoldable;
+	}
+
+	@Override
+	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
+		
+	}
+
+	@Override
+	public JsStatement statement() {
+		return null;
 	}
 }
