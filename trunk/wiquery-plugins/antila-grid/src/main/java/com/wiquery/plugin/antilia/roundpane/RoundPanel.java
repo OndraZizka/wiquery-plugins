@@ -112,15 +112,17 @@ public class RoundPanel extends Panel implements IWiQueryPlugin  {
 		}));
 		add(root);
 		
-		root.add(new Label("title", titleModel));				
-		menu = new Menu("menu");
-		menu.setOutputMarkupId(true);
-		configureMenu(menu);
-		root.add(menu);		
+		root.add(new Label("title", titleModel));								
 	}
 	
 	@Override
 	protected void onBeforeRender() {
+		if(menu == null) {
+			menu = new Menu("menu");
+			menu.setOutputMarkupId(true);
+			configureMenu(menu);
+			root.addOrReplace(menu);
+		}
 		addOrReplace(new Label("script", new AbstractReadOnlyModel<String>(){
 			
 			private static final long serialVersionUID = 1L;
@@ -261,12 +263,10 @@ public class RoundPanel extends Panel implements IWiQueryPlugin  {
 		this.ajaxFoldable = ajaxFoldable;
 	}
 
-	@Override
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
 		
 	}
 
-	@Override
 	public JsStatement statement() {
 		return null;
 	}
