@@ -64,6 +64,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
 	
+	public static final int AUTO = -1;
+	
 	private ITableModel<E> tableModel;	
 	
 	/**
@@ -118,17 +120,31 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private int numberOfPages;
 	
+	/**
+	 * The data provider used to retrieve grid's data.
+	 */
 	private IDataProvider<E> dataProvider;
 	
 	private List<IModel<E>> rowModels;
 	
-	private int height = -1;
-	
-	private int width = -1;
-	
-	private AbstractDefaultAjaxBehavior tableEventContext;
 	/**
-	 * 
+	 * Table height.
+	 */
+	private int height = AUTO;
+	
+	/**
+	 * Table width
+	 */
+	private int width = AUTO;
+	
+	/**
+	 * AJAX behavior used to process some of the client side event on
+	 * the server side.
+	 */
+	private AbstractDefaultAjaxBehavior tableEventContext;
+	
+	/**
+	 * Constructor.
 	 * 
 	 * @param id
 	 */
@@ -635,6 +651,13 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 	}
 	
+	/**
+	 * Creates the table header. Override if you want to provide 
+	 * a different header.
+	 * 
+	 * @param id
+	 * @return
+	 */
 	protected Panel newTableHeader(String id) {
 		return new DefaultTableHeader<E>(id, this);
 	}
