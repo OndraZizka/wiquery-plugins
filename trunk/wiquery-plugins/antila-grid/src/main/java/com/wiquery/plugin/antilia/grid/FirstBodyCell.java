@@ -23,6 +23,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
+import com.wiquery.plugins.antilia.grid.model.SelectionMode;
 import com.wiquery.plugins.antilia.menu.IMenu;
 import com.wiquery.plugins.antilia.menu.Menu;
 
@@ -49,6 +50,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		this.row = row;			
 		imagePanel = new WebMarkupContainer("imagePanel");
 		imagePanel.setOutputMarkupId(true);
+		
 		/*
 		Image image = new Image("checkboxImage") {
 			private static final long serialVersionUID = 1L;
@@ -59,8 +61,9 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 			}
 		};
 		*/
-		//SelectionMode mode = table.getTableModel().getSelectionMode();
-		/*
+		
+		SelectionMode mode = table.getTableModel().getSelectionMode();
+		
 		if(mode.equals(SelectionMode.MULTIPLE) || mode.equals(SelectionMode.SINGLE)) {
 			ToggleSelectRowButton<E> selectRowButton = new ToggleSelectRowButton<E>("checkboxImage", table, row);
 			imagePanel.add(selectRowButton);
@@ -68,11 +71,13 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 			Label label = new Label("checkboxImage", "");
 			imagePanel.add(label);
 		}
-		*/
 		
+		
+		/*
 		Label label = new Label("checkboxImage", "");
 		imagePanel.add(label);
-		
+	
+		*/
 		table.addRowCheckBox(imagePanel);
 		add(imagePanel);
 		
@@ -110,19 +115,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		
 	}
 	
-	
-	
-	/*
-	protected ResourceReference getImage() {
-		IPageableSource<E> source = table.getPageableSource();
-		boolean selected = source.isSelected(row);
-		if(selected)
-			return DefaultStyle.IMG_CHECKBOX_CHECKED;
-		else
-			return DefaultStyle.IMG_CHECKBOX_UNCHECKED;
-	}
-	*/
-	
+		
 	public Table<E> getTable() {
 		return table;
 	}
