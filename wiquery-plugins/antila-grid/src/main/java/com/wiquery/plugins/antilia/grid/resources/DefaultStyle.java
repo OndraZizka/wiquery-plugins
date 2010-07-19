@@ -49,4 +49,11 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.gif");
 	public static ResourceReference IMG_REFRESH_PNG = new ResourceReference(ImgDummy.class, "refresh_small.png");
+	
+	public static ResourceReference IMG_CHECKBOX_CHECKED = new ResourceReference(ImgDummy.class, "checkboxChecked.gif");
+	public static ResourceReference IMG_CHECKBOX_UNCHECKED = new ResourceReference(ImgDummy.class, "checkboxUnchecked.gif");
+	
+	public static ResourceReference IMG_RADIO_CHECKED = new ResourceReference(ImgDummy.class, "radioButtonChecked.png");
+	public static ResourceReference IMG_RADIO_UNCHECKED = new ResourceReference(ImgDummy.class, "radioButton.png");
+	
 }
