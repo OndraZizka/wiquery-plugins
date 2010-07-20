@@ -58,12 +58,6 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 	private static final long serialVersionUID = 1L;
 	
-	public static final String AFTER_NAVIGATION_MENU = "AFTER_NAVIGATION_MENU";
-	
-	public static final String BEFORE_NAVIGATION_MENU = "BEFORE_NAVIGATION_MENU";
-	
-	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
-	
 	public static final int AUTO = -1;
 	
 	private ITableModel<E> tableModel;	
