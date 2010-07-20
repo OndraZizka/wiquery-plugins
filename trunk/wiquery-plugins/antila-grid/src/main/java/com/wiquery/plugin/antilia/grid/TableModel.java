@@ -42,7 +42,7 @@ public class TableModel<E extends Serializable> implements ITableModel<E> {
 	
 	private List<IColumn<E>> hiddenModels;
 		
-	private SelectionMode selectionMode = SelectionMode.MULTIPLE;
+	private SelectionMode selectionMode = SelectionMode.NONE;
 	
 	/**
 	 * @param object
