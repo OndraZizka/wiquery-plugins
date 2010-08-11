@@ -17,6 +17,8 @@
 package com.wiquery.plugins.antilia.link;
 
 /**
+ * This is an utility enumeration containing the names of all 
+ * the UI icons.
  *	
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
