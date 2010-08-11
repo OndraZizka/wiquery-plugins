@@ -28,22 +28,38 @@ import org.apache.wicket.model.Model;
 import com.wiquery.plugins.antilia.menu.IMenuItem;
 
 /**
- *	
+ *	A panel containing an AJAX link styled as a jquery icon UI image.
+ *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
 public abstract class JqAjaxLink extends Panel implements IMenuItem {
 
 	private static final long serialVersionUID = 1L;
 
-	public JqAjaxLink(String id, final JQIcon icon, String title) {
+	private JQIcon icon;
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param id The id of the link.
+	 * @param icon The icon to be shown by the link.
+	 * @param title The text to be shown  as a title for the link (to be shown as the user hovers over the link).
+	 */
+	public JqAjaxLink(String id, JQIcon icon, String title) {
 		this(id,icon,new Model<String>(title));
 	}
 	
 	/**
-	 * @param id
+	 * Constructor.
+	 * 
+	 * @param id The id of the link.
+	 * @param icon The icon to be shown by the link.
+	 * @param title The model to be used as a title for the link (to be shown as the user hovers over the link).
 	 */
-	public JqAjaxLink(String id, final JQIcon icon, IModel<String> title) {
+	public JqAjaxLink(String id, JQIcon icon, IModel<String> title) {
 		super(id);
+		
+		this.icon = icon;
 		
 		WebMarkupContainer parent = new WebMarkupContainer("parent");
 		parent.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
@@ -61,20 +77,8 @@ public abstract class JqAjaxLink extends Panel implements IMenuItem {
 		
 		add(parent);
 		
-		AjaxLink<Void> link = new AjaxLink<Void>("link") {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void onClick(AjaxRequestTarget target) {
-				JqAjaxLink.this.onClick(target);
-			}
-			
-			@Override
-			public boolean isEnabled() {
-				return JqAjaxLink.this.isEnabled();
-			}
-		};
-		
+		// we create the AJAX link.		
+		AjaxLink<Void> link = newAjaxLink("link");		
 		parent.add(link);
 		
 		link.add(new AttributeModifier("title", title));
@@ -85,7 +89,7 @@ public abstract class JqAjaxLink extends Panel implements IMenuItem {
 
 			@Override
 			public String getObject() {
-				return "ui-icon " + icon.getCssName();
+				return "ui-icon " + getIcon().getCssName();
 			}
 		}));
 		
@@ -117,9 +121,49 @@ public abstract class JqAjaxLink extends Panel implements IMenuItem {
 	}
 	
 	/**
-	 * On click.
-	 * @param target
+	 * Override this method to tune AjaxLink creation.
+	 * 
+	 * @param id The id of the link.
+	 * @return The AjaxLink<Void>
+	 */
+	protected AjaxLink<Void> newAjaxLink(String id) {
+		return new AjaxLink<Void>(id) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				JqAjaxLink.this.onClick(target);
+			}
+			
+			@Override
+			public boolean isEnabled() {
+				return JqAjaxLink.this.isEnabled();
+			}
+		};
+	}
+	
+	/**
+	 * On click event handler. 
+	 * 
+	 * @param target The AjaxRequestTarget associated to the AJAX round-trip.
 	 */
 	public abstract void onClick(AjaxRequestTarget target);
+
+	/**
+	 * Gets the icon.
+	 * @return
+	 */
+	public JQIcon getIcon() {
+		return icon;
+	}
+
+	/**
+	 * Sets the icon.
+	 * 
+	 * @param icon The JQIcon to set.
+	 */
+	public void setIcon(JQIcon icon) {
+		this.icon = icon;
+	}
 
 }
