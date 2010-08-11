@@ -32,7 +32,6 @@ import org.odlabs.wiquery.ui.draggable.DraggableRevert;
 import org.odlabs.wiquery.ui.draggable.DraggableSnap;
 import org.odlabs.wiquery.ui.draggable.DraggableRevert.RevertEnum;
 import org.odlabs.wiquery.ui.droppable.DroppableAccept;
-import org.odlabs.wiquery.ui.droppable.DroppableAjaxBehavior;
 
 import com.wiquery.plugins.antilia.util.RequestUtils;
 
@@ -79,7 +78,8 @@ public abstract class DraggableTitle<E extends Serializable> extends WebMarkupCo
 			};
 			
 			droppableAjaxBehavior.getDroppableBehavior().setAccept(new DroppableAccept("."+getTable().getMarkupId()));
-			droppableAjaxBehavior.getDroppableBehavior().setHoverClass("dropActive");
+			droppableAjaxBehavior.getDroppableBehavior().setHoverClass("ui-state-highlight dropHover");
+			droppableAjaxBehavior.getDroppableBehavior().setActiveClass("dropActive");
 			add(droppableAjaxBehavior);
 		}
 		add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {

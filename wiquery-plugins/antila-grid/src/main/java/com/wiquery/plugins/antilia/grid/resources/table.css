@@ -287,3 +287,7 @@ div.dropColumn {
 .dropActive {
 	border: 1px dashed !important;
 }
+
+.dropHover {
+	border: 1px dashed !important;
+}

@@ -76,6 +76,20 @@ function Table(id, url, rows, ncols, rendringCount, ie6, dragColumns, loadingMsg
     }       
 }
 
+Table.prototype.showLoading = function() {
+	var loading = document.getElementById(this.loadingId);
+	if(loading) {
+		loading.style.display = 'block';
+	}
+}
+
+Table.prototype.hideLoading = function() {
+	var loading = document.getElementById(this.loadingId);
+	if(loading) {
+		loading.style.display = 'none';
+	}
+}
+
 Table.prototype.addColumn = function(col, url) {
 	var column = new Column(this.id, col, url);	
 	this.columns[this.columns.length]= column;
