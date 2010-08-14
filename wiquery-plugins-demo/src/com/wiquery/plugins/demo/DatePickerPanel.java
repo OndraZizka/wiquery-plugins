@@ -66,7 +66,8 @@ public class DatePickerPanel extends Panel {
 		
 		form.add(new DatePicker<Date>("endDate", Date.class)
 				.setShowOn(ShowOnEnum.BOTH)
-				.setNumberOfMonths(new DatePickerNumberOfMonths((short)2)));
+				.setNumberOfMonths(new DatePickerNumberOfMonths((short)2))
+				.setButtonText("<div class=\"ui-icon ui-icon-calendar\"></div>"));
 		
 		InlineDatePicker<Date> inlineDatePicker = new InlineDatePicker<Date>("inlineDatePicker");
 		add(inlineDatePicker);

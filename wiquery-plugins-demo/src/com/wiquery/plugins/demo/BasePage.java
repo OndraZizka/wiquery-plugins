@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.odlabs.wiquery.plugin.layout.Layout;
 
 import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
+import com.wiquery.plugins.demo.resources.Styles;
 
 /**
  * Base page.
@@ -22,6 +23,7 @@ public abstract class BasePage extends WebPage {
 	 */
     public BasePage() {
     	add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));
+    	add(CSSPackageResource.getHeaderContribution(Styles.CSS_MAIN));
     	Layout layout = new Layout("layout", true) {
         	
         	private static final long serialVersionUID = 1L;

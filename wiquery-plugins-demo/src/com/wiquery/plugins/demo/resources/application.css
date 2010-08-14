@@ -1,0 +1,16 @@
+#ui-datepicker-div {
+    /* Minimum of '5' is required */
+    z-index: 5;
+}
+
+.ui-datepicker-trigger {
+	border: none;
+	padding: 0px;
+	margin-top: -6px;
+	background: transparent;
+	height: 16px;
+}
+
+.ui-datepicker-trigger div {
+	padding-top: -1px;
+}
