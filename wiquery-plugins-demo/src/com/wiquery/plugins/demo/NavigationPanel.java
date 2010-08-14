@@ -64,6 +64,7 @@ public class NavigationPanel extends Panel {
 		new PageLink(HorizontalAccordionPage.class, "Horizontal Accordion"),
 		new PageLink(RoundPanelPage.class, "Round Panel"),
 		new PageLink(TestLinkEffectsPage.class, "Links effect"),
+		new PageLink(DatePickerPage.class, "Date Picker"),
 	};
 	
 	
