@@ -287,8 +287,3 @@ button.login {
 	background-color: #9eb7e8; 
 	padding: 2px;
 }
-
-#ui-datepicker-div {
-    /* Minimum of '5' is required */
-    z-index: 5;
-}
