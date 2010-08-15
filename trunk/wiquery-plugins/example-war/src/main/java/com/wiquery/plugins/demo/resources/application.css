@@ -5,12 +5,42 @@
 
 .ui-datepicker-trigger {
 	border: none;
-	padding: 0px;
-	margin-top: -6px;
+	padding: 2px !important;
+	margin-top: -11px !important;
 	background: transparent;
-	height: 16px;
+	height: 24px;
+}
+
+.ui-datepicker-trigger div {
+	padding: 0px !important;
+	margin-top: -6px;
+}
+
+.ui-datepicker {
+	padding:0.2em 0.2em 0;
+	width: 11em !important;
+}
+
+.ui-datepicker-multi-2 {
+	padding:0.2em 0.2em 0;
+	width: 22em !important;
 }
 
 .ui-datepicker-trigger div {
 	padding-top: -1px;
+}
+
+.ui-datepicker a {
+	width: 18px !important;
+}
+
+.ui-datepicker td a {
+	width: 18px !important;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	line-height:0.9em !important;
+	margin:0 1em !important;
+	margin-top: -0.2em !important;
+	text-align: center;
 }
