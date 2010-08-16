@@ -47,7 +47,7 @@ public class EffectsPanel extends Panel {
     		private static final long serialVersionUID = 1L;
 
 			public void onClick(AjaxRequestTarget target) {
-				target.appendJavascript(new StringBuffer(new JsStatement().$(effects).chain(new Toggle()).render(true)).toString());
+				target.appendJavascript(new StringBuffer(new JsStatement().$(effects).chain(new Toggle(effectSpeedPanel.getSpeed())).render(true)).toString());
     		};    		
     	});
 
