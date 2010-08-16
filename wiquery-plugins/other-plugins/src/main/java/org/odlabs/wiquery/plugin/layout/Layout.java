@@ -268,6 +268,11 @@ public class Layout extends Panel implements IWiQueryPlugin {
 		return this;
 	}
 	
+	public Layout setMaxSize(PanePositionEnum pane, int maxSize) {
+		options.put(pane+"__maxSize", maxSize);
+		return this;
+	}
+	
 	
 
 	/**
