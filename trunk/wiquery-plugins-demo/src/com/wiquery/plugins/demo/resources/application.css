@@ -44,3 +44,7 @@
 	margin-top: -0.2em !important;
 	text-align: center;
 }
+
+.ui-layout-north {
+	padding: 0px !important;
+}
