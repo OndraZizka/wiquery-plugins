@@ -48,3 +48,14 @@
 .ui-layout-north {
 	padding: 0px !important;
 }
+
+.sortable-example { list-style-type: none; margin: 0; padding: 0; width: 250px; }
+.sortable-example li { margin: 3px 3px 3px 3px; padding: 0.4em; padding-left: 1.6em; font-size: 0.6em; height: 18px; }
+.sortable-example li span { position: absolute; margin-left: -1.3em; }
+
+.sortable-demo {width: 320px;}
+
+.sortable-demo-contents {padding: 10px;}
+
+.sortable-button {font-size: 0.6em !important;}
+

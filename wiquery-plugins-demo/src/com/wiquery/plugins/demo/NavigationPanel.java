@@ -66,6 +66,8 @@ public class NavigationPanel extends Panel {
 		new PageLink(TestLinkEffectsPage.class, "Links effect"),
 		new PageLink(DatePickerPage.class, "Date Picker"),
 		new PageLink(ResizablePage.class, "AJAX Resizable"),
+		new PageLink(SortablePage.class, "AJAX Sortable"),
+		
 	};
 	
 	
