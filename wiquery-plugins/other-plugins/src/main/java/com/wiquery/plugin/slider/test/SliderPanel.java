@@ -6,9 +6,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.odlabs.wiquery.core.options.ArrayItemOptions;
 import org.odlabs.wiquery.core.options.IntegerItemOptions;
+import org.odlabs.wiquery.ui.slider.AjaxSlider;
 import org.odlabs.wiquery.ui.slider.Slider.Orientation;
-
-import com.wiquery.plugin.slider.AjaxSlider;
 
 /**
  * 
