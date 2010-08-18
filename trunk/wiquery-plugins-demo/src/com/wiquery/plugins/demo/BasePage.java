@@ -1,5 +1,6 @@
 package com.wiquery.plugins.demo;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -40,8 +41,16 @@ public abstract class BasePage extends WebPage {
         	}
         	
         	@Override
-        	public Panel getLayoutCenterComponent(String wicketId) {
-        		return BasePage.this.getLayoutCenterComponent(wicketId);
+        	public Panel getLayoutCenterComponent(final String wicketId) {
+        		return new IndicatorPanel(wicketId) {
+        			
+        			private static final long serialVersionUID = 1L;
+
+					@Override
+        			protected Component newContents(String id) {
+        				return BasePage.this.getLayoutCenterComponent(id);
+        			}
+        		};        		
         	}
         	
         };
@@ -50,7 +59,7 @@ public abstract class BasePage extends WebPage {
         .setClosable(PanePositionEnum.NORTH, false)
         .setSpacingOpen(PanePositionEnum.NORTH, 0)
         .setMinSize(PanePositionEnum.NORTH, 80)
-        .setMaxSize(PanePositionEnum.NORTH, 102);
+        .setMaxSize(PanePositionEnum.NORTH, 82);
         
     }
     
