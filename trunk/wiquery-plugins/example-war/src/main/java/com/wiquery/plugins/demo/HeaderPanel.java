@@ -1,6 +1,13 @@
 package com.wiquery.plugins.demo;
 
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.protocol.http.WebRequestCycle;
+
+import com.wiquery.plugins.demo.themes.Themes;
+import com.wiquery.plugins.demo.themes.UITheme;
 
 /**
  * 
@@ -20,5 +27,38 @@ public class HeaderPanel extends Panel {
     public HeaderPanel(String id) {
     	super(id);
       	
+    	Form<Void> form = new Form<Void>("form");
+    	add(form);
+    	
+    	DropDownChoice<UITheme> theme = new DropDownChoice<UITheme>("theme", Themes.themes) {
+    		
+    		private static final long serialVersionUID = 1L;
+
+			@Override
+    		protected boolean wantOnSelectionChangedNotifications() {
+    			return true;
+    		}
+    		
+    		@Override
+    		protected void onSelectionChanged(UITheme newSelection) {
+    			WebRequestCycle.get().setResponsePage(getPage());
+    		}
+    	};    
+    	theme.setModel(new Model<UITheme>() {
+    		
+    		private static final long serialVersionUID = 1L;
+
+			@Override
+    		public UITheme getObject() {
+    			return DemoSession.getSession().getTheme();
+    		}
+			
+			@Override
+			public void setObject(UITheme object) {
+				DemoSession.getSession().setTheme(object);
+			}
+    	});
+    	theme.setNullValid(false);
+    	form.add(theme);
     }
 }

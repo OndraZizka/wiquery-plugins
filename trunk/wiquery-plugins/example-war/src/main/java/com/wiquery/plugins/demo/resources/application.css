@@ -18,12 +18,12 @@
 
 .ui-datepicker {
 	padding:0.2em 0.2em 0;
-	width: 11em !important;
+	width: 230px !important;
 }
 
 .ui-datepicker-multi-2 {
 	padding:0.2em 0.2em 0;
-	width: 22em !important;
+	width: 460px !important;
 }
 
 .ui-datepicker-trigger div {
@@ -39,7 +39,7 @@
 }
 
 .ui-datepicker .ui-datepicker-title {
-	line-height:0.9em !important;
+	line-height: 18px !important;
 	margin:0 1em !important;
 	margin-top: -0.2em !important;
 	text-align: center;
@@ -50,12 +50,27 @@
 }
 
 .sortable-example { list-style-type: none; margin: 0; padding: 0; width: 250px; }
-.sortable-example li { margin: 3px 3px 3px 3px; padding: 0.4em; padding-left: 1.6em; font-size: 0.6em; height: 18px; }
+.sortable-example li { margin: 3px 3px 3px 3px; padding: 0.4em; padding-left: 1.6em; font-size: 11px; height: 18px; }
 .sortable-example li span { position: absolute; margin-left: -1.3em; }
 
 .sortable-demo {width: 320px;}
 
 .sortable-demo-contents {padding: 10px;}
 
-.sortable-button {font-size: 0.6em !important;}
+.sortable-button {font-size: 11px !important;}
 
+.ajaxLoader {
+	position: relative;
+	margin: auto;
+	width: 100px;
+	height: 100px;
+	background: url("ajax-loader.gif") no-repeat;
+}
+
+.wiQueryLogo {
+	margin-top: 6px;
+	margin-left: 6px;
+	width: 240px;
+	height: 62px;
+	background: url("wiquery.png") no-repeat;
+}

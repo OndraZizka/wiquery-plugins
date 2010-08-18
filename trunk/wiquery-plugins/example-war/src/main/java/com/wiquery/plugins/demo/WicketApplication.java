@@ -3,7 +3,9 @@ package com.wiquery.plugins.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.Request;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Response;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -46,7 +48,7 @@ public class WicketApplication extends WiQueryWebApplication implements IThemabl
 	}
 
 	public ResourceReference getTheme(Session session) {
-		return com.wiquery.plugins.demo.Resources.CSS_JQUERY_UI;
+		return DemoSession.getSession().getTheme().getTheme();
 	}
 	
 	 public List<Person> getPersons() {
@@ -65,6 +67,11 @@ public class WicketApplication extends WiQueryWebApplication implements IThemabl
 	 
 	public static WicketApplication getWicketApplication() {
 		return (WicketApplication)WebApplication.get();
+	}
+	
+	@Override
+	public Session newSession(Request request, Response response) {
+		return new DemoSession(request);
 	}
 
 }
