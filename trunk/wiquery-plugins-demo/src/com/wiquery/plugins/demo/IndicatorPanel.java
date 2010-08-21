@@ -31,7 +31,7 @@ public abstract class IndicatorPanel extends Panel implements IAjaxIndicatorAwar
 	 */
 	public IndicatorPanel(String id, List<SourceInfo> code) {
 		super(id);
-		JqAjaxLink link = new JqAjaxLink("link", JQIcon.ui_icon_help, "Ver Codigo") {
+		JqAjaxLink link = new JqAjaxLink("link", JQIcon.ui_icon_help, "See source code") {
 			private static final long serialVersionUID = 1L;
 
 			
