@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-guice-1.4.9.jar" sourcepath="wicket-guice-1.4.9-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wicket-ioc-1.4.9.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/wiquery-1.0.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/java2html-5.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
