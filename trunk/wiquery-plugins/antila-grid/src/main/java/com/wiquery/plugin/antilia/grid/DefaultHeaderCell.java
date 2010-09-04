@@ -33,7 +33,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.wiquery.plugins.antilia.grid.model.IColumn;
+import com.wiquery.plugin.antilia.grid.model.IColumn;
 
 /**
  * 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-import com.wiquery.plugins.antilia.grid.model.SelectionMode;
+import com.wiquery.plugin.antilia.grid.model.SelectionMode;
 import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
 import com.wiquery.plugins.antilia.menu.AbstractLink;
 

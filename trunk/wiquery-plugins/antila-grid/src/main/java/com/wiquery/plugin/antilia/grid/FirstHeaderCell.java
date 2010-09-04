@@ -25,7 +25,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
 
-import com.wiquery.plugins.antilia.menu.Menu;
+import com.wiquery.plugin.antilia.menu.Menu;
 
 /**
  * 
