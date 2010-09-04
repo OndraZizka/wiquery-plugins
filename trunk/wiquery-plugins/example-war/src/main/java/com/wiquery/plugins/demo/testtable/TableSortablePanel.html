@@ -1,0 +1,24 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <body>
+<wicket:panel>
+<div class="ui-widget ui-widget-content">
+<div class="ui-widget-title ui-state-default">AJAX Sortables</div>
+<table style="width: auto;" cellpadding="0" cellspacing="0">
+	<tr wicket:id="sortable">
+		<th wicket:id="items" class="ui-state-default" style="width: 100px;"><span wicket:id="label"></span></th>
+	</tr>
+</table>
+<table style="width: auto;" cellpadding="0" cellspacing="0">
+	<tr wicket:id="contents">
+		<td wicket:id="items" class="ui-state-active" style="width: 100px;"><span wicket:id="label"></span></td>
+	</tr>
+</table>
+</div>
+<p>
+</p>
+<div class="ui-widget ui-widget-content ui-state-default sortable-demo" style="font-size: 0.9em; padding: 2px;">
+	<div wicket:id="message">No sorting done yet!</div>
+</div>
+</wicket:panel>
+    </body>
+</html>
