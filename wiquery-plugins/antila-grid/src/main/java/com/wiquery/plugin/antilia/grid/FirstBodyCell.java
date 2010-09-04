@@ -23,9 +23,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-import com.wiquery.plugins.antilia.grid.model.SelectionMode;
-import com.wiquery.plugins.antilia.menu.IMenu;
-import com.wiquery.plugins.antilia.menu.Menu;
+import com.wiquery.plugin.antilia.grid.model.SelectionMode;
+import com.wiquery.plugin.antilia.menu.IMenu;
+import com.wiquery.plugin.antilia.menu.Menu;
 
 /**
  * 

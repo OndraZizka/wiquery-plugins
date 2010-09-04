@@ -32,8 +32,9 @@ import org.odlabs.wiquery.ui.draggable.DraggableRevert;
 import org.odlabs.wiquery.ui.draggable.DraggableSnap;
 import org.odlabs.wiquery.ui.draggable.DraggableRevert.RevertEnum;
 import org.odlabs.wiquery.ui.droppable.DroppableAccept;
+import org.odlabs.wiquery.ui.droppable.DroppableAjaxBehavior;
 
-import com.wiquery.plugins.antilia.util.RequestUtils;
+import com.wiquery.plugin.antilia.util.RequestUtils;
 
 /**
  *	
