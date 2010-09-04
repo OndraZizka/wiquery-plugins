@@ -6,8 +6,8 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
 import com.wiquery.plugin.antilia.grid.model.SelectionMode;
-import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
-import com.wiquery.plugins.antilia.menu.AbstractLink;
+import com.wiquery.plugin.antilia.grid.resources.DefaultStyle;
+import com.wiquery.plugin.antilia.menu.AbstractLink;
 
 public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink {
 
