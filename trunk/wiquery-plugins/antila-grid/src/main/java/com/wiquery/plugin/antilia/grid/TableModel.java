@@ -25,8 +25,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 
-import com.wiquery.plugins.antilia.grid.model.IColumn;
-import com.wiquery.plugins.antilia.grid.model.SelectionMode;
+import com.wiquery.plugin.antilia.grid.model.IColumn;
+import com.wiquery.plugin.antilia.grid.model.SelectionMode;
 
 /**
  * 

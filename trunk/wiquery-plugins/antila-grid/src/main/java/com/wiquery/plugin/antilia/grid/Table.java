@@ -46,8 +46,8 @@ import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsStatement;
 import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 
-import com.wiquery.plugins.antilia.grid.model.IColumn;
-import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
+import com.wiquery.plugin.antilia.grid.model.IColumn;
+import com.wiquery.plugin.antilia.grid.resources.DefaultStyle;
 
 /**
  * 
