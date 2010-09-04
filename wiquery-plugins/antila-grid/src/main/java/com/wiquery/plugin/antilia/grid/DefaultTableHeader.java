@@ -20,16 +20,16 @@ import java.io.Serializable;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.wiquery.plugins.antilia.grid.navigation.JqFirstPageButton;
-import com.wiquery.plugins.antilia.grid.navigation.JqLastPageButton;
-import com.wiquery.plugins.antilia.grid.navigation.JqNextPageButton;
-import com.wiquery.plugins.antilia.grid.navigation.JqPreviousPageButton;
-import com.wiquery.plugins.antilia.grid.navigation.JqRefreshLink;
-import com.wiquery.plugins.antilia.grid.navigation.PageNumberItem;
-import com.wiquery.plugins.antilia.grid.navigation.PageSizeButton;
-import com.wiquery.plugins.antilia.grid.navigation.SeparatorButton;
-import com.wiquery.plugins.antilia.menu.IMenu;
-import com.wiquery.plugins.antilia.menu.Menu;
+import com.wiquery.plugin.antilia.grid.navigation.JqFirstPageButton;
+import com.wiquery.plugin.antilia.grid.navigation.JqLastPageButton;
+import com.wiquery.plugin.antilia.grid.navigation.JqNextPageButton;
+import com.wiquery.plugin.antilia.grid.navigation.JqPreviousPageButton;
+import com.wiquery.plugin.antilia.grid.navigation.JqRefreshLink;
+import com.wiquery.plugin.antilia.grid.navigation.PageNumberItem;
+import com.wiquery.plugin.antilia.grid.navigation.PageSizeButton;
+import com.wiquery.plugin.antilia.grid.navigation.SeparatorButton;
+import com.wiquery.plugin.antilia.menu.IMenu;
+import com.wiquery.plugin.antilia.menu.Menu;
 
 /**
  * 
