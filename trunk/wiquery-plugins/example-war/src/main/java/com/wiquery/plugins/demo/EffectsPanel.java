@@ -13,8 +13,8 @@ import org.odlabs.wiquery.core.effects.sliding.SlideDown;
 import org.odlabs.wiquery.core.effects.sliding.SlideUp;
 import org.odlabs.wiquery.core.javascript.JsStatement;
 
-import com.wiquery.plugins.antilia.link.ActionsPanel;
-import com.wiquery.plugins.antilia.link.AjaxTextLinkPanel;
+import com.wiquery.plugin.antilia.link.ActionsPanel;
+import com.wiquery.plugin.antilia.link.AjaxTextLinkPanel;
 
 /**
  * 
