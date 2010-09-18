@@ -3,6 +3,8 @@ package com.wiquery.plugin.dynamicdrive.menu;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.wiquery.plugin.menu.IMenuItem;
+
 /**
  * 
  * @author  Ernesto Reinaldo Barreiro (reiern70@gmail.com)

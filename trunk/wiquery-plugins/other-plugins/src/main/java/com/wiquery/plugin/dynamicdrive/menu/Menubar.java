@@ -19,6 +19,9 @@ import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsStatement;
 import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 
+import com.wiquery.plugin.menu.IMenu;
+import com.wiquery.plugin.menu.IMenuItem;
+
 /**
  * This component is based on this Menu
  * 

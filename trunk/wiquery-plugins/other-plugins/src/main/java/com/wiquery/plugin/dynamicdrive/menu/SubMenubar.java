@@ -11,6 +11,9 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
+import com.wiquery.plugin.menu.IMenu;
+import com.wiquery.plugin.menu.IMenuItem;
+
 /**
  * 
  *

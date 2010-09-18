@@ -1,4 +1,4 @@
-package com.wiquery.plugin.dynamicdrive.menu;
+package com.wiquery.plugin.menu;
 
 /**
  * 
