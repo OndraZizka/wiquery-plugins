@@ -3,11 +3,17 @@
  */
 package com.wiquery.plugins.demo;
 
+import java.util.Arrays;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.PropertyModel;
 
 import com.wiquery.plugin.superfish.AjaxMenuItem;
 import com.wiquery.plugin.superfish.BookMarkablePageMenuItem;
@@ -26,6 +32,8 @@ public class SuperfishMenuPanel extends Panel {
 	private WebMarkupContainer context; 
 	
 	private String message = "";
+	
+	private Speed speed = Speed.SLOW;
 	
 	/**
 	 * @param id
@@ -47,7 +55,7 @@ public class SuperfishMenuPanel extends Panel {
 		}));
 		
 		Menu menu = new Menu("menu");
-		menu.setSpeed(Speed.FAST)
+		menu.setSpeed(getSpeed())
 		.setDelay(300);
 		context.add(menu);
 		
@@ -212,6 +220,24 @@ public class SuperfishMenuPanel extends Panel {
 				target.addComponent(SuperfishMenuPanel.this.context);
 			}
 		});
+		
+		Form<Void> form = new Form<Void>("form");
+		add(form);
+		
+		DropDownChoice<Speed> cspeed  = new  DropDownChoice<Speed>("speed", Arrays.asList(Speed.values()));
+    	cspeed.setModel(new PropertyModel<Speed>(this,"speed"));
+    	cspeed.setNullValid(false);
+    	cspeed.add(new OnChangeAjaxBehavior() {
+    		
+			private static final long serialVersionUID = 1L;
+
+			@Override
+    		protected void onUpdate(AjaxRequestTarget target) {
+				target.addComponent(SuperfishMenuPanel.this.context);
+    		}
+    	});
+    	form.add(cspeed);
+		
 	}
 
 	public String getMessage() {
@@ -220,6 +246,14 @@ public class SuperfishMenuPanel extends Panel {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Speed getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(Speed speed) {
+		this.speed = speed;
 	}
 
 }
