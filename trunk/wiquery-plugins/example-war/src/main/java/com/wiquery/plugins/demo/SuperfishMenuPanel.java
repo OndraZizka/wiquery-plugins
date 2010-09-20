@@ -35,6 +35,10 @@ public class SuperfishMenuPanel extends Panel {
 	
 	private Speed speed = Speed.SLOW;
 	
+	private Boolean dropShadows = Boolean.TRUE;
+	
+	private Menu menu;
+	
 	/**
 	 * @param id
 	 */
@@ -54,9 +58,9 @@ public class SuperfishMenuPanel extends Panel {
 			}
 		}));
 		
-		Menu menu = new Menu("menu");
+		menu = new Menu("menu");
 		menu.setSpeed(getSpeed())
-		.setDelay(300);
+		.setDelay(300).setDropShadows(dropShadows);
 		context.add(menu);
 		
 		menu.addItem(new BookMarkablePageMenuItem<HomePage>("Home") {
@@ -233,11 +237,25 @@ public class SuperfishMenuPanel extends Panel {
 
 			@Override
     		protected void onUpdate(AjaxRequestTarget target) {
+				menu.setSpeed(speed);
 				target.addComponent(SuperfishMenuPanel.this.context);
     		}
     	});
     	form.add(cspeed);
-		
+    	
+    	BooleanDropDownChoice dropShadows = new BooleanDropDownChoice("dropShadows", new PropertyModel<Boolean>(this, "dropShadows"));
+    	dropShadows.setNullValid(false);
+    	dropShadows.add(new OnChangeAjaxBehavior() {
+    		
+			private static final long serialVersionUID = 1L;
+
+			@Override
+    		protected void onUpdate(AjaxRequestTarget target) {
+				menu.setDropShadows(SuperfishMenuPanel.this.dropShadows);
+				target.addComponent(SuperfishMenuPanel.this.context);
+    		}
+    	});
+    	form.add(dropShadows);
 	}
 
 	public String getMessage() {
@@ -256,4 +274,11 @@ public class SuperfishMenuPanel extends Panel {
 		this.speed = speed;
 	}
 
+	public Boolean getDropShadows() {
+		return dropShadows;
+	}
+
+	public void setDropShadows(Boolean dropShadows) {
+		this.dropShadows = dropShadows;
+	}
 }
