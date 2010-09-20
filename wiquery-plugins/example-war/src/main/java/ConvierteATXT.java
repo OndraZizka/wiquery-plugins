@@ -34,6 +34,8 @@ import com.wiquery.plugins.demo.SlideDeckPanel;
 import com.wiquery.plugins.demo.SliderPage;
 import com.wiquery.plugins.demo.SortablePage;
 import com.wiquery.plugins.demo.SortablePanel;
+import com.wiquery.plugins.demo.SuperfishMenuPage;
+import com.wiquery.plugins.demo.SuperfishMenuPanel;
 import com.wiquery.plugins.demo.TablePage;
 import com.wiquery.plugins.demo.TablePanel;
 import com.wiquery.plugins.demo.TestLinkEffectsPage;
@@ -115,6 +117,9 @@ public class ConvierteATXT {
 			
 			WatermarkPage.class,
 			WatermarkPanel.class,
+			
+			SuperfishMenuPage.class,
+			SuperfishMenuPanel.class,
 			
 		};
 	
