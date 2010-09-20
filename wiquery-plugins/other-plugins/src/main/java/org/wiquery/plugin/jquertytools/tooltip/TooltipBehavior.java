@@ -97,6 +97,37 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 		}		
 	}
 	
+	/**
+	 * 
+	 * See http://flowplayer.org/tools/tooltip/ Event management section.
+	 * 
+	 * @author Ernesto Reinaldo Barreiro
+	 *
+	 */
+	public static final class Events implements IComplexOption {
+		
+		private static final long serialVersionUID = 1L;
+
+		private String events;		
+		
+		public Events(String events) {
+			this.events = events;
+		}
+		
+		public CharSequence getJavascriptOption() {
+			return "{"+events+"}";
+		}
+
+		public String getEvents() {
+			return events;
+		}
+
+		public void setEvents(String events) {
+			this.events = events;
+		}
+
+	}
+
 	public static final Offset DEFAULT_OFFSET = new Offset(0,0);
 	
 	// Properties
@@ -291,8 +322,8 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	}
 	
 	
-	/** Set's the position.
-	 * @param effect The position
+	/** Set's the Offset.
+	 * @param offset The Offset
 	 * @return instance of the current behavior
 	 */
 	public TooltipBehavior setOffset(Offset offset) {
@@ -306,6 +337,23 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	public Offset getOffset() {
 		Offset offset = (Offset)this.options.getComplexOption("offset");
 		return offset != null ? offset : DEFAULT_OFFSET;
+	}
+	
+	/** Set's the Events.
+	 * @param events The Events 
+	 * @return instance of the current behavior
+	 */
+	public TooltipBehavior setEvents(Events events) {
+		this.options.put("events", events);
+		return this;
+	}
+	
+	/**
+	 * @return The offset option
+	 */
+	public Events getEvents() {
+		Events events = (Events)this.options.getComplexOption("events");
+		return events;
 	}
 	
 	/** 
