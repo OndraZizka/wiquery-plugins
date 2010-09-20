@@ -14,10 +14,10 @@ import com.wiquery.plugin.antilia.grid.FirstBodyCell;
 import com.wiquery.plugin.antilia.grid.RowItem;
 import com.wiquery.plugin.antilia.grid.Table;
 import com.wiquery.plugin.antilia.grid.TableModel;
-import com.wiquery.plugins.antilia.grid.model.PropertyColumn;
-import com.wiquery.plugins.antilia.link.JQIcon;
-import com.wiquery.plugins.antilia.link.JqAjaxLink;
-import com.wiquery.plugins.antilia.menu.IMenu;
+import com.wiquery.plugin.antilia.grid.model.PropertyColumn;
+import com.wiquery.plugin.antilia.link.JQIcon;
+import com.wiquery.plugin.antilia.link.JqAjaxLink;
+import com.wiquery.plugin.antilia.menu.IMenu;
 import com.wiquery.plugins.demo.test.Person;
 
 /**
