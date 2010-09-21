@@ -37,6 +37,10 @@ public class SuperfishMenuPanel extends Panel {
 	
 	private Boolean dropShadows = Boolean.TRUE;
 	
+	private Boolean autoArrows = Boolean.TRUE;
+	
+	private Integer delay = new Integer(300);
+	
 	private Menu menu;
 	
 	/**
@@ -60,7 +64,10 @@ public class SuperfishMenuPanel extends Panel {
 		
 		menu = new Menu("menu");
 		menu.setSpeed(getSpeed())
-		.setDelay(300).setDropShadows(dropShadows);
+		.setDelay(delay)
+		.setDropShadows(dropShadows)
+		.setAutoArrows(autoArrows)
+		.setAnimation("{opacity:'show'}");
 		context.add(menu);
 		
 		menu.addItem(new BookMarkablePageMenuItem<HomePage>("Home") {
@@ -243,6 +250,7 @@ public class SuperfishMenuPanel extends Panel {
     	});
     	form.add(cspeed);
     	
+    	//dropShadows     	
     	BooleanDropDownChoice dropShadows = new BooleanDropDownChoice("dropShadows", new PropertyModel<Boolean>(this, "dropShadows"));
     	dropShadows.setNullValid(false);
     	dropShadows.add(new OnChangeAjaxBehavior() {
@@ -256,6 +264,38 @@ public class SuperfishMenuPanel extends Panel {
     		}
     	});
     	form.add(dropShadows);
+    	
+    	//autoarrows 
+    	BooleanDropDownChoice autoArrows = new BooleanDropDownChoice("autoArrows", new PropertyModel<Boolean>(this, "autoArrows"));
+    	autoArrows.setNullValid(false);
+    	autoArrows.add(new OnChangeAjaxBehavior() {
+    		
+			private static final long serialVersionUID = 1L;
+
+			@Override
+    		protected void onUpdate(AjaxRequestTarget target) {
+				menu.setAutoArrows(SuperfishMenuPanel.this.autoArrows);
+				target.addComponent(SuperfishMenuPanel.this.context);
+    		}
+    	});
+    	form.add(autoArrows);
+    	
+    	// delay
+    	DropDownChoice<Integer> delay  = new  DropDownChoice<Integer>("delay", Arrays.asList(new Integer[]{300, 600, 1200, 2000}));
+    	delay.setModel(new PropertyModel<Integer>(this,"delay"));
+    	delay.setNullValid(false);
+    	delay.add(new OnChangeAjaxBehavior() {
+    		
+			private static final long serialVersionUID = 1L;
+
+			@Override
+    		protected void onUpdate(AjaxRequestTarget target) {
+				menu.setDelay(SuperfishMenuPanel.this.delay);
+				target.addComponent(SuperfishMenuPanel.this.context);
+    		}
+    	});
+    	form.add(delay);
+    	
 	}
 
 	public String getMessage() {
@@ -280,5 +320,13 @@ public class SuperfishMenuPanel extends Panel {
 
 	public void setDropShadows(Boolean dropShadows) {
 		this.dropShadows = dropShadows;
+	}
+
+	public Integer getDelay() {
+		return delay;
+	}
+
+	public void setDelay(Integer delay) {
+		this.delay = delay;
 	}
 }
