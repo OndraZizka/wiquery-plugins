@@ -155,6 +155,23 @@ public class Menu extends Panel implements IMenu, IWiQueryPlugin {
 	}
 	
 	/**
+	 * Sets the animation e.g. animation: {opacity:'show'}
+	 * 
+	 * @param animation
+	 * @return
+	 */
+	public Menu setAnimation(String animation) {
+		if(animation == null) {
+			options.removeOption("animation");
+		} else {			
+			options.put("animation", animation);
+		}
+		return this;
+	}
+	
+	
+	
+	/**
 	 * Set to true to disable hoverIntent detection
 	 * 
 	 * @param disableHI Set to true to disable hoverIntent detection.
