@@ -4,7 +4,7 @@
 	<groupId>com.wiquery-plugins</groupId>
 	<artifactId>wiquery-plugins</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.x-SNAPSHOT</version>
 	<!-- TODO project name  -->
 	<name>wiquery-plugins</name>
 	<description></description>

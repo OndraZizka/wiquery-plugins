@@ -4,11 +4,11 @@
 	<parent>
 		<artifactId>wiquery-plugins</artifactId>
 		<groupId>com.wiquery-plugins</groupId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1.0.x-SNAPSHOT</version>
 	</parent>
 	<groupId>com.wiquery-plugins</groupId>
 	<artifactId>example-war</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.x-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>example-war</name>
 
