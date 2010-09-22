@@ -1,0 +1,25 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+	<div style="width: 100%; padding-top: 20px;">
+		<form class="cmxform" wicket:id="demo1">
+	<h3>Demonstration 1</h3>
+	<fieldset>
+		<legend>Country uses simple watermark</legend>
+		<ol>
+			<li><label for="d1-name">Name <em>*</em></label> <input id="d1-name"/></li>
+			<li><label for="d1-address1">Address <em>*</em></label> <input id="d1-address1"/></li>
+			<li><label for="d1-town-city">Town/City <em>*</em></label> <input id="d1-town-city"/></li>
+			<li><label for="d1-state">State/Province <em>*</em></label> <input id="d1-state"/></li>
+			<li><label for="d1-postcode">Zip/Postcode <em>*</em></label> <input id="d1-postcode"/></li>
+			<li><label for="d1-country">Country</label> <input wicket:id="country" class="watermark"/></li>
+			<li><label></label> <input type="submit" value="Submit"/> &nbsp; <input type="button" value="Set Focus to Country" id="d1-countryFocus"/></li>
+			<li><label></label> • This is a normal <strong>type="submit"</strong> button.</li>
+			<li><label></label> • Check the QueryString after clicking to verify that a watermark value is never submitted.</li>
+		</ol>
+	</fieldset>
+	</form>
+	</div>
+</wicket:panel>
+    </body>
+</html>

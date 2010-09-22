@@ -1,0 +1,50 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+    <body>
+<wicket:panel>
+
+<div class="ui-widget ui-widget-content sortable-demo" style="width:  500px;">
+<div class="ui-widget-title ui-state-default">Options</div>
+<form wicket:id="form">
+	<table>
+		<tbody>
+			<tr>
+				<td class="ui-state-default">
+					Show placeholder:
+				</td>
+				<td>
+					<select wicket:id="placeholder"></select>
+				</td>
+				
+				<td class="ui-state-default">
+					Restrict to Y axis:
+				</td>
+				<td>
+					<select wicket:id="restrictToYAxis"></select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p></p>
+	<button wicket:id="apply" class="ui-state-default ui-corner-all sortable-button">Apply Changes</button>
+	<p></p>
+</form>
+</div>
+
+<p></p>
+
+<div class="ui-widget ui-widget-content sortable-demo">
+<div class="ui-widget-title ui-state-default">AJAX Sortables</div>
+<div class="sortable-demo-contents">
+<ul wicket:id="sortable" class="sortable-example">
+	<li wicket:id="items" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><span wicket:id="label"></span></li>	
+</ul>
+</div>
+</div>
+<p>
+</p>
+<div class="ui-widget ui-widget-content ui-state-default sortable-demo" style="font-size: 0.9em; padding: 2px;">
+	<div wicket:id="message">No sorting done yet!</div>
+</div>
+</wicket:panel>
+    </body>
+</html>
