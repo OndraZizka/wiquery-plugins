@@ -19,7 +19,6 @@ package com.wiquery.plugin.antilia.grid;
 import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.AbstractReadOnlyModel;
@@ -62,19 +61,17 @@ public abstract class DraggableTitle<E extends Serializable> extends WebMarkupCo
 			draggableBehavior.setZIndex(100);
 			draggableBehavior.setSnap(new DraggableSnap(true));	
 			add(draggableBehavior);
-			DroppableAjaxBehavior droppableAjaxBehavior = new DroppableAjaxBehavior() {
+			DroppableAjaxBehavior<DraggableTitle<E>> droppableAjaxBehavior = new DroppableAjaxBehavior<DraggableTitle<E>>() {
 				
 				private static final long serialVersionUID = 1L;
 	
 				@Override
-				public void onDrop(Component droppedComponent, AjaxRequestTarget ajaxRequestTarget) {
-					if(droppedComponent instanceof DraggableTitle<?>) {
-						DraggableTitle<?> droppedTitle = (DraggableTitle<?>)droppedComponent;
-						int dropped = droppedTitle.getColumn()-1;
-						int before = DraggableTitle.this.getColumn()-1;
-						DraggableTitle.this.getTable().getTableModel().moveColumnBefore(dropped, before);
-						ajaxRequestTarget.addComponent(DraggableTitle.this.getTable().getUpdatableComponent());
-					}
+				public void onDrop(DraggableTitle<E> droppedComponent, AjaxRequestTarget ajaxRequestTarget) {
+					DraggableTitle<?> droppedTitle = (DraggableTitle<?>)droppedComponent;
+					int dropped = droppedTitle.getColumn()-1;
+					int before = DraggableTitle.this.getColumn()-1;
+					DraggableTitle.this.getTable().getTableModel().moveColumnBefore(dropped, before);
+					ajaxRequestTarget.addComponent(DraggableTitle.this.getTable().getUpdatableComponent());					
 				}
 			};
 			
