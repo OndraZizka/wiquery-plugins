@@ -42,8 +42,10 @@ import org.odlabs.wiquery.core.javascript.JsStatement;
 import org.odlabs.wiquery.ui.core.CoreUIJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.draggable.DraggableJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.droppable.DroppableJavaScriptResourceReference;
+import org.odlabs.wiquery.ui.mouse.MouseJavascriptResourceReference;
 import org.odlabs.wiquery.ui.resizable.ResizableJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.sortable.SortableJavaScriptResourceReference;
+import org.odlabs.wiquery.ui.widget.WidgetJavascriptResourceReference;
 
 import com.wiquery.plugins.jqgrid.Resources;
 import com.wiquery.plugins.jqgrid.component.event.IAjaxGridEvent;
@@ -465,7 +467,10 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		
 		
 	
-		wiQueryResourceManager.addJavaScriptResource(CoreUIJavaScriptResourceReference.get());
+		wiQueryResourceManager.addJavaScriptResource(CoreUIJavaScriptResourceReference.get());		
+		wiQueryResourceManager.addJavaScriptResource(WidgetJavascriptResourceReference.get());
+		wiQueryResourceManager.addJavaScriptResource(MouseJavascriptResourceReference.get());
+		
 		wiQueryResourceManager.addJavaScriptResource(ResizableJavaScriptResourceReference.get());
 		wiQueryResourceManager.addJavaScriptResource(DraggableJavaScriptResourceReference.get());	
 		wiQueryResourceManager.addJavaScriptResource(DroppableJavaScriptResourceReference.get());	

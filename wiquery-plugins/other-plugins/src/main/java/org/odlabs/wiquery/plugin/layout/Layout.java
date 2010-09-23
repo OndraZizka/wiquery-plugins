@@ -15,6 +15,8 @@ import org.odlabs.wiquery.ui.effects.CoreEffectJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.effects.DropEffectJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.effects.ScaleEffectJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.effects.SlideEffectJavaScriptResourceReference;
+import org.odlabs.wiquery.ui.mouse.MouseJavascriptResourceReference;
+import org.odlabs.wiquery.ui.widget.WidgetJavascriptResourceReference;
 
 /**
  * 
@@ -132,6 +134,8 @@ public class Layout extends Panel implements IWiQueryPlugin {
 	 * @see org.odlabs.wiquery.core.commons.IWiQueryPlugin#contribute(org.odlabs.wiquery.core.commons.WiQueryResourceManager)
 	 */
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
+		wiQueryResourceManager.addJavaScriptResource(WidgetJavascriptResourceReference.get());
+		wiQueryResourceManager.addJavaScriptResource(MouseJavascriptResourceReference.get());
 		wiQueryResourceManager
 		.addJavaScriptResource(DraggableJavaScriptResourceReference.get());
 		
