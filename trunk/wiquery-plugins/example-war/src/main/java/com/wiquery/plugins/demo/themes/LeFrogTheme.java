@@ -10,7 +10,7 @@ public class LeFrogTheme extends UITheme {
 
 	private static final long serialVersionUID = 1L;
 	
-	public static final ResourceReference THEME = new ResourceReference(Themes.class, "lefrog/jquery-ui-1.7.2.custom.css");
+	public static final ResourceReference THEME = new ResourceReference(Themes.class, "lefrog/jquery-ui-1.8.4.custom.css");
 	
 	private static LeFrogTheme instance;
 	
