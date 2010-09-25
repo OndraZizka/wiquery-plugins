@@ -552,7 +552,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		}
 		
 		
-		private void initialize() {
+		private void initializeMe() {
 			Table.this.clearRowCheckBoxes();
 			models = new ArrayList<IModel<E>>();
 			ITableModel<E> tableModel = getTable().getTableModel();
@@ -572,7 +572,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 		@Override
 		protected Iterator<IModel<E>> getItemModels() {
-			initialize();
+			initializeMe();
 			return models.iterator();
 		}
 
