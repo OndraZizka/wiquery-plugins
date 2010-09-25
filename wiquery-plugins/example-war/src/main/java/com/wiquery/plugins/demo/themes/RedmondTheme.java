@@ -10,7 +10,7 @@ public class RedmondTheme extends UITheme {
 
 	private static final long serialVersionUID = 1L;
 	
-	public static final ResourceReference THEME = new ResourceReference(Themes.class, "redmond/jquery-ui-1.7.1.custom.css");
+	public static final ResourceReference THEME = new ResourceReference(Themes.class, "redmond/jquery-ui-1.8.4.custom.css");
 	
 	private static RedmondTheme instance;
 	
