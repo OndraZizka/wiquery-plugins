@@ -21,10 +21,17 @@ public abstract class AbstractMenuItem extends Panel implements IMenuItem {
 	public AbstractMenuItem(IModel<String> title) {
 		super("item", title);
 		setRenderBodyOnly(true);
-		AbstractLink link = newLink("link");
-		add(link);
-		link.add(new Label("title", title)
-		.setRenderBodyOnly(true));
+	}
+	
+	@Override
+	protected void onBeforeRender() {
+		if(get("link")== null) {
+			AbstractLink link = newLink("link");
+			add(link);
+			link.add(new Label("title", getDefaultModel())
+			.setRenderBodyOnly(true));
+		}
+		super.onBeforeRender();
 	}
 
 	protected abstract AbstractLink newLink(String id); 
