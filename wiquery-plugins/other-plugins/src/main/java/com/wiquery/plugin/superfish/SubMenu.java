@@ -37,7 +37,7 @@ public class SubMenu extends Panel implements IMenuItem, IMenu {
 	 * @param title
 	 */
 	public SubMenu(String title) {
-		this("item", new Model<String>(title));
+		this(new Model<String>(title));
 	}
 	
 	/**
@@ -45,8 +45,8 @@ public class SubMenu extends Panel implements IMenuItem, IMenu {
 	 * 
 	 * @param id
 	 */
-	public SubMenu(String id, IModel<String> title) {
-		super(id, title);				
+	public SubMenu(IModel<String> title) {
+		super("item", title);				
 		setRenderBodyOnly(true);		
 		add(new Label("title", title).setRenderBodyOnly(true));		
 	}
