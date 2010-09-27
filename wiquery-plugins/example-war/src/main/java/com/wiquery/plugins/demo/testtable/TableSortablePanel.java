@@ -29,7 +29,7 @@ public class TableSortablePanel extends Panel {
 	private WebMarkupContainer sortableW;
 	
 	
-	private SortableAjaxBehavior sortable;
+	private SortableAjaxBehavior<WebMarkupContainer> sortable;
 	
 	private int i;
 	
@@ -44,24 +44,24 @@ public class TableSortablePanel extends Panel {
     	super(id);
     	
      	
-    	sortable = new SortableAjaxBehavior(SortedEvent.UPDATE) {
+    	sortable = new SortableAjaxBehavior<WebMarkupContainer>(SortedEvent.UPDATE) {
     
     		 private static final long serialVersionUID = 1L;
 
 			@Override
-		 	public void onReceive(Component sortedComponent, int index,
+		 	public void onReceive(WebMarkupContainer sortedComponent, int index,
 		 		Component parentSortedComponent,
 		 		AjaxRequestTarget ajaxRequestTarget) {
 		 	
 		 	}
     		 	
 		 	@Override
-		 	public void onRemove(Component sortedComponent, AjaxRequestTarget ajaxRequestTarget) {
+		 	public void onRemove(WebMarkupContainer sortedComponent, AjaxRequestTarget ajaxRequestTarget) {
 		 	
 		 	}
     		 	
 		 	@Override
-		 	public void onUpdate(Component sortedComponent, int index, AjaxRequestTarget ajaxRequestTarget) {
+		 	public void onUpdate(WebMarkupContainer sortedComponent, int index, AjaxRequestTarget ajaxRequestTarget) {
 		 		WebMarkupContainer item = (WebMarkupContainer)sortedComponent;
 		 		Label label = (Label)item.get("label");
 		 		TableSortablePanel.this.setMessage("Element " + label.getDefaultModelObjectAsString() + " moved to position " + index);		 		
