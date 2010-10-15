@@ -41,7 +41,7 @@ public abstract class OnRightClickRowAjaxEvent<B extends Serializable> extends A
 			String iCol = WebRequestCycle.get().getRequest().getParameter("iCol");
 			Integer col = Integer.parseInt(iCol);
 			Grid<B> grid = getGrid();
-			IModel<B> model = grid.getGridData().getModels().get(row);
+			IModel<B> model = grid.getRowModels().get(row);
 			onRightClickRow(target, row, col, model);
 		}
 	}

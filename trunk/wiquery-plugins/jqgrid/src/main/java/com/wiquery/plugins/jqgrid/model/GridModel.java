@@ -146,6 +146,11 @@ public class GridModel<B extends Serializable> extends Model<String> implements 
 	 */
 	private int rownumWidth = 25;
 	
+	/** 
+	 * Hides the grid on start up
+	 */
+	private boolean hiddengrid = false;
+	
 	/**
 	 * Enables or disables the show/hide grid button, 
 	 * which appears on the right side of the Caption layer. 
@@ -609,5 +614,13 @@ public class GridModel<B extends Serializable> extends Model<String> implements 
 		if(caption != null) {
 			caption.detach();
 		}
+	}
+
+	public boolean isHiddengrid() {
+		return hiddengrid;
+	}
+
+	public void setHiddengrid(boolean hiddengrid) {
+		this.hiddengrid = hiddengrid;
 	}
 }
