@@ -3,6 +3,7 @@
  */
 package com.wiquery.plugins.jqgrid.component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,7 +28,7 @@ import com.wiquery.plugins.jqgrid.model.SortOrder;
 /**
  * @author Ernesto Reinaldo 
  */
-public class GridDataPanel<E> extends Panel {
+public class GridDataPanel<E extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,18 +47,18 @@ public class GridDataPanel<E> extends Panel {
 	private List<ICellPopulator<E>> populators;
 	
 	private SortInfo sortInfo;
-	
-	
+		
 	private IDataProvider<E> dataProvider;
 	
 	private List<IModel<ICellPopulator<E>>> COLUMNS = new ArrayList<IModel<ICellPopulator<E>>>();
 	
-	
+	private List<IModel<E>> rowModels;
 	/**
 	 * @param id
 	 */
 	public GridDataPanel(String id, List<ICellPopulator<E>> populators, IDataProvider<E> dataProvider) {				
 		super(id);	
+		this.rowModels = new ArrayList<IModel<E>>();
 		this.populators = populators;
 		this.dataProvider = dataProvider;
 		int columns = populators.size();
@@ -97,13 +98,14 @@ public class GridDataPanel<E> extends Panel {
 
 			@Override
 			protected Iterator<IModel<E>> getItemModels() {
-				List<IModel<E>> models = new ArrayList<IModel<E>>();
+				List<IModel<E>> temp = new ArrayList<IModel<E>>();
 				Iterator<? extends E> it = GridDataPanel.this.getRows(start, pageSize,  GridDataPanel.this.sortInfo);
 				while(it.hasNext()) {
 					IModel<E> model = GridDataPanel.this.dataProvider.model(it.next());
-					models.add(model);
+					rowModels.add(model);
+					temp.add(model);
 				}
-				return models.iterator();
+				return temp.iterator();
 			}
 			
 			@Override
@@ -222,6 +224,7 @@ public class GridDataPanel<E> extends Panel {
 	@Override
 	protected void onBeforeRender() {
 		configureSort();
+		rowModels.clear();
 		int rows = readNumberOfRows();
 		int page = readCurrentPage();
 		int records = totalRecords(this.sortInfo);
@@ -280,6 +283,10 @@ public class GridDataPanel<E> extends Panel {
 
 	public int getCurrentPage() {
 		return currentPage;
+	}
+
+	public List<IModel<E>> getRowModels() {
+		return rowModels;
 	}
 	
 }

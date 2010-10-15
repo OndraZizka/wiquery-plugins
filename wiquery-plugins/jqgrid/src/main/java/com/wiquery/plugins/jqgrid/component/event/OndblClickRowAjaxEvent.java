@@ -37,11 +37,11 @@ public abstract class OndblClickRowAjaxEvent<B extends Serializable> extends Abs
 	public final void onEvent(AjaxRequestTarget target) {
 		String param = WebRequestCycle.get().getRequest().getParameter("iRow");			
 		if(!StringUtils.isEmpty(param)) {			
-			Integer row = Integer.parseInt(param)-1;
+			Integer row = Integer.parseInt(param);
 			String iCol = WebRequestCycle.get().getRequest().getParameter("iCol");
 			Integer col = Integer.parseInt(iCol);
 			Grid<B> grid = getGrid();
-			IModel<B> model = grid.getGridData().getModels().get(row);
+			IModel<B> model = grid.getRowModels().get(row);
 			ondblClickRow(target, row, col, model);
 		}
 	}

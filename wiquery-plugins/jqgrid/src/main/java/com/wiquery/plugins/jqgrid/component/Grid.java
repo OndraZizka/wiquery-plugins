@@ -34,11 +34,13 @@ import org.apache.wicket.behavior.AbstractAjaxBehavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.odlabs.wiquery.core.commons.IWiQueryPlugin;
 import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsQuery;
 import org.odlabs.wiquery.core.javascript.JsStatement;
+import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 import org.odlabs.wiquery.ui.core.CoreUIJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.draggable.DraggableJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.droppable.DroppableJavaScriptResourceReference;
@@ -46,6 +48,8 @@ import org.odlabs.wiquery.ui.mouse.MouseJavascriptResourceReference;
 import org.odlabs.wiquery.ui.resizable.ResizableJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.sortable.SortableJavaScriptResourceReference;
 import org.odlabs.wiquery.ui.widget.WidgetJavascriptResourceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.wiquery.plugins.jqgrid.Resources;
 import com.wiquery.plugins.jqgrid.component.event.IAjaxGridEvent;
@@ -68,6 +72,7 @@ import com.wiquery.plugins.jqgrid.model.IColumn;
  * @author steve.mactaggart (contributor)
  * @author samzilverberg (contributor)
  */
+@WiQueryUIPlugin
 public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlugin {
 	
 	private static final long serialVersionUID = 1L;
@@ -86,19 +91,41 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	
 	private GridModel<B> model;
 	
-	private GridDataPanel<B> data;
+	private GridDataPanel<B> dataPanel;
 	
 	private static String[] TEXT_PROPERTIES = {"recordtext", "emptyrecords", "loadtext", "pgtext"};
 	
+	private static final Logger logger = LoggerFactory.getLogger(Grid.class);
+	
 	private Map<IGridEvent.GridEvent, IGridEvent<B>> gridEvents  = new Hashtable<IGridEvent.GridEvent, IGridEvent<B>>();
+	
+	private List<IModel<B>> rowModels;
+	
+	private static abstract class  GridAbstractDefaultAjaxBehavior<B extends Serializable> extends AbstractDefaultAjaxBehavior {
+		
+		private static final long serialVersionUID = 1L;
+		
+		private Grid<B> grid;
+		
+		public GridAbstractDefaultAjaxBehavior(Grid<B> grid) {
+			this.grid = grid;
+		}
+
+		public Grid<B> getGrid() {
+			return grid;
+		}
+		
+		
+	}
 	
 	public Grid(String id, GridModel<B> gridModel, IDataProvider<B> dataProvider) {
 		super(id, gridModel);
+		this.rowModels = new ArrayList<IModel<B>>(); 
 		this.dataProvider = dataProvider;
 		setOutputMarkupId(true);
 		
 		//This behavior is used as a call-back for grid events.
-		gridContext = new AbstractDefaultAjaxBehavior() {
+		gridContext = new GridAbstractDefaultAjaxBehavior<B>(this) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -116,11 +143,14 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 						// set the grid if it is IGridAware.
 						if(ajaxGridEvent instanceof IGridAware<?>) {							
 							IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
-							aware.setGrid(Grid.this);
+							aware.setGrid(getGrid());
 						}
 						try {
 							ajaxGridEvent.onEvent(target);
-						} finally {
+						} catch (Exception e) {
+							logger.debug("error hablding event ", e);
+							throw new WicketRuntimeException(e);
+						}  finally {
 							// unset the grid
 							if(ajaxGridEvent instanceof IGridAware<?>) {							
 								IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
@@ -143,19 +173,21 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 				throw new WicketRuntimeException("You should provide an ICellPopulator for column " + column.getPropertyPath());
 			}
 		}
-		data = new GridDataPanel<B>("data", populators, dataProvider);
-		data.setVisible(false);
-		add(data);
+		// hidden panel used to generate
+		// grid's contents
+		dataPanel = new GridDataPanel<B>("dataPanel", populators, dataProvider);
+		dataPanel.setVisible(false);
+		add(dataPanel);
 	}
 	
 	@Override
 	protected void onBeforeRender() {
 		if(grid == null) {
-			grid = new WebMarkupContainer("grid");
+			grid = new WebMarkupContainer(TEMPLATE);
 			grid.setOutputMarkupId(true);
 			addOrReplace(grid);			
-			// navigator will also be used to stream back grids data
-			gridData = new GridXMLData<B>(dataProvider, getGridModel(), null, data);
+			// navigator will be used to stream back grids data
+			gridData = new GridXMLData<B>(dataProvider, getGridModel(), dataPanel, this);
 			navigator = new DocumentResourceListener("navigator", gridData);
 			navigator.setOutputMarkupId(true);
 			addOrReplace(navigator);
@@ -320,7 +352,11 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 			  sb.append(",");
 		  }
 		  
-		  
+		  if(getGridModel().isHiddengrid()) {
+			  sb.append("hiddengrid: ");
+			  sb.append(getGridModel().isHiddengrid());
+			  sb.append(",");          
+		  }
 		  
 		  if(!getGridModel().isHidegrid()) {
 			  sb.append("hidegrid: ");
@@ -485,5 +521,20 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	public JsStatement statement() {
 		return new JsQuery(this.grid).$().chain("jqGrid",generateStript());
 	}
+	
+	
+	public List<IModel<B>> getRowModels() {
+		return rowModels;
+	}
 
+	public void setRowModels(List<IModel<B>> rowModels) {		
+		this.rowModels.clear();
+		for(IModel<B> model: rowModels) {
+			this.rowModels.add(model);
+		}
+	}
+
+	public GridDataPanel<B> getDataPanel() {
+		return dataPanel;
+	}
 }

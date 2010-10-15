@@ -17,12 +17,9 @@
 package com.wiquery.plugins.jqgrid.component;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebRequestCycle;
 
@@ -44,18 +41,16 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 	
 	private String[] searchFields;
 	
-	private List<IModel<B>> models;
-	
 	private GridDataPanel<B> dataPanel;
 	
-	public GridXMLData(IDataProvider<B> dataProvider, GridModel<B> gridModel, B searchBean, GridDataPanel<B> dataPanel, String... searchFields) {
+	private Grid<B> grid;
+	
+	
+	public GridXMLData(IDataProvider<B> dataProvider, GridModel<B> gridModel, GridDataPanel<B> dataPanel, Grid<B> grid) {
 		this.dataProvider = dataProvider;
 		this.gridModel = gridModel;
-		this.searchBean = searchBean;		
-		this.searchFields = searchFields;
-		this.models = new ArrayList<IModel<B>>();
 		this.dataPanel = dataPanel;
-		
+		this.grid = grid;
 	}
 
 	@Override
@@ -67,6 +62,7 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		writer.append(encoding);
 		writer.append("'?>");
 		XMLDataRequestTarget target = new XMLDataRequestTarget(dataPanel.getPage());
+		
 		dataPanel.setOutputMarkupId(true);
 		dataPanel.setVisible(true);
 		target.addComponent(dataPanel);
@@ -81,6 +77,7 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		content = content.replaceAll("<cell><span>", "<cell><![CDATA[");
 		content = content.replaceAll("</span></cell>", "]]></cell>");
 		writer.append(content);
+		grid.setRowModels(dataPanel.getRowModels());
 		return writer.toString();
 	}
 
@@ -154,9 +151,4 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 	public void setSearchFields(String[] searchFields) {
 		this.searchFields = searchFields;
 	}
-
-	public List<IModel<B>> getModels() {
-		return models;
-	}
-
 }

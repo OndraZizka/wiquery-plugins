@@ -37,10 +37,10 @@ public abstract class OnSelectRowAjaxEvent<B extends Serializable> extends Abstr
 	public final void onEvent(AjaxRequestTarget target) {
 		String param = WebRequestCycle.get().getRequest().getParameter("row");		
 		if(!StringUtils.isEmpty(param) && param.length() > 3) {			
-			Integer row = Integer.parseInt(param.substring(3))-1;
+			Integer row = Integer.parseInt(param.substring(3));
 			Grid<B> grid = getGrid();
 			String status = WebRequestCycle.get().getRequest().getParameter("status");
-			IModel<B> model = grid.getGridData().getModels().get(row);
+			IModel<B> model = grid.getDataPanel().getRowModels().get(row);
 			onSelectRow(target, row, model, Boolean.parseBoolean(status));
 		}
 	}
