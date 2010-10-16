@@ -18,6 +18,7 @@ import org.apache.wicket.model.Model;
  *   request cycle. 
  * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
+ * @author Nathan Messer
  *
  */
 public class GridModel<B extends Serializable> extends Model<String> implements IModel<String>  {
