@@ -18,6 +18,7 @@ package com.wiquery.plugins.jqgrid.component;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.protocol.http.WebRequest;
@@ -61,7 +62,9 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		writer.append("<?xml version='1.0' encoding='");
 		writer.append(encoding);
 		writer.append("'?>");
-		XMLDataRequestTarget target = new XMLDataRequestTarget(dataPanel.getPage());
+		Page page = dataPanel.getPage();
+		page.setVersioned(false);
+		XMLDataRequestTarget target = new XMLDataRequestTarget(page);
 		
 		dataPanel.setOutputMarkupId(true);
 		dataPanel.setVisible(true);
@@ -72,6 +75,7 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		final BufferedWebResponse response = (BufferedWebResponse)RequestCycle.get().getResponse();		
 		*/		
 		dataPanel.setVisible(false);
+		page.setVersioned(true);
 		String content = temp.toString();
 		content = content.substring(content.indexOf("<rows"), content.indexOf("</rows>")+7);
 		content = content.replaceAll("<cell><span>", "<cell><![CDATA[");
