@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.odlabs.wiquery.plugin.layout.Layout;
 import org.odlabs.wiquery.plugin.layout.Layout.PanePositionEnum;
 
-import com.wiquery.plugins.antilia.grid.resources.DefaultStyle;
+import com.wiquery.plugin.antilia.grid.resources.DefaultStyle;
 import com.wiquery.plugins.demo.code.SourceInfo;
 import com.wiquery.plugins.demo.code.SourceInfo.FORMAT;
 import com.wiquery.plugins.demo.resources.Styles;
