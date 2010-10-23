@@ -23,8 +23,8 @@ import org.odlabs.wiquery.ui.effects.ScaleEffect.Scale;
 import org.odlabs.wiquery.ui.effects.ShakeEffect.Direction;
 import org.wiquery.plugin.jquertytools.tooltip.TooltipBehavior;
 
-import com.wiquery.plugins.antilia.link.ActionsPanel;
-import com.wiquery.plugins.antilia.link.ScriptTextLinkPanel;
+import com.wiquery.plugin.antilia.link.ActionsPanel;
+import com.wiquery.plugin.antilia.link.ScriptTextLinkPanel;
 
 /**
  * 

@@ -13,9 +13,9 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 
-import com.wiquery.plugins.antilia.link.JQIcon;
-import com.wiquery.plugins.antilia.link.JqAjaxLink;
-import com.wiquery.plugins.antilia.menu.IMenuItem;
+import com.wiquery.plugin.antilia.link.JQIcon;
+import com.wiquery.plugin.antilia.link.JqAjaxLink;
+import com.wiquery.plugin.antilia.menu.IMenuItem;
 
 /**
  * 

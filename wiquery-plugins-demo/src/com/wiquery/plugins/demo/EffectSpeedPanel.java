@@ -9,7 +9,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
 import org.odlabs.wiquery.core.effects.EffectSpeed;
 
-import com.wiquery.plugins.antilia.menu.IMenuItem;
+import com.wiquery.plugin.antilia.menu.IMenuItem;
+
 
 /**
  * 

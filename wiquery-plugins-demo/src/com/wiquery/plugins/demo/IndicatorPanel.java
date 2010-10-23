@@ -11,8 +11,8 @@ import org.apache.wicket.ajax.IAjaxIndicatorAware;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.wiquery.plugins.antilia.link.JQIcon;
-import com.wiquery.plugins.antilia.link.JqAjaxLink;
+import com.wiquery.plugin.antilia.link.JQIcon;
+import com.wiquery.plugin.antilia.link.JqAjaxLink;
 import com.wiquery.plugins.demo.code.CodeTabPanel;
 import com.wiquery.plugins.demo.code.SourceInfo;
 

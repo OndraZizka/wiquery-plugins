@@ -16,7 +16,7 @@ import org.odlabs.wiquery.ui.sortable.SortableBehavior.AxisEnum;
 
 /**
  * 
- * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
+ * @author Ernesto Reinaldo Barreiro
  *
  */
 public class SortablePanel extends Panel {
@@ -33,7 +33,7 @@ public class SortablePanel extends Panel {
 	
 	private boolean restrictToYAxis = false;
 	
-	private SortableAjaxBehavior sortable;
+	private SortableAjaxBehavior<WebMarkupContainer> sortable;
 	
 	
 	/**
@@ -80,26 +80,25 @@ public class SortablePanel extends Panel {
     	add(form);
     	
     	
-    	sortable = new SortableAjaxBehavior(SortedEvent.UPDATE) {
+    	sortable = new SortableAjaxBehavior<WebMarkupContainer>(SortedEvent.UPDATE) {
     
     		 private static final long serialVersionUID = 1L;
 
 			@Override
-		 	public void onReceive(Component sortedComponent, int index,
+		 	public void onReceive(WebMarkupContainer sortedComponent, int index,
 		 		Component parentSortedComponent,
 		 		AjaxRequestTarget ajaxRequestTarget) {
 		 	
 		 	}
     		 	
 		 	@Override
-		 	public void onRemove(Component sortedComponent, AjaxRequestTarget ajaxRequestTarget) {
+		 	public void onRemove(WebMarkupContainer sortedComponent, AjaxRequestTarget ajaxRequestTarget) {
 		 	
 		 	}
     		 	
 		 	@Override
-		 	public void onUpdate(Component sortedComponent, int index, AjaxRequestTarget ajaxRequestTarget) {
-		 		WebMarkupContainer item = (WebMarkupContainer)sortedComponent;
-		 		Label label = (Label)item.get("label");
+		 	public void onUpdate(WebMarkupContainer sortedComponent, int index, AjaxRequestTarget ajaxRequestTarget) {
+		 		Label label = (Label)sortedComponent.get("label");
 		 		SortablePanel.this.setMessage("Element " + label.getDefaultModelObjectAsString() + " moved to position " + index);		 		
 		 		if(ajaxRequestTarget!= null) {
 		 			ajaxRequestTarget.addComponent(mLabel);
