@@ -68,6 +68,7 @@ public class NavigationPanel extends Panel {
 		new PageLink(ResizablePage.class, "AJAX Resizable"),
 		new PageLink(SortablePage.class, "AJAX Sortable"),
 		new PageLink(SuperfishMenuPage.class, "Superfish Menu"),
+		new PageLink(DialogPage.class, "Dialog"),
 	};
 	
 	
