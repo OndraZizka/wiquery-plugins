@@ -9,6 +9,8 @@ import com.wiquery.plugins.demo.BasePage;
 import com.wiquery.plugins.demo.ButtonsPage;
 import com.wiquery.plugins.demo.DatePickerPage;
 import com.wiquery.plugins.demo.DatePickerPanel;
+import com.wiquery.plugins.demo.DialogPage;
+import com.wiquery.plugins.demo.DialogPanel;
 import com.wiquery.plugins.demo.EffectSpeedPanel;
 import com.wiquery.plugins.demo.EffectsPage;
 import com.wiquery.plugins.demo.EffectsPanel;
@@ -120,6 +122,9 @@ public class ConvierteATXT {
 			
 			SuperfishMenuPage.class,
 			SuperfishMenuPanel.class,
+			
+			DialogPage.class,
+			DialogPanel.class,
 			
 		};
 	
