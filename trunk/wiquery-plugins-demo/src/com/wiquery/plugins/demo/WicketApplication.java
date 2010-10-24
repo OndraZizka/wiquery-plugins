@@ -13,7 +13,6 @@ import org.apache.wicket.protocol.http.HttpSessionStore;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.session.ISessionStore;
 import org.odlabs.wiquery.ui.themes.IThemableApplication;
-import org.odlabs.wiquery.utils.WiQueryWebApplication;
 
 import com.wiquery.plugins.demo.test.Person;
 
@@ -23,7 +22,7 @@ import com.wiquery.plugins.demo.test.Person;
  * 
  * @see com.wiquery.plugins.test.Start#main(String[])
  */
-public class WicketApplication extends WiQueryWebApplication implements IThemableApplication
+public class WicketApplication extends WebApplication implements IThemableApplication
 {    
 	
 	private static List<Person> persons;
