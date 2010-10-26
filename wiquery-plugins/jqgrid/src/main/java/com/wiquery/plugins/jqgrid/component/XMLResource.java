@@ -1,8 +1,11 @@
 package com.wiquery.plugins.jqgrid.component;
 
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.DynamicWebResource;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebRequestCycle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author  Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -12,8 +15,7 @@ public abstract class XMLResource extends DynamicWebResource  {
 
 	private static final long serialVersionUID = 1L;
 	
-	
-
+	private static final Logger logger = LoggerFactory.getLogger(XMLResource.class);
 	
 	/**
 	 * 
@@ -42,7 +44,8 @@ public abstract class XMLResource extends DynamicWebResource  {
 						data = getXml().getBytes(((WebRequest)(WebRequestCycle.get().getRequest())).getHttpServletRequest().getCharacterEncoding());
 					return data;
 				} catch (Exception e) {
-					return null;
+					logger.error("Error generating GRID data: ", e.getMessage());					
+					throw new WicketRuntimeException(e);
 				}
 			}
 		};
