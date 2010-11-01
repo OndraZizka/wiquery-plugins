@@ -19,6 +19,13 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>wiquery-maven-repo</id>
+			<url>file://C://temp/test/</url>
+		</repository>
+	</distributionManagement>
 	<dependencyManagement>
 		<dependencies>
 			<!-- WiJqGrid Dependicies -->
