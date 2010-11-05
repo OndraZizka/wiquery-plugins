@@ -79,6 +79,31 @@ public class ScrollPaneBehavior extends WiQueryAbstractBehavior {
 		return showArrows!= null?showArrows.booleanValue(): false;
 	}
 
+	
+	/**
+	 * Whether the scrollpane should attempt to maintain it's position whenever 
+	 * it is reinitialised. If true then the viewport of the scrollpane will 
+	 * remain the same when it is reinitialised, if false then the viewport will jump 
+	 * back up to the top when the scrollpane is reinitialised.
+	 * 
+	 * Default value true.
+	 * 
+	 * @param maintainPosition
+	 * @return this behavior.
+	 */
+	public ScrollPaneBehavior setMaintainPosition(boolean maintainPosition) {
+		options.put("maintainPosition", maintainPosition);
+		return this;
+	}
+	
+	/**
+	 * @return Whether position should maintained or not.
+	 */
+	public boolean isMaintainPosition() {
+		Boolean maintainPosition = options.getBoolean("maintainPosition");		
+		return maintainPosition!= null?maintainPosition.booleanValue(): true;
+	}
+	
 	/**
 	 * @return if default CCS should be included.
 	 */
