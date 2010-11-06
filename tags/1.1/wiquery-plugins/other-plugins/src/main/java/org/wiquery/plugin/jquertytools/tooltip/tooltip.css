@@ -1,0 +1,22 @@
+
+.blackarrow {
+	background-image: url("black_arrow.png");
+	background-repeat: no-repeat;
+	width: 210px;
+	height: 120px;
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	z-index: 5;
+}
+
+.blackarrowbig {
+	background-image: url("black_arrow_big.png");
+	background-repeat: no-repeat;
+	width: 370px;
+	height: 208px;
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	z-index: 10;
+}
