@@ -4,7 +4,7 @@
 	<groupId>com.wiquery-plugins</groupId>
 	<artifactId>wiquery-plugins</artifactId>
 	<packaging>pom</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<!-- TODO project name  -->
 	<name>wiquery-plugins</name>
 	<description></description>
@@ -127,7 +127,7 @@
 	<properties>
 		<wicket.version>1.4.12</wicket.version>
 		<jetty.version>6.1.5</jetty.version>
-		<wiquery.version>1.1-SNAPSHOT</wiquery.version>
+		<wiquery.version>1.1</wiquery.version>
 	</properties>
 	<repositories>
 		<repository>
