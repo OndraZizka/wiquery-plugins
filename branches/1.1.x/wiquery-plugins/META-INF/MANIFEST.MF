@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: wiquery_plugins
+Bundle-Version: 1.0.0
+
+
