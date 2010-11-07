@@ -5,7 +5,6 @@
     <project>antila-grid</project>
     <project>jqgrid</project>
     <project>other-plugins</project>
-    <project>wiquery-1.0.2</project>
   </projects>
   <buildSpec>
     <buildCommand>
