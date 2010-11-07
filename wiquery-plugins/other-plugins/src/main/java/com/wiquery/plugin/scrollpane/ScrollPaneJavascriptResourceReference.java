@@ -23,7 +23,7 @@ public class ScrollPaneJavascriptResourceReference extends
 	 * Builds a new instance of {@link ScrollPaneJavascriptResourceReference}.
 	 */
 	private ScrollPaneJavascriptResourceReference() {
-		super(ScrollPaneJavascriptResourceReference.class, "jquery.jscrollpane.min.js");
+		super(ScrollPaneJavascriptResourceReference.class, "jquery.jscrollpane.js");
 	}
 
 	/**
