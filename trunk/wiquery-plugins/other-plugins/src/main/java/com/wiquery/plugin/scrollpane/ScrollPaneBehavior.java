@@ -9,6 +9,7 @@ import org.odlabs.wiquery.core.commons.WiQueryResourceManager;
 import org.odlabs.wiquery.core.javascript.JsQuery;
 import org.odlabs.wiquery.core.javascript.JsStatement;
 import org.odlabs.wiquery.core.options.Options;
+import org.odlabs.wiquery.ui.commons.WiQueryUIPlugin;
 
 /**
  * <p>
@@ -21,6 +22,7 @@ import org.odlabs.wiquery.core.options.Options;
  * 
  * @author Ernesto Reinaldo Barreiro
  */
+@WiQueryUIPlugin
 public class ScrollPaneBehavior extends WiQueryAbstractBehavior {
 
 	private static final long serialVersionUID = 1L;
