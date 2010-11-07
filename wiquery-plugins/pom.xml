@@ -4,7 +4,7 @@
 	<groupId>com.wiquery-plugins</groupId>
 	<artifactId>wiquery-plugins</artifactId>
 	<packaging>pom</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 	<!-- TODO project name  -->
 	<name>wiquery-plugins</name>
 	<description></description>
@@ -42,6 +42,16 @@
 			<dependency>
 				<groupId>com.wiquery.plugins</groupId>
 				<artifactId>other-plugins</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.wiquery.plugins</groupId>
+				<artifactId>wiquery-ckeditor</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.wiquery.plugins</groupId>
+				<artifactId>wiquery-hotkeys</artifactId>
 				<version>${project.version}</version>
 			</dependency>		
 			<dependency>
@@ -141,6 +151,8 @@
 		<module>jqgrid</module>
 		<module>antila-grid</module>
 		<module>other-plugins</module>
-		<module>example-war</module>
+		<module>wiquery-ckeditor</module>
+		<module>wiquery-hotkeys</module>
+		<module>example-war</module>	
 	</modules>
 </project>

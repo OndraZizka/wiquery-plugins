@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="antila-grid/src/main/java"/>
+	<classpathentry kind="src" path="wiquery-hotkeys/src/test/java"/>
+	<classpathentry kind="src" path="wiquery-hotkeys/src/main/java"/>
+	<classpathentry kind="src" path="wiquery-ckeditor/src/test/resources"/>
+	<classpathentry kind="src" path="wiquery-hotkeys/src/main/resources"/>
+	<classpathentry kind="src" path="wiquery-ckeditor/src/main/resources"/>
+	<classpathentry kind="src" path="wiquery-ckeditor/src/main/java"/>
+	<classpathentry kind="src" path="wiquery-ckeditor/src/test/java"/>
+	<classpathentry kind="src" path="wiquery-hotkeys/src/test/resources"/>
 	<classpathentry kind="src" path="other-plugins/src/test/java"/>
 	<classpathentry kind="src" path="other-plugins/src/main/resources"/>
 	<classpathentry kind="src" path="other-plugins/src/main/java"/>
@@ -29,6 +37,6 @@
 	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.2/junit-3.8.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar"/>
 	<classpathentry kind="var" path="M2_REPO/de/java2html/java2html/5.0/java2html-5.0.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/odlabs/wiquery/wiquery/1.1-SNAPSHOT/wiquery-1.1-SNAPSHOT.jar" sourcepath="/M2_REPO/org/odlabs/wiquery/wiquery/1.1-SNAPSHOT/wiquery-1.1-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/odlabs/wiquery/wiquery/1.2-SNAPSHOT/wiquery-1.2-SNAPSHOT.jar" sourcepath="/M2_REPO/org/odlabs/wiquery/wiquery/1.2-SNAPSHOT/wiquery-1.2-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="output" path="example-war/src/main/webapp/WEB-INF/classes"/>
 </classpath>
