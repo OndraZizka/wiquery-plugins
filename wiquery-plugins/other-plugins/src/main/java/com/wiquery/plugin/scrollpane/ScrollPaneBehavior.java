@@ -108,7 +108,7 @@ public class ScrollPaneBehavior extends WiQueryAbstractBehavior {
 	 * activate where necessary
 	 * 
 	 * @param autoReinitialise  boolean (default false)
-	 * @return
+	 * @return this behavior.
 	 */
 	public ScrollPaneBehavior setAutoReinitialise(boolean autoReinitialise) {
 		options.put("autoReinitialise", autoReinitialise);
@@ -121,6 +121,29 @@ public class ScrollPaneBehavior extends WiQueryAbstractBehavior {
 	public boolean isAutoReinitialise() {
 		Boolean autoReinitialise = options.getBoolean("autoReinitialise");		
 		return autoReinitialise!= null?autoReinitialise.booleanValue(): false;
+	}
+	
+	/**
+	 * The number of milliseconds between each reinitialisation (if autoReinitialise is true).
+	 * 
+	 * @param autoReinitialiseDelay  int (default 500)
+	 * @return this behavior
+	 */
+	public ScrollPaneBehavior setAutoReinitialiseDelay(Integer autoReinitialiseDelay) {
+		if(autoReinitialiseDelay != null)
+			options.put("autoReinitialiseDelay", autoReinitialiseDelay);
+		else 
+			options.removeOption("autoReinitialiseDelay");
+		return this;
+	}
+	
+	
+	/**
+	 * @return The number of milliseconds between each reinitialisation (if autoReinitialise is true).
+	 */
+	public int getAutoReinitialiseDelay() {
+		Integer autoReinitialiseDelay = options.getInt("autoReinitialiseDelay");		
+		return autoReinitialiseDelay!= null?autoReinitialiseDelay.intValue(): 500;
 	}
 	
 	
