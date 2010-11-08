@@ -99,6 +99,32 @@ public class ScrollPaneBehavior extends WiQueryAbstractBehavior {
 	}
 	
 	/**
+	 * 
+	 * Whether jScrollPane should automatically reinitialise itself periodically 
+	 * after you have initially initialised it. This can help with instances 
+	 * when the size of the content of the scrollpane (or the surrounding element) 
+	 * changes. However, it does involve an overhead of running a 
+	 * javascript function on a timer so it is recommended only to 
+	 * activate where necessary
+	 * 
+	 * @param autoReinitialise  boolean (default false)
+	 * @return
+	 */
+	public ScrollPaneBehavior setAutoReinitialise(boolean autoReinitialise) {
+		options.put("autoReinitialise", autoReinitialise);
+		return this;
+	}
+	
+	/**
+	 * @return Whether should be auto reinitialised or not.
+	 */
+	public boolean isAutoReinitialise() {
+		Boolean autoReinitialise = options.getBoolean("autoReinitialise");		
+		return autoReinitialise!= null?autoReinitialise.booleanValue(): false;
+	}
+	
+	
+	/**
 	 * @return Whether position should maintained or not.
 	 */
 	public boolean isMaintainPosition() {
