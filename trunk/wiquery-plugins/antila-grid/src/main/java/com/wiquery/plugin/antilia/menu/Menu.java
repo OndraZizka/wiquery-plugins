@@ -39,7 +39,7 @@ public  class Menu extends Panel implements IMenuItem, IMenu {
 		super(id);
 	
 		
-		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));	
+		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MENU));
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
 		
 		setOutputMarkupId(true);
