@@ -17,6 +17,9 @@ public class DefaultStyle {
 
 	public static ResourceReference CSS_MAIN = new ResourceReference(DefaultStyle.class, "main.css");
 	public static ResourceReference CSS_TABLE = new ResourceReference(DefaultStyle.class, "table.css");
+	
+	public static ResourceReference CSS_MENU = new ResourceReference(DefaultStyle.class, "menu.css");
+	
 	public static JavascriptResourceReference JS_COMMON = new JavascriptResourceReference(DefaultStyle.class, "common.js");
 	public static JavascriptResourceReference JS_TABLE = new JavascriptResourceReference(DefaultStyle.class, "table.js");	
 	public static ResourceReference CC_menu = new ResourceReference(DefaultStyle.class, "menu.css");	
