@@ -90,7 +90,7 @@ public class GridPanel extends Panel {
 		
 		form.add(captionSelect);
 		
-		model = new GridModel<Person>(Person.class);
+		model = new GridModel<Person>();
 		
 		if(caption)
 			model.setCaption("Persons");

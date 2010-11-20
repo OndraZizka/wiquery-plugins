@@ -24,14 +24,7 @@ import org.apache.wicket.model.Model;
 public class GridModel<B extends Serializable> extends Model<String> implements IModel<String>  {
 
 	private static final long serialVersionUID = 1L;
-	
-	
-	/**
-	 * The bean class.
-	 */
-	private Class<B> beanClass;
 		
-	
 	/**
 	 * The column models.
 	 */
@@ -230,26 +223,23 @@ public class GridModel<B extends Serializable> extends Model<String> implements 
 	private boolean pginput = true;
 	
 	/**
-	 * List of rows sizes that will appear on the select box.
+	 * Constructor.
+	 * @param beanClass
 	 */
+	public GridModel() {
+		super();
+	}
+	
+	/**
+	 * Constructor.
+	 * @deprecated
+	 * @param beanClass The bean class.
+	 */
+	@Deprecated
 	public GridModel(Class<B> beanClass) {
 		super();
-		this.beanClass = beanClass;
 	}
 
-	/**
-	 * @return the beanClass
-	 */
-	public Class<B> getBeanClass() {
-		return beanClass;
-	}
-
-	/**
-	 * @param beanClass the beanClass to set
-	 */
-	public void setBeanClass(Class<B> beanClass) {
-		this.beanClass = beanClass;
-	}
 
 	/**
 	 * Adds a column model.

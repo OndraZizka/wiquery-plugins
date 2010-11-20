@@ -36,7 +36,7 @@ public class NewGridPanel extends Panel {
 	 */
 	public NewGridPanel(String id) {
 		super(id);		
-		GridModel<Person> model = new GridModel<Person>(Person.class);
+		GridModel<Person> model = new GridModel<Person>();
 		
 		model.addColumnModel(new GridColumnModel<Person>("id", "id", new Model<String>("ID"), 200));
 		model.addColumnModel(new GridColumnModel<Person>("name","name", new Model<String>("Name"),200) {
