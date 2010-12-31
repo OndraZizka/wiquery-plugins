@@ -29,6 +29,15 @@
 	border-bottom: 0px;
 }
 
+dTHeader {
+	border-top: none !important; 
+	border-left: none !important; 
+	border-right: none !important; 
+	height: 18px !important; 
+	position: relative !important; 
+	border-bottom: 1px solid inherit !important;
+}
+
 .tHeadersTable {
 	table-layout: fixed !important;
 	width: 150px; 
