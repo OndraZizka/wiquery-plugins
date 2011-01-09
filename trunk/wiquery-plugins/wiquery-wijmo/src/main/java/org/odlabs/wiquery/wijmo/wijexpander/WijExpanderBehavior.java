@@ -226,6 +226,6 @@ public class WijExpanderBehavior extends WiQueryAbstractBehavior {
 	 */
 	@Override
 	public JsStatement statement() {
-		return new JsQuery(getComponent()).$().chain("wijexpander", options.getJavaScriptOptions());
+		return new JsQuery(getComponent()).$().chain("wijexpander", getOptions().getJavaScriptOptions());
 	}
 }

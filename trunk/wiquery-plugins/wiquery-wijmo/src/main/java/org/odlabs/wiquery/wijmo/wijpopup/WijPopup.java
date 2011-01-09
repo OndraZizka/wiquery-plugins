@@ -48,13 +48,13 @@ public class WijPopup extends WiQueryAbstractBehavior {
 	 * @since 1.0
 	 */
 	public enum WijPopupEffect {
-		Blind,
-		Clip,
-		Drop,
-		Fade,
-		Fold,
-		Slide,
-		Pulsate;
+		BLIND,
+		CLIP,
+		DROP,
+		FADE,
+		FOLD,
+		SLIDE,
+		PULSATE;
 
 		/**
 		 * {@inheritDoc}
@@ -94,7 +94,7 @@ public class WijPopup extends WiQueryAbstractBehavior {
 	 */
 	public WijPopupEffect getHideEffect() {
 		Object effect = getOptions().get("hideEffect");
-		return effect == null ? null : WijPopupEffect.valueOf(effect.toString());
+		return effect == null ? null : WijPopupEffect.valueOf(effect.toString().toUpperCase());
 	}
 	
 	/**
@@ -141,7 +141,7 @@ public class WijPopup extends WiQueryAbstractBehavior {
 	 */
 	public WijPopupEffect getShowEffect() {
 		Object effect = getOptions().get("showEffect");
-		return effect == null ? null : WijPopupEffect.valueOf(effect.toString());
+		return effect == null ? null : WijPopupEffect.valueOf(effect.toString().toUpperCase());
 	}
 	
 	/**
