@@ -67,8 +67,17 @@ public class WijTooltipBehavior extends WiQueryAbstractBehavior {
 	 * Enumeration for the close behavior option
 	 */
 	public enum CloseBehaviorEnum {
-		auto,
-		sticky;
+		AUTO,
+		STICKY;
+
+		/**
+		 * {@inheritDoc}
+		 * @see java.lang.Enum#toString()
+		 */
+		@Override
+		public String toString() {
+			return super.toString().toLowerCase();
+		}
 	}
 	
 	/**
@@ -76,11 +85,11 @@ public class WijTooltipBehavior extends WiQueryAbstractBehavior {
 	 * Enumeration for the triggers option
 	 */
 	public enum TriggersEnum {
-		click,
-		custom,
-		focus,
-		hover,
-		rightClick;
+		CLICK,
+		CUSTOM,
+		FOCUS,
+		HOVER,
+		RIGHTCLICK;
 	}
 	
 	// Constants
@@ -124,7 +133,7 @@ public class WijTooltipBehavior extends WiQueryAbstractBehavior {
 	 */
 	public CloseBehaviorEnum getCloseBehavior() {
 		String obj = getOptions().get("closeBehavior");
-		return obj == null ? CloseBehaviorEnum.auto : CloseBehaviorEnum.valueOf(obj);
+		return obj == null ? CloseBehaviorEnum.AUTO : CloseBehaviorEnum.valueOf(obj.toUpperCase());
 	}
 	
 	/**
@@ -202,7 +211,7 @@ public class WijTooltipBehavior extends WiQueryAbstractBehavior {
 	 */
 	public TriggersEnum getTriggers() {
 		String obj = getOptions().get("triggers");
-		return obj == null ? TriggersEnum.hover : TriggersEnum.valueOf(obj);
+		return obj == null ? TriggersEnum.HOVER : TriggersEnum.valueOf(obj.toUpperCase());
 	}
 	
 	/**
