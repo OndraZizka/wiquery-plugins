@@ -91,9 +91,9 @@ import org.odlabs.wiquery.wijmo.wijutil.WijUtilStyleSheetResourceReference;
  * add(new WijMenu("menu"));
  * </p>
  * 
- * <p>Miss:
+ * Miss:
  * 	* superPanelOptions
- *</p>
+ *
  *
  * @author Julien Roche
  * @since 1.0
