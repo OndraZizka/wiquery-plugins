@@ -21,6 +21,7 @@
  */
 package org.odlabs.wiquery.wijmo.wijcalendar;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.apache.wicket.Component;
@@ -58,8 +59,6 @@ import org.odlabs.wiquery.wijmo.wijpopup.WijPopupJavascriptResourceReference;
  * 
  * </p>
  * 
- * MISS: Change the dateoption !!, selectionMode
- *
  * @author Julien Roche
  * @since 1.0
  */
@@ -232,9 +231,9 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	/**
 	 * @return the displayDate option
 	 */
-	public DateOption getDisplayDate() {
+	public Date getDisplayDate() {
 		Object object = getOptions().getComplexOption("displayDate");
-		return object instanceof DateOption ? (DateOption) object : null ;
+		return object instanceof DateOption ? ((DateOption) object).getDateParam() : null ;
 	}
 	
 	/**
@@ -256,17 +255,17 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	/**
 	 * @return the maxDate option
 	 */
-	public DateOption getMaxDate() {
+	public Date getMaxDate() {
 		Object object = getOptions().getComplexOption("maxDate");
-		return object instanceof DateOption ? (DateOption) object : new DateOption(new GregorianCalendar(2099, 11, 31).getTime()) ;
+		return object instanceof DateOption ? ((DateOption) object).getDateParam() : new GregorianCalendar(2099, 11, 31).getTime() ;
 	}
 	
 	/**
 	 * @return the minDate option
 	 */
-	public DateOption getMinDate() {
+	public Date getMinDate() {
 		Object object = getOptions().getComplexOption("minDate");
-		return object instanceof DateOption ? (DateOption) object : new DateOption(new GregorianCalendar(1900, 0, 1).getTime()) ;
+		return object instanceof DateOption ? ((DateOption) object).getDateParam() : new GregorianCalendar(1900, 0, 1).getTime() ;
 	}
 	
 	/**
@@ -338,6 +337,14 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	public String getQuickPrevTooltip() {
 		String str = getOptions().getLiteral("quickPrevTooltip");
 		return str == null ? "Quick Previous" : str;
+	}
+	
+	/**
+	 * @return the selectionMode option
+	 */
+	public WijmoSelectionMode getSelectionMode() {
+		Object obj = getOptions().getComplexOption("selectionMode");
+		return obj instanceof WijmoSelectionMode ? (WijmoSelectionMode) obj : new WijmoSelectionMode(true, true);
 	}
 	
 	/**
@@ -521,8 +528,8 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	 * @param displayDate
 	 * @return the current instance
 	 */
-	public WijCalendar setDisplayDate(DateOption displayDate) {
-		getOptions().put("displayDate", displayDate);
+	public WijCalendar setDisplayDate(Date displayDate) {
+		getOptions().put("displayDate", new DateOption(displayDate));
 		return this;
 	}
 	
@@ -551,8 +558,8 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	 * @param maxDate
 	 * @return the current instance
 	 */
-	public WijCalendar setMaxDate(DateOption maxDate) {
-		getOptions().put("maxDate", maxDate);
+	public WijCalendar setMaxDate(Date maxDate) {
+		getOptions().put("maxDate", new DateOption(maxDate));
 		return this;
 	}
 	
@@ -561,8 +568,8 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	 * @param minDate
 	 * @return the current instance
 	 */
-	public WijCalendar setMinDate(DateOption minDate) {
-		getOptions().put("minDate", minDate);
+	public WijCalendar setMinDate(Date minDate) {
+		getOptions().put("minDate", new DateOption(minDate));
 		return this;
 	}
 	
@@ -657,6 +664,17 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 	}
 	
 	/**
+	 * Sets the date selection mode on the calendar control that specifies whether 
+	 * the user can select a single day, a week, or an entire month. 
+	 * @param selectionMode
+	 * @return the current instance
+	 */
+	public WijCalendar setSelectionMode(WijmoSelectionMode selectionMode) {
+		getOptions().put("selectionMode", selectionMode);
+		return this;
+	}
+	
+	/**
 	 * Determines whether to add zeroes to days with only one digit 
 	 * (for example, "1" would become "01" if this property were set to "true").
 	 * @param showDayPadding
@@ -716,7 +734,7 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 		getOptions().putLiteral("titleFormat", titleFormat);
 		return this;
 	}
-	
+
 	/**
 	 * Set the format for the ToolTip.
 	 * @param toolTipFormat
@@ -736,7 +754,7 @@ public class WijCalendar extends WebMarkupContainer implements IWiQueryPlugin {
 		getOptions().putLiteral("weekDayFormat", weekDayFormat.toString());
 		return this;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * @see org.odlabs.wiquery.core.commons.IWiQueryPlugin#statement()
