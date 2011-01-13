@@ -176,7 +176,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		// hidden panel used to generate
 		// grid's contents
 		dataPanel = new GridDataPanel<B>("dataPanel", populators, dataProvider);
-		dataPanel.setVisible(false);
+		dataPanel.setVisible(true);
 		add(dataPanel);
 	}
 	
