@@ -67,14 +67,14 @@ public class GridXMLData<B extends Serializable> extends XMLResource {
 		XMLDataRequestTarget target = new XMLDataRequestTarget(page);
 		
 		dataPanel.setOutputMarkupId(true);
-		dataPanel.setVisible(true);
+		//dataPanel.setVisible(true);
 		target.addComponent(dataPanel);
 		StringBuffer temp = new StringBuffer();
 		target.respond(RequestCycle.get(), temp);				
 		/*
 		final BufferedWebResponse response = (BufferedWebResponse)RequestCycle.get().getResponse();		
 		*/		
-		dataPanel.setVisible(false);
+		//dataPanel.setVisible(false);
 		page.setVersioned(true);
 		String content = temp.toString();
 		content = content.substring(content.indexOf("<rows"), content.indexOf("</rows>")+7);

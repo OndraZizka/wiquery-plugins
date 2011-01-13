@@ -161,10 +161,10 @@ public class GridDataPanel<E extends Serializable> extends Panel {
 		if(this.dataProvider instanceof ISortStateLocator) {
 			ISortStateLocator locator = (ISortStateLocator)dataProvider;
 			ISortState sortState = locator.getSortState();
-			if(sortState != null) {
-				if(sortInfo.getSortOrder().equals(SortOrder.asc))
+			if(sortState != null && sortInfo != null) {
+				if(SortOrder.asc.equals(sortInfo.getSortOrder()))
 					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
-				else if(sortInfo.getSortOrder().equals(SortOrder.desc))
+				else if(SortOrder.desc.equals(sortInfo.getSortOrder()))
 					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.DESCENDING);
 				else 
 					sortState.setPropertySortOrder(sortInfo.getProperty(), ISortState.ASCENDING);
@@ -209,7 +209,7 @@ public class GridDataPanel<E extends Serializable> extends Panel {
 		try {
 			return Integer.parseInt(WebRequestCycle.get().getRequest().getParameter("page"));
 		} catch (Exception e) {
-			return 10;
+			return 1;
 		}
 	}
 	
