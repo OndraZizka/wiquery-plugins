@@ -37,6 +37,24 @@ public class ClassicNavigationTable<E extends Serializable> extends Table<E> {
 				menu.addMenuItem(new NumberOfRecordsPanel<E>(menu.newItemId()));
 				menu.addMenuItem(new PaginatorPanel<E>(menu.newItemId()));				
 			}
+			
+			@Override
+			protected void onConfigure() {
+				setVisible(containsData());
+				super.onConfigure();
+			}
+			
+			public boolean containsData() {
+				IPageableComponent<E> component = findPageableComponent();
+				if(component != null)
+					return component.containsData();
+				return false;
+			}
+			
+			@SuppressWarnings("unchecked")
+			protected final IPageableComponent<E> findPageableComponent() {
+				return (IPageableComponent<E>)findParent(IPageableComponent.class);
+			}
 		};
 	}
 }

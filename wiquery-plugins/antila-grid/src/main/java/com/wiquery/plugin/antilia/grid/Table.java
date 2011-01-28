@@ -179,6 +179,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	@Override
 	protected void onBeforeRender() {			
 		rendringCount++;
+		if(pageSize <= 0) {
+			pageSize = 10;
+		}
 		if(size == -1) {
 			size = dataProvider.size();
 			numberOfPages = (size/pageSize)+((size%pageSize==0)?0:1); 
