@@ -53,6 +53,7 @@ public class NavigationPanel extends Panel {
 		new PageLink(GridPage.class, "jQgrid Example"),
 		new PageLink(NewGridPage.class, "jQgrid Example (compound cells)"),
 		new PageLink(TablePage.class, "Antilia grid"),
+		new PageLink(TableClassicPage.class, "Antilia grid (classic)"),
 		new PageLink(SliderPage.class, "AJAX slider"),
 		new PageLink(LayoutPage.class, "Layout on a DIV"),
 		new PageLink(ButtonsPage.class, "jQuery UI based buttons"),

@@ -32,6 +32,14 @@ public interface IPageableNavigationListener {
 	 */
 	void onFirstPage(AjaxRequestTarget target);	
 	
+	/**
+	 * 
+	 * @param target
+	 * @param page
+	 */
+	void onGoToPage(AjaxRequestTarget target, int page);	
+	
+	
 	
 	/**
 	 * Called when navigating to previous page.

@@ -94,8 +94,8 @@ tr.highlightedRow td {
 	width: 150px;
 	height: 22px;
 	z-index: 200;
-	font-size: 11px;
-	font-weight: bold;	
+	font-size: 0.8em !important;
+	font-weight: bold !important;	
 	vertical-align: middle;
 	text-align: left;
 	padding-top: 8px;
@@ -300,3 +300,12 @@ div.dropColumn {
 .dropHover {
 	border: 1px dashed !important;
 }
+
+.Paginador STRONG {line-height: 18px; display: block; float: left; padding-left: 12px; font-weight: normal;}
+.Paginador EM { display: block; float: left; font-style: normal; font-weight: normal !important;}
+.Paginador SPAN { display: block; float: left; line-height: 18px; padding-right: 15px; padding-left: 15px; }
+.Paginador SPAN.Nav { display: block; float: left; padding-right: 15px; padding-left: 15px; font-weight: normal !important;}
+.Paginador SPAN .Back, .Paginador SPAN .Next, .Paginador SPAN .Inner {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
+.Paginador A { line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px; color: #00244f; font-weight: normal !important; }
+.Paginador B {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
+.Paginador I {line-height: 18px; display: block; float: left;}

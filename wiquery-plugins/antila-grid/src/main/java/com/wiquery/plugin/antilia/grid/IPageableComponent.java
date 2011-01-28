@@ -79,6 +79,14 @@ public interface IPageableComponent<E extends Serializable> {
 	 */
 	public void lastPage();
 	
+	
+	/**
+	 * 
+	 * @param page
+	 */
+	public void goToPage(int page);
+	
+	
 	/**
 	 * 
 	 * @return

@@ -745,6 +745,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		}
 	}
 	
+	
+	
 	/**
 	 * Override this method to do something when first page button is clicked.
 	 * 
@@ -753,7 +755,22 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	public void firstPage(AjaxRequestTarget target) {
 		
 	}
+	
+	public final void onGoToPage(AjaxRequestTarget target, int page) {
+		gotoPage(target, page);
+		for(IPageableNavigationListener listener: navigationListeners) {
+			listener.onGoToPage(target, page);
+		}
+	}
 
+	/**
+	 * Override this method to do something when an intermadiate page link is clicked.
+	 * 
+	 * @param target
+	 */
+	public void gotoPage(AjaxRequestTarget target, int page) {
+		
+	}
 
 	public final void onLastPage(AjaxRequestTarget target) {
 		lastPage(target);
@@ -882,6 +899,12 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	}
 
 
+	public void goToPage(int page) {
+		if(page >= 0 && page < numberOfPages) {
+			currentPage = page;
+			rowModels = null;
+		}			
+	}
 
 	public boolean containsData() {
 		return getCurrentPage().hasNext();
