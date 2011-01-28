@@ -7,7 +7,7 @@
   	empty-cells: show;
 }
 
-.tbodyBoRecords {
+.tbodyNoRecords {
   	margin: 0 0 0 0;
   	width: auto;
   	overflow: auto;
@@ -17,7 +17,7 @@
   	font-size: 12px;
 }
 
-.tbodyBoRecords div {
+.tbodyNoRecords div {
   	padding: 5px;
   	border: none !important;
 }
@@ -301,11 +301,11 @@ div.dropColumn {
 	border: 1px dashed !important;
 }
 
-.Paginador STRONG {line-height: 18px; display: block; float: left; padding-left: 12px; font-weight: normal;}
-.Paginador EM { display: block; float: left; font-style: normal; font-weight: normal !important;}
-.Paginador SPAN { display: block; float: left; line-height: 18px; padding-right: 15px; padding-left: 15px; }
-.Paginador SPAN.Nav { display: block; float: left; padding-right: 15px; padding-left: 15px; font-weight: normal !important;}
-.Paginador SPAN .Back, .Paginador SPAN .Next, .Paginador SPAN .Inner {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
-.Paginador A { line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px; color: #00244f; font-weight: normal !important; }
-.Paginador B {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
-.Paginador I {line-height: 18px; display: block; float: left;}
+.Paginator STRONG {line-height: 18px; display: block; float: left; padding-left: 12px; font-weight: normal;}
+.Paginator EM { display: block; float: left; font-style: normal; font-weight: normal !important;}
+.Paginator SPAN { display: block; float: left; line-height: 18px; padding-right: 15px; padding-left: 15px; }
+.Paginator SPAN.Nav { display: block; float: left; padding-right: 15px; padding-left: 15px; font-weight: normal !important;}
+.Paginator SPAN .Back, .Paginator SPAN .Next, .Paginator SPAN .Inner {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
+.Paginator A { line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px; color: #00244f; font-weight: normal !important; }
+.Paginator B {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
+.Paginator I {line-height: 18px; display: block; float: left;}
