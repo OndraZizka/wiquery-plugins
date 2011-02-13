@@ -66,10 +66,6 @@ import org.odlabs.wiquery.wijmo.wijutil.WijUtilStyleSheetResourceReference;
  */
 @WiQueryUIPlugin
 public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
-	// Constants
-	/** Constant of serialization */
-	private static final long serialVersionUID = 1289770835244095202L;
-	
 	/**
 	 * <p>
 	 * 	Enumeration for the orientation
@@ -91,6 +87,10 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 			return super.toString().toLowerCase();
 		}
 	}
+	
+	// Constants
+	/** Constant of serialization */
+	private static final long serialVersionUID = 1289770835244095202L;
 	
 	// Properties
 	private Options options;
@@ -144,6 +144,46 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 	}
 
 	/**
+	 * @return the orientation option
+	 */
+	public WijSplitterOrientation getOrientation() {
+		String str = getOptions().getLiteral("orientation");
+		return str == null ? WijSplitterOrientation.VERTICAL : WijSplitterOrientation.valueOf(str.toUpperCase());
+	}
+	
+	/**
+	 * @return the panel1 option
+	 */
+	public WijSplitterPanel getPanel1() {
+		Object object = getOptions().get("panel1");
+		return object instanceof WijSplitterPanel ? (WijSplitterPanel) object : new WijSplitterPanel();
+	}
+
+	/**
+	 * @return the panel2 option
+	 */
+	public WijSplitterPanel getPanel2() {
+		Object object = getOptions().get("panel2");
+		return object instanceof WijSplitterPanel ? (WijSplitterPanel) object : new WijSplitterPanel();
+	}
+	
+	/**
+	 * @return the resizeSettings option
+	 */
+	public WijSplitterResizeSettings getResizeSettings() {
+		Object object = getOptions().get("resizeSettings");
+		return object instanceof WijSplitterResizeSettings ? (WijSplitterResizeSettings) object : new WijSplitterResizeSettings();
+	}
+
+	/**
+	 * @return the splitterDistance option
+	 */
+	public int getSplitterDistance() {
+		Integer number = getOptions().getInt("splitterDistance");
+		return number == null ? 100 : number;
+	}
+	
+	/**
 	 * Invalidates the entire surface of the control and causes the control to be redrawn.
 	 * This will return the element back to its pre-init state.
 	 * @return the associated JsStatement
@@ -159,7 +199,23 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 	public void invalidate(AjaxRequestTarget ajaxRequestTarget) {
 		ajaxRequestTarget.appendJavascript(this.invalidate().render().toString());
 	}
-
+	
+	/**
+	 * @return the fullSplit option
+	 */
+	public boolean isFullSplit() {
+		Boolean bool = getOptions().getBoolean("fullSplit");
+		return bool == null ? false : bool;
+	}
+	
+	/**
+	 * @return the showExpander option
+	 */
+	public boolean isShowExpander() {
+		Boolean bool = getOptions().getBoolean("showExpander");
+		return bool == null ? true : bool;
+	}
+	
 	/**
 	 * Refresh layout for Splitter
 	 * This will return the element back to its pre-init state.
@@ -176,13 +232,55 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 	public void refresh(AjaxRequestTarget ajaxRequestTarget) {
 		ajaxRequestTarget.appendJavascript(this.refresh().render().toString());
 	}
-
+	
 	/**
-	 * {@inheritDoc}
-	 * @see org.odlabs.wiquery.core.commons.IWiQueryPlugin#statement()
+	 * A value that indicates whether or not the control is full of document. 
+	 * @param fullSplit
+	 * @return the current instance
 	 */
-	public JsStatement statement() {
-		return new JsQuery(this).$().chain("wijsplitter", getOptions().getJavaScriptOptions());
+	public WijSplitter setFullSplit(boolean fullSplit) {
+		getOptions().put("fullSplit", fullSplit);
+		return this;
+	}
+	
+	/**
+	 * A value indicating the horizontal or vertical orientation of the splitter panels.
+	 * @param orientation
+	 * @return the current instance
+	 */
+	public WijSplitter setOrientation(WijSplitterOrientation orientation) {
+		getOptions().putLiteral("orientation", orientation.toString());
+		return this;
+	}
+	
+	/**
+	 * Defines the information for top or left panel of splitter.
+	 * @param panel1
+	 * @return the current instance
+	 */
+	public WijSplitter setPanel1(WijSplitterPanel panel1) {
+		getOptions().put("panel1", panel1);
+		return this;
+	}
+	
+	/**
+	 * Defines the information for bottom or right panel of splitter.
+	 * @param panel2
+	 * @return the current instance
+	 */
+	public WijSplitter setPanel2(WijSplitterPanel panel2) {
+		getOptions().put("panel2", panel2);
+		return this;
+	}
+	
+	/**
+	 * A value defines the animation while the bar of splitter is beeing dragged.
+	 * @param resizeSettings
+	 * @return the current instance
+	 */
+	public WijSplitter setResizeSettings(WijSplitterResizeSettings resizeSettings) {
+		getOptions().put("resizeSettings", resizeSettings);
+		return this;
 	}
 	
 	/**
@@ -196,32 +294,6 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 	}
 	
 	/**
-	 * @return the showExpander option
-	 */
-	public boolean isShowExpander() {
-		Boolean bool = getOptions().getBoolean("showExpander");
-		return bool == null ? true : bool;
-	}
-	
-	/**
-	 * A value that indicates whether or not the control is full of document. 
-	 * @param fullSplit
-	 * @return the current instance
-	 */
-	public WijSplitter setFullSplit(boolean fullSplit) {
-		getOptions().put("fullSplit", fullSplit);
-		return this;
-	}
-	
-	/**
-	 * @return the fullSplit option
-	 */
-	public boolean isFullSplit() {
-		Boolean bool = getOptions().getBoolean("fullSplit");
-		return bool == null ? false : bool;
-	}
-	
-	/**
 	 * A value indicates the location of the splitter, in pixels, from the left or top edge of the splitter. 
 	 * @param splitterDistance
 	 * @return the current instance
@@ -232,28 +304,10 @@ public class WijSplitter extends WebMarkupContainer implements IWiQueryPlugin {
 	}
 	
 	/**
-	 * @return the splitterDistance option
+	 * {@inheritDoc}
+	 * @see org.odlabs.wiquery.core.commons.IWiQueryPlugin#statement()
 	 */
-	public int getSplitterDistance() {
-		Integer number = getOptions().getInt("splitterDistance");
-		return number == null ? 100 : number;
-	}
-	
-	/**
-	 * @return the orientation option
-	 */
-	public WijSplitterOrientation getOrientation() {
-		String str = getOptions().getLiteral("orientation");
-		return str == null ? WijSplitterOrientation.VERTICAL : WijSplitterOrientation.valueOf(str.toUpperCase());
-	}
-	
-	/**
-	 * A value indicating the horizontal or vertical orientation of the splitter panels.
-	 * @param orientation
-	 * @return the current instance
-	 */
-	public WijSplitter setOrientation(WijSplitterOrientation orientation) {
-		getOptions().putLiteral("orientation", orientation.toString());
-		return this;
+	public JsStatement statement() {
+		return new JsQuery(this).$().chain("wijsplitter", getOptions().getJavaScriptOptions());
 	}
 }
