@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
 import org.apache.wicket.feedback.IFeedback;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
@@ -113,10 +112,7 @@ public interface IPageableComponent<E extends Serializable> {
 	
 	public void setPageSize(int pageSize);
 	
-	public void reset();
-	
-	public void sort(ISortState state);
-	
+	public void reset();	
 	
 	public IDataProvider<E> getDataProvider();
 }

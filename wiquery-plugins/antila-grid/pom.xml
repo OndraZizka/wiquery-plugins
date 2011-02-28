@@ -21,12 +21,23 @@
 			<artifactId>wicket-extensions</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>nl.topicus</groupId>
+			<artifactId>wqplot</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.odlabs.wiquery</groupId>
 			<artifactId>wiquery</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
