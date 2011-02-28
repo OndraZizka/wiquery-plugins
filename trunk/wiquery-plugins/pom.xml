@@ -137,7 +137,7 @@
 	<properties>
 		<wicket.version>1.4.12</wicket.version>
 		<jetty.version>6.1.5</jetty.version>
-		<wiquery.version>1.1-SNAPSHOT</wiquery.version>
+		<wiquery.version>1.2-SNAPSHOT</wiquery.version>
 	</properties>
 	<repositories>
 		<repository>

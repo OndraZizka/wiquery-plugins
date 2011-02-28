@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 
+import com.wiquery.plugins.demo.chart.ChartPage;
 import com.wiquery.plugins.demo.scrollpane.ScrollpanePage;
 
 /**
@@ -73,6 +74,8 @@ public class NavigationPanel extends Panel {
 		new PageLink(SuperfishMenuPage.class, "Superfish Menu"),
 		new PageLink(DialogPage.class, "Dialog"),
 		new PageLink(ScrollpanePage.class, "JScrollPane plugin"),
+		new PageLink(ChartPage.class, "JQChart example"),
+		
 	};
 	
 	

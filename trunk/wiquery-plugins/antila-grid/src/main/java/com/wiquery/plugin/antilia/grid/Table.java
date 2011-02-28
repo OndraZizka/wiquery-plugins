@@ -27,8 +27,6 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxIndicatorAware;
-import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
-import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortStateLocator;
 import org.apache.wicket.feedback.IFeedback;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -944,13 +942,6 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	
-	public void sort(ISortState state) {
-		if(this.dataProvider instanceof ISortStateLocator) {
-			
-		}
-	}
-
 
 
 	public IDataProvider<E> getDataProvider() {
