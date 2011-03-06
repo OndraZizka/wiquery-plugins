@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.odlabs.wiquery.wijmo.options;
+package org.odlabs.wiquery.wijmo.wijsuperpanel;
 
 import org.odlabs.wiquery.core.effects.AnimateDuration;
 import org.odlabs.wiquery.core.options.IComplexOption;
@@ -35,7 +35,7 @@ import org.odlabs.wiquery.core.options.Options;
  * @author Julien Roche
  * @since 1.0
  */
-public class WijmoAnimation implements IComplexOption {
+public class WijSuperpanelAnimationOptions implements IComplexOption {
 	// Constants
 	/** Constant of serialization */
 	private static final long serialVersionUID = 1L;
@@ -46,24 +46,20 @@ public class WijmoAnimation implements IComplexOption {
 	/**
 	 * Default constructor
 	 */
-	public WijmoAnimation() {
+	public WijSuperpanelAnimationOptions() {
 		this.options = new Options();
 	}
 	
 	/**
 	 * Constructor
 	 */
-	public WijmoAnimation(String animated, AnimateDuration duration, String easing){
+	public WijSuperpanelAnimationOptions(boolean queue, AnimateDuration duration, String easing){
 		this();
-		setAnimated(animated);
+		setQueue(queue);
 		setDuration(duration);
 		setEasing(easing);
 	}
 
-	public String getAnimated() {
-		return this.options.getLiteral("animated");
-	}
-	
 	public AnimateDuration getDuration() {
 		return (AnimateDuration) this.options.getComplexOption("duration");
 	}
@@ -80,18 +76,22 @@ public class WijmoAnimation implements IComplexOption {
 		return this.options.getJavaScriptOptions();
 	}
 	
-	public WijmoAnimation setAnimated(String animated) {
-		this.options.putLiteral("animated", animated);
-		return this;
+	public boolean getQueue() {
+		return this.options.getBoolean("queue");
 	}
 	
-	public WijmoAnimation setDuration(AnimateDuration duration) {
+	public WijSuperpanelAnimationOptions setDuration(AnimateDuration duration) {
 		this.options.put("duration", duration);
 		return this;
 	}
 	
-	public WijmoAnimation setEasing(String easing) {
+	public WijSuperpanelAnimationOptions setEasing(String easing) {
 		this.options.putLiteral("easing", easing);
+		return this;
+	}
+	
+	public WijSuperpanelAnimationOptions setQueue(Boolean queue) {
+		this.options.put("queue", queue);
 		return this;
 	}
 }
