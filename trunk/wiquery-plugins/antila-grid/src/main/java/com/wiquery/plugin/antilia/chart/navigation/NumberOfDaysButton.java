@@ -36,7 +36,7 @@ public class NumberOfDaysButton<E extends Serializable> extends Panel implements
 			@Override
 			public Serializable getObject() {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
-				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IDateBasedDataNavigator) {
+				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IDateBasedDataNavigator<?>) {
 					return ((IDateBasedDataNavigator<E>)pageableComponent.getNavigator()).getDaysStep();
 				}
 				return 10;
@@ -45,7 +45,7 @@ public class NumberOfDaysButton<E extends Serializable> extends Panel implements
 			@Override
 			public void setObject(Serializable object) {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
-				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator) {
+				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator<?>) {
 					IDateBasedDataNavigator<E> navigator = (IDateBasedDataNavigator<E>)pageableComponent.getNavigator();
 					try {						
 						navigator.setDaysStep(Integer.parseInt(object.toString()));
@@ -63,7 +63,7 @@ public class NumberOfDaysButton<E extends Serializable> extends Panel implements
 	protected void onInitialize() {
 		super.onInitialize();
 		IPageableComponent<E> pageableComponent = findPageableComponent();
-		setVisible(pageableComponent != null && (pageableComponent.getNavigator() instanceof IDateBasedDataNavigator));
+		setVisible(pageableComponent != null && (pageableComponent.getNavigator() instanceof IDateBasedDataNavigator<?>));
 	}
 	
 	@SuppressWarnings("unchecked")

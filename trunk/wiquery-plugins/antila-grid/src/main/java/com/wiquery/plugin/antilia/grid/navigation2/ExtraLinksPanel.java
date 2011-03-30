@@ -38,7 +38,7 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 				public boolean isVisible() {
 					IPageableComponent<E> pc = findPageableComponent();
 					int current = pc.currentPageNumber()+1;
-					return current != 1 && current != 2;
+					return current -5 > 1;
 				}
 			};
 			add(initialDots);
@@ -54,7 +54,7 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 					IPageableComponent<E> pc = findPageableComponent();
 					int current = pc.currentPageNumber()+1;
 					int pages =  pc.getNumberOfPages();
-					return current != pages && current != (pages-1);
+					return current + 5 < pages;
 				}
 			};
 			add(finalDots);
@@ -66,18 +66,14 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 		
 		List<Integer> pageNumbers = new ArrayList<Integer>();
 		
-		if(current == 1 || current == 2) {
-			pageNumbers.add(new Integer(2));
-			pageNumbers.add(new Integer(3));
-			pageNumbers.add(new Integer(4));			
-		} else if(current == pages || current == (pages-1)) {
-			pageNumbers.add(new Integer(pages-3));
-			pageNumbers.add(new Integer(pages-2));
-			pageNumbers.add(new Integer(pages-1));
-		} else {
-			pageNumbers.add(new Integer(current-1));
-			pageNumbers.add(new Integer(current));
-			pageNumbers.add(new Integer(current+1));
+		int start = (current -5);		
+		int end = current +5;
+		end = Math.min(end, pages);
+		
+		for(int i=start; i <= end;i++) {
+			if(i>0) {
+				pageNumbers.add(new Integer(i));
+			}
 		}
 		
 		RepeatingView pageLinks = new RepeatingView("pageLinks");

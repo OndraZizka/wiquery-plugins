@@ -35,7 +35,7 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 			@Override
 			public Serializable getObject() {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
-				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator) {
+				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator<?>) {
 					return ((IPageSizeDataNavigator<E>)pageableComponent.getNavigator()).getPageSize();
 				}
 				return 10;
@@ -44,7 +44,7 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 			@Override
 			public void setObject(Serializable object) {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
-				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator) {
+				if(pageableComponent != null && pageableComponent.getNavigator() instanceof IPageSizeDataNavigator<?>) {
 					IPageSizeDataNavigator<E> navigator = (IPageSizeDataNavigator<E>)pageableComponent.getNavigator();
 					try {						
 						navigator.setPageSize(Integer.parseInt(object.toString()));
@@ -62,7 +62,7 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 	protected void onInitialize() {
 		super.onInitialize();
 		IPageableComponent<E> pageableComponent = findPageableComponent();
-		setVisible(pageableComponent != null && (pageableComponent.getNavigator() instanceof IPageSizeDataNavigator));
+		setVisible(pageableComponent != null && (pageableComponent.getNavigator() instanceof IPageSizeDataNavigator<?>));
 	}
 	
 	@SuppressWarnings("unchecked")

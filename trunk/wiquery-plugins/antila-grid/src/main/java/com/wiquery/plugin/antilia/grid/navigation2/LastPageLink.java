@@ -3,8 +3,6 @@ package com.wiquery.plugin.antilia.grid.navigation2;
 import java.io.Serializable;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.model.IModel;
 
 import com.wiquery.plugin.antilia.grid.IPageableComponent;
 import com.wiquery.plugin.antilia.grid.IPageableNavigationListener;
@@ -19,25 +17,7 @@ public class LastPageLink<E extends Serializable> extends PaginatorLinkPanel<E> 
 	
 	
 	public LastPageLink(String id) {
-		super(id, null, (IModel<String>)null);
-	}
-	
-	@Override
-	protected IModel<String> getTextModel() {
-		return new AbstractReadOnlyModel<String>(){
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				IPageableComponent< E> component = LastPageLink.this.findPageableComponent();
-				if(component  == null)
-					return "0";
-				if(!component.containsData())
-					return "1";
-				return Integer.toString(component.getNumberOfPages());
-			}
-		};
+		super(id, "Last", "&gt;&gt;");
 	}
 	
 	@Override

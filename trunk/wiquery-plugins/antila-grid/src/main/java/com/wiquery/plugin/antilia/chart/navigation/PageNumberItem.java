@@ -34,7 +34,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 			@Override
 			public Integer getObject() {
 				IDataNavigator< E> component = findPageableComponent().getNavigator();
-				if(component  == null || !(component instanceof IPageSizeDataNavigator))
+				if(component  == null || !(component instanceof IPageSizeDataNavigator<?>))
 					return 0;
 				IPageSizeDataNavigator<E> navigator = (IPageSizeDataNavigator<E>)component;
 				if(!navigator.containsData())
@@ -50,7 +50,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 			@Override
 			public Integer getObject() {
 				IDataNavigator< E> component = findPageableComponent().getNavigator();
-				if(component  == null || !(component instanceof IPageSizeDataNavigator))
+				if(component  == null || !(component instanceof IPageSizeDataNavigator<?>))
 					return 0;
 				IPageSizeDataNavigator<E> navigator = (IPageSizeDataNavigator<E>)component;
 				if(!navigator.containsData())
@@ -64,7 +64,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 	protected void onInitialize() {
 		super.onInitialize();
 		IPageableComponent<E> component = findPageableComponent();
-		setVisible(component != null && (component.getNavigator() instanceof IPageSizeDataNavigator));
+		setVisible(component != null && (component.getNavigator() instanceof IPageSizeDataNavigator<?>));
 	}
 	
 	@SuppressWarnings("unchecked")
