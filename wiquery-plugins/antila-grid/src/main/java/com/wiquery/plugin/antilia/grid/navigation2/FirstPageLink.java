@@ -19,7 +19,7 @@ public class FirstPageLink<E extends Serializable> extends PaginatorLinkPanel<E>
 	private static final long serialVersionUID = 1L;
 	
 	public FirstPageLink(String id) {
-		super(id, "Inner", "1");
+		super(id, "First", "&lt;&lt;");
 	}
 	
 	@Override
