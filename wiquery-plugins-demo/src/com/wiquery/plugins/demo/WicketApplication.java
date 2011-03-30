@@ -27,6 +27,10 @@ public class WicketApplication extends WebApplication implements IThemableApplic
 	
 	private static List<Person> persons;
 	
+	private boolean isProd =
+	        "Production".equalsIgnoreCase(
+	            System.getProperty("com.google.appengine.runtime.environment"));
+	  
     /**
      * Constructor
      */
@@ -94,4 +98,8 @@ public class WicketApplication extends WebApplication implements IThemableApplic
 		return new DemoSession(request);
 	}
 
+	@Override
+    public String getConfigurationType() {
+        return (isProd ? "DEPLOYMENT" : "DEVELOPMENT");
+    }
 }
