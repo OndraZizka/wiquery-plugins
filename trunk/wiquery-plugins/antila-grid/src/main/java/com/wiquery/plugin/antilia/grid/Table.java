@@ -394,7 +394,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	
 	public void contribute(WiQueryResourceManager wiQueryResourceManager) {
-		wiQueryResourceManager.addCssResource(getTableCSS());
+		ResourceReference css = getTableCSS();
+		if(css != null)
+			wiQueryResourceManager.addCssResource(css);
 		wiQueryResourceManager.addJavaScriptResource(DefaultStyle.JS_COMMON);
 		wiQueryResourceManager.addJavaScriptResource(DefaultStyle.JS_TABLE);
 	}
