@@ -19,11 +19,17 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private Label initialDots;
+	
+	private int steps;
+	
 	/**
 	 * @param id
 	 */
-	public ExtraLinksPanel(String id) {
-		super(id);			
+	public ExtraLinksPanel(String id, int steps) {
+		super(id);	
+		if(steps < 1)
+			throw new IllegalArgumentException("Steps have to be greater or equal to 1");
+		this.steps = steps;
 		setRenderBodyOnly(true);
 	}
 	
@@ -38,7 +44,7 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 				public boolean isVisible() {
 					IPageableComponent<E> pc = findPageableComponent();
 					int current = pc.currentPageNumber()+1;
-					return current -5 > 1;
+					return current -steps > 1;
 				}
 			};
 			add(initialDots);
@@ -54,7 +60,7 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 					IPageableComponent<E> pc = findPageableComponent();
 					int current = pc.currentPageNumber()+1;
 					int pages =  pc.getNumberOfPages();
-					return current + 5 < pages;
+					return current + steps < pages;
 				}
 			};
 			add(finalDots);
@@ -66,8 +72,8 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 		
 		List<Integer> pageNumbers = new ArrayList<Integer>();
 		
-		int start = (current -5);		
-		int end = current +5;
+		int start = (current -steps);		
+		int end = current + steps;
 		end = Math.min(end, pages);
 		
 		for(int i=start; i <= end;i++) {
@@ -82,12 +88,6 @@ public class ExtraLinksPanel<E extends Serializable> extends Panel {
 			pageLinks.add(new NumberedPagePanel<E>(pageLinks.newChildId(), integer));
 		}				
 		super.onBeforeRender();
-	}
-	
-	@Override
-	public boolean isVisible() {
-		IPageableComponent<E> pc = findPageableComponent();
-		return (pc.getNumberOfPages() > 2);
 	}
 	
 	

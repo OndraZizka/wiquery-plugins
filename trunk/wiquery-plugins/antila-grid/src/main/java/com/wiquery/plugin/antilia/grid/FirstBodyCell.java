@@ -97,7 +97,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		imagePanel.add(menu);
 		*/
 		
-		Menu menu = new Menu("menu");
+		Menu menu = new Menu("menu", false);
 		menu.setMenuStyle("width: auto; background: transparent; height: 18px;");
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);

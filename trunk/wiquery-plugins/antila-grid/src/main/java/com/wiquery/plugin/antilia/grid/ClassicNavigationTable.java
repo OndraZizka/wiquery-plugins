@@ -35,7 +35,7 @@ public class ClassicNavigationTable<E extends Serializable> extends Table<E> {
 			@Override
 			protected void addNavigation(IMenu menu) {
 				menu.addMenuItem(new NumberOfRecordsPanel<E>(menu.newItemId()));
-				menu.addMenuItem(new PaginatorPanel<E>(menu.newItemId()));				
+				menu.addMenuItem(new PaginatorPanel<E>(menu.newItemId(), getNumberOfSteps()));				
 			}
 			
 			@Override
@@ -56,5 +56,13 @@ public class ClassicNavigationTable<E extends Serializable> extends Table<E> {
 				return (IPageableComponent<E>)findParent(IPageableComponent.class);
 			}
 		};
+	}
+	
+	/**
+	 * Override this method to return a different number of steps.
+	 * @return
+	 */
+	protected int getNumberOfSteps() {
+		return 3;
 	}
 }

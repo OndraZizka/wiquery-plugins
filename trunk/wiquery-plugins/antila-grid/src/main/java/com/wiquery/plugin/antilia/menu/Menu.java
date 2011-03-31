@@ -30,17 +30,21 @@ public  class Menu extends Panel implements IMenuItem, IMenu {
 		
 	private String menuStyle = "";
 	
-			
+	
+	public Menu(String id) {
+		this(id, true);
+	}
 	
 	/**
 	 * @param id
 	 */
-	public Menu(String id) {
+	public Menu(String id, boolean includeResources) {
 		super(id);
 	
-		
-		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MENU));
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
+		if(includeResources) {
+			add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MENU));
+			add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
+		}
 		
 		setOutputMarkupId(true);
 		

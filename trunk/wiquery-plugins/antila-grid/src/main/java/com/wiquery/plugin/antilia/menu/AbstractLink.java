@@ -91,9 +91,8 @@ public abstract class AbstractLink extends Panel implements IMenuItem {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected WebMarkupContainer newLink(String id) {
-		return new AjaxFallbackLink(id) {
+		return new AjaxFallbackLink<Void>(id) {
 
 			private static final long serialVersionUID = 1L;
 
