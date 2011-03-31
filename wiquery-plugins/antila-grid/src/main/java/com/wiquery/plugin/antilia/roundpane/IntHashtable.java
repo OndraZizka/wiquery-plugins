@@ -22,7 +22,6 @@ import java.util.*;
 // <P>
 // @see java.util.Hashtable
 
-@SuppressWarnings("unchecked")
 public class IntHashtable extends Dictionary implements Cloneable
     {
     /// The hash table data.
@@ -360,8 +359,7 @@ class IntHashtableEntry
     }
 
 
-@SuppressWarnings("unchecked")
-class IntHashtableEnumerator implements Enumeration
+class IntHashtableEnumerator implements Enumeration<Object>
     {
     boolean keys;
     int index;

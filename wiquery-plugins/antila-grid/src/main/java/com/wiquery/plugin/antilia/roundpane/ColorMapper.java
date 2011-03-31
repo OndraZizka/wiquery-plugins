@@ -220,7 +220,6 @@ public class ColorMapper {
         	  Color color = new Color(Integer.parseInt(integer, 16));
               if(color != null)
             	  return color;
-              return defaultColor;
           } catch ( NumberFormatException e) {              
               return defaultColor;
           }
