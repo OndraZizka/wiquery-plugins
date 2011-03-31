@@ -22,12 +22,12 @@ public class PaginatorPanel<E extends Serializable> extends Panel implements IMe
 	/**
 	 * @param id
 	 */
-	public PaginatorPanel(String id) {
+	public PaginatorPanel(String id, int steps) {
 		super(id);		
 		add(newFirstPagePanel("first"));
 		add(newPreviousPageLink("previous"));		
 		
-		add(newExtraLinksPanel("extraLinks"));
+		add(newExtraLinksPanel("extraLinks", steps));
 		
 		add(newNextPageLink("next"));		
 		add(newLastPagePanel("last"));
@@ -47,8 +47,8 @@ public class PaginatorPanel<E extends Serializable> extends Panel implements IMe
 		return new FirstPageLink<E>(id);
 	}
 	
-	protected Component newExtraLinksPanel(String id) {
-		return new ExtraLinksPanel<E>(id);
+	protected Component newExtraLinksPanel(String id, int steps) {
+		return new ExtraLinksPanel<E>(id, steps);
 	}
 	
 	protected Component newLastPagePanel(String id) {

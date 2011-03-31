@@ -49,7 +49,7 @@ public class DefaultTableHeader<E extends Serializable> extends Panel {
 	}
 	
 	protected Menu newTableMenu(String id, Table<E> table) {
-		Menu menu =  new Menu(id); 
+		Menu menu =  new Menu(id, false); 
 		
 		//add before navigation.		
 		addBeforeNavigation(menu);

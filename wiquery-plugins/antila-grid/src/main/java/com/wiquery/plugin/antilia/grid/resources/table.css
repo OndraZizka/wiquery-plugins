@@ -301,9 +301,113 @@ div.dropColumn {
 	border: 1px dashed !important;
 }
 
+div.vertical-menu {	
+	vertical-align: top;
+	width: 100%;
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	white-space: nowrap;
+}
+
+.vertical-menu .handle {
+	background: transparent url('images/menu.png') repeat-x;
+	vertical-align: text-bottom;
+	text-align: left;
+	padding-top: 2px;
+	padding-left: 4px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;	
+	font-weight: bold;
+	margin-right: 0px;
+	white-space: nowrap;
+	height: 16px;
+	color: #e7953d;
+}
+
+.vertical-menu .menubody {
+	background: transparent url('images/vertmenu_background.png') repeat;
+	width: 100%;
+	vertical-align: top;
+	padding-top: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
+	margin-top: 0px;	
+}
+
+.vertical-menu ul
+{	
+	width: 100%;
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+div.nav-menu {
+	width: 100%;
+	white-space: nowrap;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 1px;	
+}
+
+.nav-menu ul
+{	
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+.nav-menu li 
+{
+	background-color:transparent;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 2px;
+	display: inline;
+}
+
+.nav-menu li span
+{
+	color: inherit;
+}
+
+div.trans-menu {
+	width: 100%;
+	white-space: nowrap;
+	height: 18px;
+	background: transparent;		
+}
+
+.trans-menu ul
+{	
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+.trans-menu li 
+{
+	background-color:transparent;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+.trans-menu li span
+{
+	color: #e7953d;
+}
+
 .Paginator STRONG {line-height: 18px; display: block; float: left; padding-left: 12px; font-weight: normal;}
 .Paginator EM { display: block; float: left; font-style: normal; font-weight: normal !important;}
-.Paginator SPAN { display: block; float: left; line-height: 18px; padding-right: 15px; padding-left: 15px; }
+.Paginator SPAN { display: block; float: left; line-height: 18px; padding-right: 3px; padding-left: 3px; }
 .Paginator SPAN.Nav { display: block; float: left; padding-right: 15px; padding-left: 15px; font-weight: normal !important;}
 .Paginator SPAN .Back, .Paginator SPAN .Next, .Paginator SPAN .Inner {line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px;}
 .Paginator A { line-height: 18px; display: block; float: left; padding-right: 5px; padding-left: 5px; color: #00244f; font-weight: normal !important; }
