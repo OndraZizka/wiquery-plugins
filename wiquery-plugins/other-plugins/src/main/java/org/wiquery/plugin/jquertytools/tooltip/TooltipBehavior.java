@@ -132,7 +132,8 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	
 	// Properties
 	private Options options;
-		
+	
+	private String triggerId = null;
 	
 	/**
 	 * Default constructor
@@ -161,8 +162,12 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	 */
 	@Override
 	public JsStatement statement() {
-		return new JsQuery(getComponent()).$().chain("tooltip", 
+		if(getTriggerId() == null)
+			return new JsQuery(getComponent()).$().chain("tooltip", 
 				options.getJavaScriptOptions());
+		else 
+			return new JsStatement().$(null, getTriggerId()).chain("tooltip", 
+					options.getJavaScriptOptions());
 	}
 	
 	/**Method retrieving the options of the component
@@ -477,6 +482,22 @@ public class TooltipBehavior extends WiQueryAbstractBehavior {
 	public TooltipBehavior setOnBeforeShow(JQueryToolsOnBeforeShowUiEvent onBeforeShow) {
 		this.options.put("onBeforeShow", onBeforeShow);
 		return this;
+	}
+
+
+	/**
+	 * @return the triggerId
+	 */
+	public String getTriggerId() {
+		return triggerId;
+	}
+
+
+	/**
+	 * @param triggerId the triggerId to set
+	 */
+	public void setTriggerId(String triggerId) {
+		this.triggerId = triggerId;
 	}
 	
 }
