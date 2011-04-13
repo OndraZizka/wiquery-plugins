@@ -170,9 +170,16 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			}
 		});
 		this.tableModel = tableModel;
-		this.firstColumnModel = new FirstColumnModel(70);
+		this.firstColumnModel = newFirstColumnModel();
 	}
 	
+	/**
+	 * Factory method for the firts column.
+	 * @return
+	 */
+	protected FirstColumnModel newFirstColumnModel() {
+		return new FirstColumnModel(40);
+	}
 	
 	@Override
 	protected void onBeforeRender() {			
