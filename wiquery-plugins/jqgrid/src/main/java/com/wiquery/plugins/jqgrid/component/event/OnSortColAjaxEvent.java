@@ -36,13 +36,18 @@ public abstract class OnSortColAjaxEvent<B extends Serializable> extends Abstrac
 	 * @see com.wijqgrid.component.IAjaxGridEvent#onEvent(org.apache.wicket.ajax.AjaxRequestTarget)
 	 */
 	public final void onEvent(AjaxRequestTarget target) {
-		String iCol = WebRequestCycle.get().getRequest().getParameter("iCol");				
-		if(!StringUtils.isEmpty(iCol)) {			
-			Integer col = Integer.parseInt(iCol);		
-			String sortorder = WebRequestCycle.get().getRequest().getParameter("sortorder");
-			String sortProperty = WebRequestCycle.get().getRequest().getParameter("index");			
-			Grid<B> grid = getGrid();
-			onSortCol(target, grid, grid.getGridModel().getColumnModel(col), col, sortProperty, SortOrder.valueOf(sortorder));
+        String iCol = WebRequestCycle.get().getRequest().getParameter("iCol");              
+        if(!StringUtils.isEmpty(iCol)) {            
+            Integer originalCol = Integer.parseInt(iCol);
+            int col;
+            if( getGrid().getGridModel().isRownumbers() )
+                col = originalCol - 1;
+            else
+                col = originalCol;
+            String sortorder = WebRequestCycle.get().getRequest().getParameter("sortorder");
+            String sortProperty = WebRequestCycle.get().getRequest().getParameter("index");         
+            Grid<B> grid = getGrid();
+            onSortCol(target, grid, grid.getGridModel().getColumnModel(col), col, sortProperty, SortOrder.valueOf(sortorder));
 		}
 	}
 	
