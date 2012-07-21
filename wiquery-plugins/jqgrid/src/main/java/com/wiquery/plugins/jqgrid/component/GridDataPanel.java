@@ -234,8 +234,7 @@ public class GridDataPanel<E extends Serializable> extends Panel {
 		setTotalPages((int)totalPages);
 		setPageSize(rows);
 		setStart(start);
-		// Missing??
-//        setRecords( records );
+        setRecords( records );
 		super.onBeforeRender();		
 	}
 
