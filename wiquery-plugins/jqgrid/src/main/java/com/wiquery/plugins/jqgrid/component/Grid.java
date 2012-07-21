@@ -87,6 +87,8 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	
 	private AbstractAjaxBehavior gridContext;
 	
+	private AbstractAjaxBehavior gridEditContext;
+
 	private GridXMLData<B> gridData;
 	
 	private GridModel<B> model;
@@ -163,8 +165,21 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		};
 		
 		add(gridContext);
-		
-		List<ICellPopulator<B>> populators = new ArrayList<ICellPopulator<B>>();
+
+        gridEditContext = new GridAbstractDefaultAjaxBehavior<B>( this )
+        {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected void respond( AjaxRequestTarget target )
+            {
+                onEdit( target );
+            }
+        };
+
+        add( gridEditContext );
+
+        List<ICellPopulator<B>> populators = new ArrayList<ICellPopulator<B>>();
 		for(final IColumn<B> column: gridModel.getColumnModels()){
 			ICellPopulator<B> cellPopulator = column.getCellPopulator();
 			if(cellPopulator != null) {
@@ -179,8 +194,27 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		dataPanel.setVisible(true);
 		add(dataPanel);
 	}
-	
-	@Override
+
+    protected void onEdit(AjaxRequestTarget target) {
+        final String action = WebRequestCycle.get().getRequest().getParameter( "oper" );
+        if( action != null )
+        {
+            final String rowId = WebRequestCycle.get().getRequest().getParameter( "id" );
+            final String rowNumString = rowId.substring( 3 );
+            final int rowNum = Integer.valueOf( rowNumString );
+            final List<IModel<B>> rowModels = getRowModels();
+            final IModel<B> rowModel = rowModels.get( rowNum );
+            final B rowObject = rowModel.getObject();
+            if( action.equals( "del" ) )
+                onDelete( rowObject );
+        }
+    };
+
+    protected void onDelete( B object ){
+        // Default is noop
+    }
+
+    @Override
 	protected void onBeforeRender() {
 		if(grid == null) {
 			grid = new WebMarkupContainer(TEMPLATE);
@@ -437,12 +471,44 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		  }
 		  
 		  //sb.append("});");
-		  sb.append("}");
+          final CharSequence editUrl = gridEditContext.getCallbackUrl();
+          sb.append( ", editurl: '" ).append( editUrl ).append( "'" );
+          sb.append("}");
 		  //sb.append("});");
 		  return sb.toString();	  
 	}
 	
-	private boolean inArray(int[] numbers, int number) {
+    private String generateNavigatorScript(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append( "'navGrid','#" ).append( navigator.getMarkupId() ).append( "'," );
+        // Parameters
+        sb.append( "{" );
+        sb.append( "edit:" ).append( getGridModel().isEditEnabled() ).append( ", " );
+        sb.append( "add:" ).append( getGridModel().isAddEnabled() ).append( ", " );
+        sb.append( "del:" ).append( getGridModel().isDeleteEnabled() ).append( ", " );
+        sb.append( "search:" ).append( getGridModel().isSearchEnabled() ).append( ", " );
+        sb.append( "view:" ).append( getGridModel().isViewEnabled() ).append( ", " );
+        sb.append( "refresh:" ).append( getGridModel().isRefreshEnabled() );
+        sb.append( "}," );
+        // Edit settings
+        sb.append( "{" );
+        sb.append( "}," );
+        // Add settings
+        sb.append( "{" );
+        sb.append( "}," );
+        // Delete settings
+        sb.append( "{" );
+        sb.append( "}," );
+        // Search settings
+        sb.append( "{" );
+        sb.append( "}," );
+        // View settings
+        sb.append( "{" );
+        sb.append( "}" );
+        return sb.toString();
+    }
+
+    private boolean inArray(int[] numbers, int number) {
 		if(numbers == null || numbers.length == 0)
 			return false;
 		for(int n: numbers) {
@@ -452,7 +518,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		return false;
 	}
 	
-	private String getResource(String key) {
+    private String getResource(String key) {
 		try {
 			return getString(key);
 		} catch (MissingResourceException e) {
@@ -519,7 +585,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	}
 
 	public JsStatement statement() {
-		return new JsQuery(this.grid).$().chain("jqGrid",generateStript());
+        return new JsQuery(this.grid).$().chain( "jqGrid",generateStript() ).chain( "jqGrid", generateNavigatorScript() );
 	}
 	
 	

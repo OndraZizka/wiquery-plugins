@@ -17,15 +17,14 @@ public class GridColumnModel<B extends Serializable> extends AbstractColumnModel
 
 	private static final long serialVersionUID = 1L;
 
-
-	
-	/**
-	 * 
-	 */
 	public GridColumnModel(String propertyPath, String sortName, IModel<String> titleModel, int width) {		
-		super(propertyPath, sortName, titleModel, width);
+		super(propertyPath, sortName, titleModel, width, null);
 	}
 	
+    public GridColumnModel(String propertyPath, String sortName, IModel<String> titleModel, int width, IEditable editable) {
+        super(propertyPath, sortName, titleModel, width, editable);
+    }
+    
 	public ICellPopulator<B> getCellPopulator() {
 		return new PropertyPopulator<B>(getPropertyPath());
 	}

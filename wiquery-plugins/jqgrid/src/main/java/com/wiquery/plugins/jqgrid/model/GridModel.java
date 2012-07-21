@@ -196,8 +196,38 @@ public class GridModel<B extends Serializable> extends Model<String> implements 
 	 * 
 	 */
 	private String resizeclass;
-	
-	public static enum HorizontalPosition {
+
+	/**
+	 * Used with the Navigator.
+	 */
+    private boolean isEditEnabled;
+
+    /**
+     * Used with the Navigator.
+     */
+    private boolean isAddEnabled;
+
+    /**
+     * Used with the Navigator.
+     */
+    private boolean isDeleteEnabled;
+
+    /**
+     * Used with the Navigator.
+     */
+    private boolean isSearchEnabled;
+
+    /**
+     * Used with the Navigator.
+     */
+    private boolean isViewEnabled;
+
+    /**
+     * Used with the Navigator.
+     */
+    private boolean isRefreshEnabled;
+
+    public static enum HorizontalPosition {
 		left, center, right;
 	}
 	
@@ -614,4 +644,52 @@ public class GridModel<B extends Serializable> extends Model<String> implements 
 	public void setHiddengrid(boolean hiddengrid) {
 		this.hiddengrid = hiddengrid;
 	}
+
+    public boolean isEditEnabled() {
+        return isEditEnabled;
+    }
+
+    public void setEditEnabled( boolean isEditEnabled ) {
+        this.isEditEnabled = isEditEnabled;
+    }
+
+    public boolean isAddEnabled() {
+        return isAddEnabled;
+    }
+
+    public void setAddEnabled( boolean isAddEnabled ) {
+        this.isAddEnabled = isAddEnabled;
+    }
+
+    public boolean isDeleteEnabled() {
+        return isDeleteEnabled;
+    }
+
+    public void setDeleteEnabled( boolean isDeleteEnabled ) {
+        this.isDeleteEnabled = isDeleteEnabled;
+    }
+
+    public boolean isSearchEnabled() {
+        return isSearchEnabled;
+    }
+
+    public void setSearchEnabled( boolean isSearchEnabled ) {
+        this.isSearchEnabled = isSearchEnabled;
+    }
+
+    public boolean isViewEnabled() {
+        return isViewEnabled;
+    }
+
+    public void setViewEnabled( boolean isViewEnabled ) {
+        this.isViewEnabled = isViewEnabled;
+    }
+
+    public boolean isRefreshEnabled() {
+        return isRefreshEnabled;
+    }
+
+    public void setRefreshEnabled( boolean isRefreshEnabled ) {
+        this.isRefreshEnabled = isRefreshEnabled;
+    }
 }
