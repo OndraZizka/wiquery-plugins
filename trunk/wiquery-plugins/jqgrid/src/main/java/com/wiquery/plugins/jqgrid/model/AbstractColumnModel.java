@@ -46,9 +46,12 @@ public abstract class AbstractColumnModel<B extends Serializable> implements  IC
 	 * Flag to set column resizability. True by default.
 	 */
 	private boolean resizable = true;
-	
-	
-	
+
+	/**
+	 * Column edit information, used with Navigator.
+	 */
+	private IEditable editable;
+
 	private IModel<String> titleModel;
 	
 	/**
@@ -64,11 +67,12 @@ public abstract class AbstractColumnModel<B extends Serializable> implements  IC
 	/**
 	 * 
 	 */
-	public AbstractColumnModel(String propertyPath, String sortName, IModel<String> titleModel, int width) {		
+	public AbstractColumnModel(String propertyPath, String sortName, IModel<String> titleModel, int width, IEditable editable) {		
 		this.propertyPath = propertyPath;
 		this.sortPath = sortName;
 		this.titleModel = titleModel;
 		this.width = width;
+        this.editable = editable;
 	}
 
 	/**
@@ -158,6 +162,18 @@ public abstract class AbstractColumnModel<B extends Serializable> implements  IC
 	public void setResizable(boolean resizable) {
 		this.resizable = resizable;
 	}
+
+    public boolean isEditable() {
+        return ( editable != null );
+    }
+
+    public IEditable getEditModel() {
+        return editable;
+    }
+
+    public void setEditModel( IEditable editable ) {
+        this.editable = editable;
+    }
 
 	public String getPropertyPath() {
 		return propertyPath;
