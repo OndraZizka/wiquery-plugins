@@ -21,6 +21,7 @@ package com.wiquery.plugins.jqgrid.component;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,7 @@ import com.wiquery.plugins.jqgrid.component.event.IGridEvent.GridEvent;
 import com.wiquery.plugins.jqgrid.model.GridModel;
 import com.wiquery.plugins.jqgrid.model.ICellPopulator;
 import com.wiquery.plugins.jqgrid.model.IColumn;
+import com.wiquery.plugins.jqgrid.model.INavButton;
 
 /**
  * This component is a Wicket wrapper for jqgrid (version 3.6) JS widget.
@@ -86,8 +88,10 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	private IDataProvider<B> dataProvider;
 	
 	private AbstractAjaxBehavior gridContext;
-	
+
 	private AbstractAjaxBehavior gridEditContext;
+
+    private AbstractAjaxBehavior customButtonsContext;
 
 	private GridXMLData<B> gridData;
 	
@@ -98,9 +102,11 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	private static String[] TEXT_PROPERTIES = {"recordtext", "emptyrecords", "loadtext", "pgtext"};
 	
 	private static final Logger logger = LoggerFactory.getLogger(Grid.class);
-	
-	private Map<IGridEvent.GridEvent, IGridEvent<B>> gridEvents  = new Hashtable<IGridEvent.GridEvent, IGridEvent<B>>();
-	
+
+	private Map<String, IGridEvent<B>> gridEvents  = new Hashtable<String, IGridEvent<B>>();
+
+    protected Map<String, INavButton<B>> navButtons = new HashMap<String, INavButton<B>>();
+
 	private List<IModel<B>> rowModels;
 	
 	private static abstract class  GridAbstractDefaultAjaxBehavior<B extends Serializable> extends AbstractDefaultAjaxBehavior {
@@ -125,7 +131,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		this.rowModels = new ArrayList<IModel<B>>(); 
 		this.dataProvider = dataProvider;
 		setOutputMarkupId(true);
-		
+
 		//This behavior is used as a call-back for grid events.
 		gridContext = new GridAbstractDefaultAjaxBehavior<B>(this) {
 			
@@ -178,6 +184,46 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
         };
 
         add( gridEditContext );
+
+        //This behavior is used as a call-back for custom events.
+        customButtonsContext = new GridAbstractDefaultAjaxBehavior<B>(this) {
+            
+            private static final long serialVersionUID = 1L;
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void respond(AjaxRequestTarget target) {
+                // look for the request parameter identifying the event.
+                String customEventName = WebRequestCycle.get().getRequest().getParameter("eventType");
+                if(!StringUtils.isEmpty(customEventName)) {
+                    // locate the event.
+                    IGridEvent gridEvent = navButtons.get( customEventName ).getEvent();
+                    if(gridEvent != null && gridEvent instanceof IAjaxGridEvent) {
+                        //if the event exists and is a AJAX event do the onEven!
+                        IAjaxGridEvent ajaxGridEvent = (IAjaxGridEvent)gridEvent;
+                        // set the grid if it is IGridAware.
+                        if(ajaxGridEvent instanceof IGridAware<?>) {                            
+                            IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
+                            aware.setGrid(getGrid());
+                        }
+                        try {
+                            ajaxGridEvent.onEvent(target);
+                        } catch (Exception e) {
+                            logger.debug("error hablding event ", e);
+                            throw new WicketRuntimeException(e);
+                        }  finally {
+                            // unset the grid
+                            if(ajaxGridEvent instanceof IGridAware<?>) {                            
+                                IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
+                                aware.setGrid(null);
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        
+        add(customButtonsContext);
 
         List<ICellPopulator<B>> populators = new ArrayList<ICellPopulator<B>>();
 		for(final IColumn<B> column: gridModel.getColumnModels()){
@@ -406,9 +452,9 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		  
 		  // we add the events registered by the grid.
 		  String url = gridContext.getCallbackUrl().toString();
-		  for(GridEvent event: gridEvents.keySet()) {
-			  IGridEvent<B> gridEvent = gridEvents.get(event);
-			  sb.append(event.name());
+		  for(String eventName: gridEvents.keySet()) {
+			  IGridEvent<B> gridEvent = gridEvents.get(eventName);
+			  sb.append(eventName);
 			  sb.append(": ");
 			  sb.append(gridEvent.statement(url));
 			  sb.append("},\n");
@@ -536,7 +582,12 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		gridEvents.put(event.getGridEvent(), event);
 		return this;
 	}
-	
+
+	public Grid<B> addNavButton( INavButton<B> button ) {
+	    navButtons.put( button.getEvent().getClass().getName(), button );
+	    return this;
+	}
+
 	/**
 	 * Remove an event.
 	 * 
@@ -602,5 +653,19 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 
 	public GridDataPanel<B> getDataPanel() {
 		return dataPanel;
+	}
+
+	/*
+	 * Added as a utility when overriding this class (mostly used during development).
+	 */
+	protected String getNavigatorMarkupId() {
+	    return this.navigator.getMarkupId();
+	}
+
+	/**
+	 * Callback for custom buttons.
+	 */
+	protected String getCallbackUrl() {
+	    return customButtonsContext.getCallbackUrl().toString();
 	}
 }

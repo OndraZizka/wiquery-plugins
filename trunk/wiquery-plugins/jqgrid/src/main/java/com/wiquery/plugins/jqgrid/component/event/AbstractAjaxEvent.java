@@ -19,7 +19,7 @@ public abstract class AbstractAjaxEvent<B extends Serializable> implements IAjax
 	/**
 	 * 
 	 */
-	private GridEvent event;
+	private String event;
 	
 	
 	/**
@@ -28,13 +28,13 @@ public abstract class AbstractAjaxEvent<B extends Serializable> implements IAjax
 	public AbstractAjaxEvent(final GridEvent event) {
 		if(event == null)
 			throw new IllegalArgumentException("GridEvent cannot be null!");
-		this.event = event;
+		this.event = event.name();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.wijqgrid.component.IGridEvent#getGridEvent()
 	 */
-	public GridEvent getGridEvent() {
+	public String getGridEvent() {
 		return event;
 	}
 

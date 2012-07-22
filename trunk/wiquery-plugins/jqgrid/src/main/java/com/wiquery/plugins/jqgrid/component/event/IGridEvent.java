@@ -32,7 +32,7 @@ public interface IGridEvent<B extends Serializable> extends Serializable {
 		resizeStop;
 	}
 
-	public abstract GridEvent getGridEvent();
+	public abstract String getGridEvent();
 	
 	/**
 	 * 
