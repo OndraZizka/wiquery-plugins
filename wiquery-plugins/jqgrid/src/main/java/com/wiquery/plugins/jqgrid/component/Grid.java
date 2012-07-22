@@ -53,6 +53,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wiquery.plugins.jqgrid.Resources;
+import com.wiquery.plugins.jqgrid.component.event.AbstractCustomEvent;
 import com.wiquery.plugins.jqgrid.component.event.IAjaxGridEvent;
 import com.wiquery.plugins.jqgrid.component.event.IGridEvent;
 import com.wiquery.plugins.jqgrid.component.event.IGridEvent.GridEvent;
@@ -554,6 +555,29 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
         return sb.toString();
     }
 
+    private String generateNavButtonStript( INavButton<B> button )
+    {
+        final StringBuilder s = new StringBuilder();
+        s.append( "'navButtonAdd'," );
+        s.append( "\"#" + getNavigatorMarkupId() + "\"," );
+        s.append( "{" );
+        s.append( "caption:\"" ).append( button.getCaption() ).append( "\"," );
+        s.append( "buttonicon:\"" ).append( button.getButtonIcon() ).append( "\", " );
+
+        String url = getCallbackUrl().toString();
+        final AbstractCustomEvent<B> event = button.getEvent();
+        s.append( event.getGridEvent() );
+        s.append(": ");
+        s.append( event.statement( url ) );
+        s.append("},\n");
+
+        s.append( "position: \"").append( button.getPosition() ).append( "\", " );
+        s.append( "title:\"").append( button.getTitle() ).append( "\", " );
+        s.append( "cursor: \"").append( button.getCursor() ).append( "\"" );
+        s.append( "}" );
+        return s.toString();
+    }
+
     private boolean inArray(int[] numbers, int number) {
 		if(numbers == null || numbers.length == 0)
 			return false;
@@ -636,7 +660,13 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 	}
 
 	public JsStatement statement() {
-        return new JsQuery(this.grid).$().chain( "jqGrid",generateStript() ).chain( "jqGrid", generateNavigatorScript() );
+        final JsStatement statement = new JsQuery(this.grid).$().chain( "jqGrid",generateStript() ).chain( "jqGrid", generateNavigatorScript() );
+
+        for( final INavButton<B> button : navButtons.values() ) {
+            statement.chain( "jqGrid", generateNavButtonStript( button ) );
+        }
+
+        return statement;
 	}
 	
 	
