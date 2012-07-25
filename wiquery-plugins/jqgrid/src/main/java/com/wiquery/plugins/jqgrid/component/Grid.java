@@ -685,6 +685,10 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 		return dataPanel;
 	}
 
+	public IDataProvider<B> getDataProvider() {
+	    return dataProvider;
+	}
+
 	/*
 	 * Added as a utility when overriding this class (mostly used during development).
 	 */
