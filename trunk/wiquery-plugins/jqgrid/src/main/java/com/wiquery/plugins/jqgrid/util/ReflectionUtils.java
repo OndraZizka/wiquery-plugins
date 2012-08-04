@@ -1,6 +1,7 @@
 package com.wiquery.plugins.jqgrid.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 
 import org.apache.commons.lang.StringUtils;
@@ -82,6 +83,18 @@ public class ReflectionUtils {
 	public static Object getPropertyValue(Object bean,String propertyPath) throws NoSuchFieldException {
 		if (bean == null)
 				throw new IllegalArgumentException("bean cannot be null");
+        StringBuffer getterName = new StringBuffer();
+        getterName.append( "get" ).append( propertyPath.substring( 0, 1 ).toUpperCase() ).append( propertyPath.substring( 1 ) );
+        try
+        {
+            Method getter = bean.getClass().getMethod( getterName.toString(), new Class[]{} );
+            Object value = getter.invoke( bean, new Object[]{} );
+            return value;
+        }
+        catch ( Exception e )
+        {
+            // fall through
+        }
 			Field field = ReflectionUtils.getField(bean.getClass(), propertyPath);
 			field.setAccessible(true);
 			try {
