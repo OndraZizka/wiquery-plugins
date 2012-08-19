@@ -128,12 +128,10 @@ public class DateBasedDataProviderNavigator<E extends Serializable> implements I
 		//TODO to be implemented later.
 	}
 
-	@Override
 	public Date getCurrentStartDate() {
 		return currentStart.getTime();
 	}
 
-	@Override
 	public Date getCurrentEndDate() {
 		return currentEnd.getTime();
 	}
@@ -142,7 +140,6 @@ public class DateBasedDataProviderNavigator<E extends Serializable> implements I
 		this.start.setTime(date);
 	}
 
-	@Override
 	public void setEndDate(Date date) {
 		this.end.setTime(date);
 	}
