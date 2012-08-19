@@ -145,10 +145,10 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 				String gridEventName = WebRequestCycle.get().getRequest().getParameter("gridEvent");
 				if(!StringUtils.isEmpty(gridEventName)) {
 					// locate the event.
-					IGridEvent gridEvent = gridEvents.get(GridEvent.valueOf(gridEventName));
+					IGridEvent<?> gridEvent = gridEvents.get(GridEvent.valueOf(gridEventName));
 					if(gridEvent != null && gridEvent instanceof IAjaxGridEvent) {
 						//if the event exists and is a AJAX event do the onEven!
-						IAjaxGridEvent ajaxGridEvent = (IAjaxGridEvent)gridEvent;
+						IAjaxGridEvent<?> ajaxGridEvent = (IAjaxGridEvent<?>)gridEvent;
 						// set the grid if it is IGridAware.
 						if(ajaxGridEvent instanceof IGridAware<?>) {							
 							IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
@@ -198,10 +198,10 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
                 String customEventName = WebRequestCycle.get().getRequest().getParameter("eventType");
                 if(!StringUtils.isEmpty(customEventName)) {
                     // locate the event.
-                    IGridEvent gridEvent = navButtons.get( customEventName ).getEvent();
+                    IGridEvent<?> gridEvent = navButtons.get( customEventName ).getEvent();
                     if(gridEvent != null && gridEvent instanceof IAjaxGridEvent) {
                         //if the event exists and is a AJAX event do the onEven!
-                        IAjaxGridEvent ajaxGridEvent = (IAjaxGridEvent)gridEvent;
+                        IAjaxGridEvent<?> ajaxGridEvent = (IAjaxGridEvent<?>)gridEvent;
                         // set the grid if it is IGridAware.
                         if(ajaxGridEvent instanceof IGridAware<?>) {                            
                             IGridAware<B> aware = (IGridAware<B>) ajaxGridEvent;
