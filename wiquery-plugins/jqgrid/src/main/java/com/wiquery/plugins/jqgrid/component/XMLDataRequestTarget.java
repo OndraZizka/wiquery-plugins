@@ -869,8 +869,6 @@ public class XMLDataRequestTarget implements IPageRequestTarget
 	private class AjaxHeaderResponse extends HeaderResponse
 	{
 
-		private static final long serialVersionUID = 1L;
-
 		private void checkHeaderRendering()
 		{
 			if (headerRendering == false)
