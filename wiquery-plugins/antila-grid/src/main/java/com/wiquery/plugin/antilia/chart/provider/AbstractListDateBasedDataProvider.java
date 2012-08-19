@@ -35,7 +35,6 @@ public abstract class AbstractListDateBasedDataProvider<T extends Serializable> 
 	/* (non-Javadoc)
 	 * @see org.apache.wicket.model.IDetachable#detach()
 	 */
-	@Override
 	public void detach() {
 		//do nothing.
 	}
@@ -43,7 +42,6 @@ public abstract class AbstractListDateBasedDataProvider<T extends Serializable> 
 	/* (non-Javadoc)
 	 * @see com.wiquery.plugin.antilia.chart.IDateBasedDataProvider#iterator(java.util.Date, java.util.Date)
 	 */
-	@Override
 	public Iterator<? extends T> iterator(Date start, Date end) {		
 		List<T> temp = new ArrayList<T>();
 		for(T bean: list) {
@@ -57,7 +55,6 @@ public abstract class AbstractListDateBasedDataProvider<T extends Serializable> 
 	/* (non-Javadoc)
 	 * @see com.wiquery.plugin.antilia.chart.IDateBasedDataProvider#model(java.lang.Object)
 	 */
-	@Override
 	public IModel<T> model(T object) {
 		return new Model<T>(object);
 	}
