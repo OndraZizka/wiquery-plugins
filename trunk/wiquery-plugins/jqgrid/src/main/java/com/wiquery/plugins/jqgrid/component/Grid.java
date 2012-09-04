@@ -56,7 +56,6 @@ import com.wiquery.plugins.jqgrid.Resources;
 import com.wiquery.plugins.jqgrid.component.event.AbstractCustomEvent;
 import com.wiquery.plugins.jqgrid.component.event.IAjaxGridEvent;
 import com.wiquery.plugins.jqgrid.component.event.IGridEvent;
-import com.wiquery.plugins.jqgrid.component.event.IGridEvent.GridEvent;
 import com.wiquery.plugins.jqgrid.model.GridModel;
 import com.wiquery.plugins.jqgrid.model.ICellPopulator;
 import com.wiquery.plugins.jqgrid.model.IColumn;
@@ -145,7 +144,7 @@ public class Grid<B extends Serializable> extends Panel  implements IWiQueryPlug
 				String gridEventName = WebRequestCycle.get().getRequest().getParameter("gridEvent");
 				if(!StringUtils.isEmpty(gridEventName)) {
 					// locate the event.
-					IGridEvent<?> gridEvent = gridEvents.get(GridEvent.valueOf(gridEventName));
+					IGridEvent<?> gridEvent = gridEvents.get(gridEventName);
 					if(gridEvent != null && gridEvent instanceof IAjaxGridEvent) {
 						//if the event exists and is a AJAX event do the onEven!
 						IAjaxGridEvent<?> ajaxGridEvent = (IAjaxGridEvent<?>)gridEvent;
